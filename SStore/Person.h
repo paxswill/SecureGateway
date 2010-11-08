@@ -1,5 +1,5 @@
-#ifndef PERSON_CC_9QDZN2ZE
-#define PERSON_CC_9QDZN2ZE
+#ifndef PERSON_H_9QDZN2ZE
+#define PERSON_H_9QDZN2ZE
 
 #include <string>
 
@@ -31,4 +31,4 @@ private:
 	std::string email;
 };
 
-#endif /* end of include guard: PERSON_CC_9QDZN2ZE */
+#endif /* end of include guard: PERSON_H_9QDZN2ZE */
