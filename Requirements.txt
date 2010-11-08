@@ -9,7 +9,7 @@ SStore
 		Courses
 			Create them
 			Add Students to them
-			Only faculty modifies enrollment
+			Only owning faculty modifies enrollment
 		Documents
 			Add/Delete them
 			Make Docs available to people and classes
