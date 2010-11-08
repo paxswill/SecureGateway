@@ -5,7 +5,7 @@ Person
 	Member Data
 		int id
 		String name
-		bool isAdmin
+		bool admin
 		hash passwordHash
 		String email
 	Public Methods
