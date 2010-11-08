@@ -23,7 +23,7 @@ AppGate
 		Drop all other IPs
 	Authenticate Users
 		Allow users to recover lost passwords
-		Add users
+		Add/delete users
 	Logging
 		Timestamp everything
 		Track users
