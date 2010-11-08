@@ -1,0 +1,42 @@
+# Mac OS X Finder and whatnot
+.DS_Store
+
+
+# Sparkle distribution Private Key (Don't check me in!)
+dsa_priv.pem
+
+#AFS files
+._*
+
+# Generated files
+VersionX-revision.h
+
+
+# build products
+build/
+*.[oa]
+
+# Other source repository archive directories (protects when importing)
+.hg
+.svn
+CVS
+
+#No Xcode user files
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+
+
+# automatic backup files
+*~.nib
+*.swp
+*~
+*(Autosaved).rtfd/
+Backup[ ]of[ ]*.pages/
+Backup[ ]of[ ]*.key/
+Backup[ ]of[ ]*.numbers/
+
+# Save the stuff in the pre-built binaries directory
+!./Developer/**
