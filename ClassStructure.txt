@@ -1,0 +1,50 @@
+Class Structure
+
+
+Person
+	Member Data
+		int id
+		String name
+		bool isAdmin
+		hash passwordHash
+		String email
+	Public Methods
+		Getters/Setters for Member Data
+		resetPassword
+			generate a random password, hash it, and set the pwHash to that hash. Restrict to admins only
+		getDocuments
+		
+
+Faculty
+	* inherits from Person
+	Member Data
+		List<Course> classesTaught
+		List<Document> documentsOwned
+	Public Methods
+		createDocument
+		createCourse
+
+Student
+	* inherits from Person
+	Public Methods
+		getCourses
+		
+Course
+	Member Data
+		List<Student> enrolledStudents
+		Faculty instructor
+	Public Methods
+		[add|remove]Student
+			This will be restricted to instructor
+
+Document
+	Member Data
+		file_handle document (this could be a binary blob if we want to put it in the DB)
+		List<Person> allowedPersons
+		List<Course> allowedCourses
+		Faculty owner
+	Public Methods
+		setAllowed[Persons|Courses]
+			This will have to be restricted to the owner Faculty
+	
+	
