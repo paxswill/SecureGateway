@@ -1,0 +1,33 @@
+Requirements
+
+SStore
+	AppGate Communication
+		Only talks to AppGate
+		Secure Channel to AppGate
+		Authenticate AppGate before talking to it
+	Faculty
+		Courses
+			Create them
+			Add Students to them
+			Only faculty modifies enrollment
+		Documents
+			Add/Delete them
+			Make Docs available to people and classes
+			Be able to change permissions
+			Kept secure from administrator
+	Student
+		Can be in multiple classes
+
+AppGate
+	Filter by IP
+		Drop all other IPs
+	Authenticate Users
+		Allow users to recover lost passwords
+		Add users
+	Logging
+		Timestamp everything
+		Track users
+		Track commands executed
+
+
+		
