@@ -14,5 +14,6 @@
 @dynamic idNumber;
 @dynamic instructor;
 @dynamic enrolledStudents;
+@dynamic courseDocuments;
 
 @end

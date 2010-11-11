@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * idNumber;
 @property (nonatomic, retain) PXFaculty * instructor;
-@property (nonatomic, retain) NSSet* enrolledStudents;
+@property (nonatomic, retain) NSSet * enrolledStudents;
+@property (nonatomic, retain) NSSet * courseDocuments; 
 
 @end
