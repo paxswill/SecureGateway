@@ -17,38 +17,4 @@
 @dynamic passwordHash;
 @dynamic availableDocuments;
 
-- (void)addAvailableDocumentsObject:(PXDocument *)value {    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    
-    [self willChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveAvailableDocuments] addObject:value];
-    [self didChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    
-    [changedObjects release];
-}
-
-- (void)removeAvailableDocumentsObject:(PXDocument *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    
-    [self willChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveAvailableDocuments] removeObject:value];
-    [self didChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    
-    [changedObjects release];
-}
-
-- (void)addAvailableDocuments:(NSSet *)value {    
-    [self willChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-    [[self primitiveAvailableDocuments] unionSet:value];
-    [self didChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-}
-
-- (void)removeAvailableDocuments:(NSSet *)value {
-    [self willChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-    [[self primitiveAvailableDocuments] minusSet:value];
-    [self didChangeValueForKey:@"availableDocuments" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-}
-
-#endif
-
 @end
