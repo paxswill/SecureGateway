@@ -3,7 +3,7 @@
 //  SStore
 //
 //  Created by Will Ross on 11/10/10.
-//  Copyright (c) 2010 Naval Research Lab. All rights reserved.
+//  Copyright (c) 2010 William Ross. All rights reserved.
 //
 
 #import "PXDocument.h"
