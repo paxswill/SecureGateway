@@ -1,0 +1,257 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
+		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
+		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
+		B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1A9DE18128B6939006B5F57 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B1A9DE1A128B6939006B5F57 /* SStore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SStore; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1A9DE1E128B6939006B5F57 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B1A9DE20128B6939006B5F57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B1A9DE22128B6939006B5F57 /* SStore.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SStore.1; sourceTree = "<group>"; };
+		B1A9DE23128B6939006B5F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SStore_Prefix.pch; sourceTree = "<group>"; };
+		B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SStore.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1A9DE17128B6939006B5F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */,
+				B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1A9DE0D128B6938006B5F57 = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE14128B6939006B5F57 /* Source */,
+				B1A9DE15128B6939006B5F57 /* Documentation */,
+				B1A9DE1B128B6939006B5F57 /* Products */,
+				B1A9DE1D128B6939006B5F57 /* Frameworks */,
+				B1A9DE25128B6939006B5F57 /* Other Sources */,
+				B1A9DE27128B6939006B5F57 /* Model */,
+			);
+			sourceTree = "<group>";
+		};
+		B1A9DE14128B6939006B5F57 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE23128B6939006B5F57 /* main.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B1A9DE15128B6939006B5F57 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE22128B6939006B5F57 /* SStore.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		B1A9DE1B128B6939006B5F57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE1A128B6939006B5F57 /* SStore */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1A9DE1D128B6939006B5F57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE1E128B6939006B5F57 /* CoreData.framework */,
+				B1A9DE20128B6939006B5F57 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1A9DE25128B6939006B5F57 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		B1A9DE27128B6939006B5F57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1A9DE19128B6939006B5F57 /* SStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1A9DE2C128B6939006B5F57 /* Build configuration list for PBXNativeTarget "SStore" */;
+			buildPhases = (
+				B1A9DE16128B6939006B5F57 /* Sources */,
+				B1A9DE17128B6939006B5F57 /* Frameworks */,
+				B1A9DE18128B6939006B5F57 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SStore;
+			productName = SStore;
+			productReference = B1A9DE1A128B6939006B5F57 /* SStore */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1A9DE0F128B6938006B5F57 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Naval Research Lab";
+			};
+			buildConfigurationList = B1A9DE12128B6938006B5F57 /* Build configuration list for PBXProject "SStore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B1A9DE0D128B6938006B5F57;
+			productRefGroup = B1A9DE1B128B6939006B5F57 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1A9DE19128B6939006B5F57 /* SStore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1A9DE16128B6939006B5F57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1A9DE24128B6939006B5F57 /* main.m in Sources */,
+				B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B1A9DE2A128B6939006B5F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B1A9DE2B128B6939006B5F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B1A9DE2D128B6939006B5F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SStore_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B1A9DE2E128B6939006B5F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SStore_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1A9DE12128B6938006B5F57 /* Build configuration list for PBXProject "SStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1A9DE2A128B6939006B5F57 /* Debug */,
+				B1A9DE2B128B6939006B5F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1A9DE2C128B6939006B5F57 /* Build configuration list for PBXNativeTarget "SStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1A9DE2D128B6939006B5F57 /* Debug */,
+				B1A9DE2E128B6939006B5F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1A9DE0F128B6938006B5F57 /* Project object */;
+}

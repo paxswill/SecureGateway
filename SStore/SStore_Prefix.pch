@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SStore' target in the 'SStore' project
+//
+
+#ifdef __OBJC__
+	#import <CoreData/CoreData.h>
+#endif
