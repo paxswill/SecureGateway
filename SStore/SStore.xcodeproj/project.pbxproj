@@ -26,6 +26,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
+		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
+		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
+		B1482971128BA04300F94AFB /* PXDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXDocument.m; path = "Model Objects/PXDocument.m"; sourceTree = "<group>"; };
+		B1482972128BA04300F94AFB /* PXStudent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXStudent.h; path = "Model Objects/PXStudent.h"; sourceTree = "<group>"; };
+		B1482973128BA04300F94AFB /* PXStudent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXStudent.m; path = "Model Objects/PXStudent.m"; sourceTree = "<group>"; };
+		B1482978128BA0AB00F94AFB /* PXCourse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXCourse.h; path = "Model Objects/PXCourse.h"; sourceTree = "<group>"; };
+		B1482979128BA0AB00F94AFB /* PXCourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXCourse.m; path = "Model Objects/PXCourse.m"; sourceTree = "<group>"; };
+		B148297A128BA0AC00F94AFB /* PXPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXPerson.h; path = "Model Objects/PXPerson.h"; sourceTree = "<group>"; };
+		B148297B128BA0AC00F94AFB /* PXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXPerson.m; path = "Model Objects/PXPerson.m"; sourceTree = "<group>"; };
 		B1A9DE1A128B6939006B5F57 /* SStore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SStore; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A9DE1E128B6939006B5F57 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B1A9DE20128B6939006B5F57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,6 +58,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B148296C128BA00B00F94AFB /* Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B148297A128BA0AC00F94AFB /* PXPerson.h */,
+				B148297B128BA0AC00F94AFB /* PXPerson.m */,
+				B1482978128BA0AB00F94AFB /* PXCourse.h */,
+				B1482979128BA0AB00F94AFB /* PXCourse.m */,
+				B1482972128BA04300F94AFB /* PXStudent.h */,
+				B1482973128BA04300F94AFB /* PXStudent.m */,
+				B1482970128BA04300F94AFB /* PXDocument.h */,
+				B1482971128BA04300F94AFB /* PXDocument.m */,
+				B148296E128BA04200F94AFB /* PXFaculty.h */,
+				B148296F128BA04200F94AFB /* PXFaculty.m */,
+			);
+			name = "Model Objects";
+			sourceTree = "<group>";
+		};
 		B1A9DE0D128B6938006B5F57 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +90,7 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B148296C128BA00B00F94AFB /* Model Objects */,
 				B1A9DE23128B6939006B5F57 /* main.m */,
 			);
 			path = Source;
