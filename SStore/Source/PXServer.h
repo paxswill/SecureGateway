@@ -19,6 +19,9 @@
 	int port;
 	NSHost *host;
 	id<PXConnectionDelegate> delegate;
+	
+	int listenSocket;
+	
 }
 
 @property (readwrite, nonatomic) int port;
