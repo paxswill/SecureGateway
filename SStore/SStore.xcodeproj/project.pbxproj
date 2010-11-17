@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
 		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B10800BA12938ECE005E9242 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
 		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
 		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */,
 				B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */,
 				B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */,
 			);
@@ -115,6 +118,7 @@
 		B1A9DE1D128B6939006B5F57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B10800BA12938ECE005E9242 /* libssl.dylib */,
 				B1A9DE1E128B6939006B5F57 /* CoreData.framework */,
 				B1A9DE20128B6939006B5F57 /* Foundation.framework */,
 			);
