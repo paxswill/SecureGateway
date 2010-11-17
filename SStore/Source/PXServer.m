@@ -13,6 +13,8 @@
     
 }
 -(BOOL)openSocket;
+-(void)checkConnection;
+-(void)openConnection;
 @end
 
 
@@ -83,10 +85,32 @@
 	if(status == -1){
 		NSLog(@"Setting socket to listen failed.");
 		return NO;
-	}	
+	}
 	
+	//Watch for an incoming connection in the run loop
+	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	[runLoop performSelector:@selector(checkConnection) target:self argument:nil order:0 modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]];
 	
+	//All done
 	return YES;
+}
+
+-(void)checkConnection{
+	//Do we have an incoming connection?
+	fd_set incomingSocketSet;
+	FD_SET(listenSocket, &incomingSocketSet);
+	struct timeval zeroTime;
+	zeroTime.tv_sec = 0;
+	zeroTime.tv_usec = 0;
+	if(select(2, &incomingSocketSet, NULL, NULL, &zeroTime)){
+		//Cancel this job form the run loop
+		[[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(checkConnection) target:self argument:nil];
+		[self openConnection];
+	}
+}
+
+-(void)openConnection{
+	
 }
 
 -(void)send:(NSData *)data{
