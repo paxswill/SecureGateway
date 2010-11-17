@@ -11,20 +11,24 @@ NSManagedObjectModel *managedObjectModel();
 NSManagedObjectContext *managedObjectContext();
 
 int main (int argc, const char * argv[]) {
-
-	    objc_startCollectorThread();
-		
-		// Create the managed object context
-	    NSManagedObjectContext *context = managedObjectContext();
-		
-		// Custom code here...
-		// Save the managed object context
-	    NSError *error = nil;    
-	    if (![context save:&error]) {
-	        NSLog(@"Error while saving\n%@",
-	              ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
-	        exit(1);
-	    }
+	
+	objc_startCollectorThread();
+	
+	// Create the managed object context
+	NSManagedObjectContext *context = managedObjectContext();
+	
+	//Create and start a run loop
+	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	[runLoop run];
+	
+	// Custom code here...
+	// Save the managed object context
+	NSError *error = nil;    
+	if (![context save:&error]) {
+		NSLog(@"Error while saving\n%@",
+			  ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+		exit(1);
+	}
     return 0;
 }
 
