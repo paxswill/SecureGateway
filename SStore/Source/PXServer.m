@@ -11,6 +11,9 @@
 
 @implementation PXServer
 
+@synthesize port;
+@synthesize delegate;
+@synthesize host;
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.
@@ -23,6 +26,10 @@
     // Clean-up code here.
     
     [super dealloc];
+}
+
+-(void)send:(NSData *)data{
+	
 }
 
 @end

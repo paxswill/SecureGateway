@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PXConnection.h"
+#import "PXConnectionDelegate.h"
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
@@ -15,7 +16,15 @@
 
 @interface PXServer : NSObject<PXConnection> {
 @private
-    
+	int port;
+	NSHost *host;
+	id<PXConnectionDelegate> delegate;
 }
+
+@property (readwrite, nonatomic) int port;
+@property (readwrite, nonatomic) NSHost *host;
+@property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
+
+-(void)send:(NSData *)data;
 
 @end
