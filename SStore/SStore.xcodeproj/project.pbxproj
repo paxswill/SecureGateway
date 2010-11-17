@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
+		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
 		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
@@ -28,6 +29,10 @@
 
 /* Begin PBXFileReference section */
 		B10800BA12938ECE005E9242 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		B10800BC12938F9E005E9242 /* PXConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXConnection.h; sourceTree = "<group>"; };
+		B10800BD129390B3005E9242 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXConnectionDelegate.h; sourceTree = "<group>"; };
+		B10800BE1293913E005E9242 /* PXServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXServer.h; sourceTree = "<group>"; };
+		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
 		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
 		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
 		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
@@ -93,6 +98,10 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B10800BE1293913E005E9242 /* PXServer.h */,
+				B10800BF1293913E005E9242 /* PXServer.m */,
+				B10800BD129390B3005E9242 /* PXConnectionDelegate.h */,
+				B10800BC12938F9E005E9242 /* PXConnection.h */,
 				B148296C128BA00B00F94AFB /* Model Objects */,
 				B1A9DE23128B6939006B5F57 /* main.m */,
 			);
@@ -193,6 +202,7 @@
 			files = (
 				B1A9DE24128B6939006B5F57 /* main.m in Sources */,
 				B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */,
+				B10800C01293913E005E9242 /* PXServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
