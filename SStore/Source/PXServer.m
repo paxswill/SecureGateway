@@ -16,7 +16,6 @@
 @property (readwrite, nonatomic) int incomingSocket;
 @property (readwrite, nonatomic) int connectedSocket;
 
--(BOOL)openSocket;
 -(void)checkConnection;
 -(void)openConnection;
 @end
