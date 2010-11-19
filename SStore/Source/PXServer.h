@@ -20,13 +20,13 @@
 	NSHost *host;
 	id<PXConnectionDelegate> delegate;
 	
-	int incomingSocket;
-	int connectedSocket;
+	CFSocketRef socket;
 }
 
 @property (readwrite, nonatomic) int port;
 @property (readwrite, nonatomic) NSHost *host;
 @property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
+@property (readwrite, nonatomic) CFSocketRef socket;
 
 -(BOOL)openSocket;
 -(void)send:(NSData *)data;

@@ -14,6 +14,7 @@
 @property (readwrite, nonatomic) int port;
 @property (readwrite, nonatomic) NSHost *host;
 @property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
+@property (readwrite, nonatomic) CFSocketRef socket;
 
 -(void)send:(NSData *)data;
 
