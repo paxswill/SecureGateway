@@ -50,12 +50,25 @@ void socketCallback(CFSocketRef sock, CFSocketCallBackType callType, CFDataRef a
 #pragma mark Sockets fun
 
 -(BOOL)openSocket{
+	//Create the socket
 	self.socket = CFSocketCreate(NULL, PF_INET, 0, IPPROTO_TCP, kCFSocketDataCallBack, (*socketCallback), NULL);
+	//Create the run loop source
+	CFRunLoopSourceRef socketLoopSource = CFSocketCreateRunLoopSource(NULL, self.socket, 0);
+	//Get a run loop
+	CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+	CFRetain(runLoop);
+	//Add the socket source to the loop
+	CFRunLoopAddSource(runLoop, socketLoopSource, kCFRunLoopCommonModes);
+	//Start the loop
+	CFRunLoopRun();
+	//Clean up
+	CFRelease(runLoop);
+	CFRelease(socketLoopSource);
 	return YES;
 }
 
 void socketCallback(CFSocketRef sock, CFSocketCallBackType callType, CFDataRef address, const void *data, void *info){
-	
+	NSLog(@"Connection and/or data!");
 }
 
 
