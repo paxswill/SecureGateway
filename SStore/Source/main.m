@@ -21,15 +21,11 @@ int main (int argc, const char * argv[]) {
 	// Create the managed object context
 	NSManagedObjectContext *context = managedObjectContext();
 	
-	//Create and start a run loop
-	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-	
 	//Testing:
 	//Start a server
 	PXServer *testServer = [[PXServer alloc] init];
 	[testServer openSocket];
 	
-	[runLoop run];
 
 	
 	// Save the managed object context
