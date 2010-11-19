@@ -12,6 +12,10 @@
 @interface PXServer(){
     
 }
+
+@property (readwrite, nonatomic) int incomingSocket;
+@property (readwrite, nonatomic) int connectedSocket;
+
 -(BOOL)openSocket;
 -(void)checkConnection;
 -(void)openConnection;
@@ -23,6 +27,8 @@
 @synthesize port;
 @synthesize delegate;
 @synthesize host;
+@synthesize incomingSocket;
+@synthesize connectedSocket;
 
 
 #pragma mark Memory Management/Housekeeping
@@ -53,8 +59,8 @@
 	//Status var used for return codes
 	int status;
 	//Create the socket
-	listenSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-	if(listenSocket == -1){
+	self.incomingSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if(self.incomingSocket == -1){
 		//We dun goofed. Socket not created
 		NSLog(@"Socket failed to allocate. Aborting Server creation");
 		return NO;
@@ -72,7 +78,7 @@
 	serverAddress.sin_addr.s_addr = INADDR_ANY;
 	
 	//Bind the socket
-	status = bind(listenSocket, (const struct sockaddr*)(&serverAddress), sizeof(serverAddress));
+	status = bind(self.incomingSocket, (const struct sockaddr*)(&serverAddress), sizeof(serverAddress));
 	if(status == -1){
 		NSLog(@"Binding failed.");
 		return NO;
@@ -81,7 +87,7 @@
 	//Start listening
 	//The backlog limit /should/ be user configuarable, but for now it's going to be static
 	//For info: On OS X (according to the listen man page), abcklog is limited to 128
-	status = listen(listenSocket, 25);
+	status = listen(self.incomingSocket, 25);
 	if(status == -1){
 		NSLog(@"Setting socket to listen failed.");
 		return NO;
@@ -98,7 +104,7 @@
 -(void)checkConnection{
 	//Do we have an incoming connection?
 	fd_set incomingSocketSet;
-	FD_SET(listenSocket, &incomingSocketSet);
+	FD_SET(self.incomingSocket, &incomingSocketSet);
 	struct timeval zeroTime;
 	zeroTime.tv_sec = 0;
 	zeroTime.tv_usec = 0;
@@ -110,8 +116,18 @@
 }
 
 -(void)openConnection{
-	
+	//At this time, the socket should have an incoming connection
+	struct sockaddr *clientAddress;
+	socklen_t clientAddressLength;
+	self.connectedSocket = accept(self.incomingSocket, clientAddress, &clientAddressLength);
+	if(self.connectedSocket < 0){
+		NSLog(@"Connection failed. Closing out.");
+		close(self.incomingSocket);
+	}
+	//TODO: Add NSHost filling in here with port and host address
 }
+
+
 
 -(void)send:(NSData *)data{
 	

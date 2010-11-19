@@ -20,8 +20,8 @@
 	NSHost *host;
 	id<PXConnectionDelegate> delegate;
 	
-	int listenSocket;
-	
+	int incomingSocket;
+	int connectedSocket;
 }
 
 @property (readwrite, nonatomic) int port;
