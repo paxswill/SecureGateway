@@ -14,19 +14,21 @@
 #import <arpa/inet.h>
 #import <netdb.h>
 
-@interface PXServer : NSObject<PXConnection> {
+@interface PXServer : NSObject {
 @private
 	int port;
 	NSHost *host;
 	id<PXConnectionDelegate> delegate;
 	
-	CFSocketRef socket;
+	CFReadStreamRef readStream;
+	CFWriteStreamRef writeStream;
 }
 
 @property (readwrite, nonatomic) int port;
 @property (readwrite, nonatomic) NSHost *host;
 @property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
-@property (readwrite, nonatomic) CFSocketRef socket;
+@property (readwrite, nonatomic) CFReadStreamRef readStream;
+@property (readwrite, nonatomic) CFWriteStreamRef writeStream;
 
 -(BOOL)openSocket;
 -(void)send:(NSData *)data;

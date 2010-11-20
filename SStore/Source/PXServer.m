@@ -22,7 +22,8 @@ void socketCallback(CFSocketRef sock, CFSocketCallBackType callType, CFDataRef a
 @synthesize port;
 @synthesize delegate;
 @synthesize host;
-@synthesize socket;
+@synthesize readStream;
+@synthesize writeStream;
 
 
 #pragma mark Memory Management/Housekeeping
@@ -49,11 +50,11 @@ void socketCallback(CFSocketRef sock, CFSocketCallBackType callType, CFDataRef a
 #pragma mark -
 #pragma mark Sockets fun
 
--(BOOL)openSocket{
-	//Create the socket
-	self.socket = CFSocketCreate(NULL, PF_INET, 0, IPPROTO_TCP, kCFSocketDataCallBack, (*socketCallback), NULL);
+-(BOOL)openConnection{
+	//Create the streams
+	CFStreamCreateBoundPair(NULL, &readStream, &writeStream, <#CFIndex transferBufferSize#>)
 	//Create the run loop source
-	CFRunLoopSourceRef socketLoopSource = CFSocketCreateRunLoopSource(NULL, self.socket, 0);
+	
 	//Get a run loop
 	CFRunLoopRef runLoop = CFRunLoopGetMain();
 	CFRetain(runLoop);
