@@ -55,15 +55,13 @@ void socketCallback(CFSocketRef sock, CFSocketCallBackType callType, CFDataRef a
 	//Create the run loop source
 	CFRunLoopSourceRef socketLoopSource = CFSocketCreateRunLoopSource(NULL, self.socket, 0);
 	//Get a run loop
-	CFRunLoopRef runLoop = CFRunLoopGetCurrent();
+	CFRunLoopRef runLoop = CFRunLoopGetMain();
 	CFRetain(runLoop);
 	//Add the socket source to the loop
 	CFRunLoopAddSource(runLoop, socketLoopSource, kCFRunLoopCommonModes);
-	//Start the loop
-	CFRunLoopRun();
 	//Clean up
-	CFRelease(runLoop);
 	CFRelease(socketLoopSource);
+	CFRelease(runLoop);
 	return YES;
 }
 

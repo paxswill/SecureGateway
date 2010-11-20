@@ -25,8 +25,12 @@ int main (int argc, const char * argv[]) {
 	//Start a server
 	PXServer *testServer = [[PXServer alloc] init];
 	[testServer openSocket];
-	
 
+	//Run it in 5 second intervals
+	for(int loopStatus; loopStatus != kCFRunLoopRunFinished && loopStatus != kCFRunLoopRunStopped && loopStatus != kCFRunLoopRunHandledSource;){
+		loopStatus = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 5, YES);
+		NSLog(@"Run loop popped out.");
+	}
 	
 	// Save the managed object context
 	NSError *error = nil;    
