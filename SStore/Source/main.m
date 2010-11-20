@@ -21,16 +21,16 @@ int main (int argc, const char * argv[]) {
 	// Create the managed object context
 	NSManagedObjectContext *context = managedObjectContext();
 	
-	//Create and start a run loop
-	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-	
 	//Testing:
 	//Start a server
 	PXServer *testServer = [[PXServer alloc] init];
 	[testServer openSocket];
-	
-	[runLoop run];
 
+	//Run it in 5 second intervals
+	for(int loopStatus; loopStatus != kCFRunLoopRunFinished && loopStatus != kCFRunLoopRunStopped && loopStatus != kCFRunLoopRunHandledSource;){
+		loopStatus = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 5, YES);
+		NSLog(@"Run loop popped out.");
+	}
 	
 	// Save the managed object context
 	NSError *error = nil;    
