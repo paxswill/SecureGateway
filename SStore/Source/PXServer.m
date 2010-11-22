@@ -93,7 +93,7 @@
 	}
 	
 	//Watch for an incoming connection in the run loop
-	NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+	NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
 	[runLoop performSelector:@selector(checkConnection) target:self argument:nil order:0 modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]];
 	
 	//All done
