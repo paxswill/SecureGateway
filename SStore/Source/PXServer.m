@@ -125,14 +125,16 @@
 
 -(void)openConnection{
 	//At this time, the socket should have an incoming connection
-	struct sockaddr *clientAddress;
+	struct sockaddr_in *clientAddress;
 	socklen_t clientAddressLength;
-	self.connectedSocket = accept(self.incomingSocket, clientAddress, &clientAddressLength);
+	self.connectedSocket = accept(self.incomingSocket, (struct sockaddr *)clientAddress, &clientAddressLength);
 	if(self.connectedSocket < 0){
 		NSLog(@"Connection failed. Closing out.");
 		close(self.incomingSocket);
 	}
-	//TODO: Add NSHost filling in here with port and host address
+	//This can sometimes take a while to load in, as it willdo DNS resolution. So we spawn it off into a cheapo thread
+	char *addressCString = inet_ntoa(clientAddress->sin_addr);
+	self.host = [NSHost hostWithAddress:[NSString stringWithUTF8String:addressCString]];
 }
 
 
