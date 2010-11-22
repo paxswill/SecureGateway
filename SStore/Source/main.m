@@ -7,6 +7,7 @@
 //
 
 #import <objc/objc-auto.h>
+#import <unistd.h>
 
 
 #import "PXServer.h"
@@ -29,10 +30,12 @@ int main (int argc, const char * argv[]) {
 		return 1;
 	}
 
-	//Run the run loop in 0.5 second intervals
-	for(int loopStatus; loopStatus != kCFRunLoopRunFinished && loopStatus != kCFRunLoopRunStopped && loopStatus != kCFRunLoopRunHandledSource && ![testServer isConnected];){
-		[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
-		NSLog(@"Run loop popped out.");
+	//Loop, waiting a quarter of a second between polling
+	struct timespec sleepTime;
+	sleepTime.tv_sec = 0;
+	sleepTime.tv_nsec = 250000000;
+	while(![testServer checkConnection]){
+		nanosleep(&sleepTime, NULL);
 	}
 	NSLog(@"Connection made");
 	
