@@ -49,13 +49,18 @@
 }
 
 - (void)dealloc {
-    // Clean-up code here.
-    
+	//Shut the socket down
+	[self closeSocket];
+	//Nil out NSHost
+	if(host != nil){
+		[host release];
+	}
+	host = nil;
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark Sockets fun
+#pragma mark Sockets Operations
 
 -(BOOL)openSocket{
 	//Status var used for return codes
@@ -106,6 +111,15 @@
 }
 
 -(void)checkConnection{
+-(void)closeSocket{
+	//Close the sockets out
+	shutdown(self.connectedSocket, SHUT_RDWR);
+	close(self.connectedSocket);
+	close(self.incomingSocket);
+	//Put the sentinel values back
+	self.connectedSocket = INT_MIN;
+	self.incomingSocket = INT_MIN;
+}
 	//Do we have an incoming connection?
 	fd_set incomingSocketSet;
 	FD_SET(self.incomingSocket, &incomingSocketSet);
