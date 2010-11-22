@@ -29,9 +29,9 @@ int main (int argc, const char * argv[]) {
 		return 1;
 	}
 
-	//Run it in 5 second intervals
+	//Run the run loop in 20 second intervals
 	for(int loopStatus; loopStatus != kCFRunLoopRunFinished && loopStatus != kCFRunLoopRunStopped && loopStatus != kCFRunLoopRunHandledSource;){
-		loopStatus = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 5, YES);
+		[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5.0]];
 		NSLog(@"Run loop popped out.");
 	}
 	
