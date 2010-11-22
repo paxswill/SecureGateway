@@ -24,7 +24,10 @@ int main (int argc, const char * argv[]) {
 	//Testing:
 	//Start a server
 	PXServer *testServer = [[PXServer alloc] init];
-	[testServer openSocket];
+	if(![testServer openSocket]){
+		NSLog(@"Fatal error in opening socket. Try re-running the program");
+		return 1;
+	}
 
 	//Run it in 5 second intervals
 	for(int loopStatus; loopStatus != kCFRunLoopRunFinished && loopStatus != kCFRunLoopRunStopped && loopStatus != kCFRunLoopRunHandledSource;){
