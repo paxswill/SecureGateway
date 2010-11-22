@@ -120,6 +120,8 @@
 	self.connectedSocket = INT_MIN;
 	self.incomingSocket = INT_MIN;
 }
+
+-(BOOL)checkConnection{
 	//Do we have an incoming connection?
 	fd_set incomingSocketSet;
 	FD_SET(self.incomingSocket, &incomingSocketSet);
@@ -128,14 +130,7 @@
 	zeroTime.tv_usec = 0;
 	int numReadySockets = select(self.incomingSocket + 1, &incomingSocketSet, NULL, NULL, &zeroTime);
 	BOOL isSocketReady = FD_ISSET(self.incomingSocket, &incomingSocketSet) != 0? YES : NO;
-	if(numReadySockets > 0 && isSocketReady){
-		//This job normally gets removed, so we don't need to explicitly remove ourselves
-		[self openConnection];
-	}else{
-		// Normally this method will get removed from the run loop after it is invoked.
-		// Now we add it back in.
-		[[NSRunLoop mainRunLoop] performSelector:@selector(checkConnection) target:self argument:nil order:0 modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]];
-	}
+	return isSocketReady && numReadySockets > 0;
 }
 
 -(void)openConnection{
