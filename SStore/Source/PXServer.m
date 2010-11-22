@@ -85,7 +85,7 @@
 	
 	//Start listening
 	//The backlog limit /should/ be user configuarable, but for now it's going to be static
-	//For info: On OS X (according to the listen man page), abcklog is limited to 128
+	//For info: On OS X (according to the listen man page), backlog is limited to 128
 	status = listen(self.incomingSocket, 25);
 	if(status == -1){
 		NSLog(@"Setting socket to listen failed.");
