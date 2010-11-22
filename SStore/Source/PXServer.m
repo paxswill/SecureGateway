@@ -116,7 +116,7 @@
 	zeroTime.tv_usec = 0;
 	int numReadySockets = select(self.incomingSocket + 1, &incomingSocketSet, NULL, NULL, &zeroTime);
 	BOOL isSocketReady = FD_ISSET(self.incomingSocket, &incomingSocketSet) != 0? YES : NO;
-	if(numReadySockets > 1 && isSocketReady){
+	if(numReadySockets > 0 && isSocketReady){
 		//This job normally gets removed, so we don't need to explicitly remove ourselves
 		[self openConnection];
 	}else{
