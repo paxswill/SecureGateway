@@ -107,9 +107,9 @@
 	struct timeval zeroTime;
 	zeroTime.tv_sec = 0;
 	zeroTime.tv_usec = 0;
-	if(select(2, &incomingSocketSet, NULL, NULL, &zeroTime)){
-		//Cancel this job form the run loop
-		[[NSRunLoop currentRunLoop] cancelPerformSelector:@selector(checkConnection) target:self argument:nil];
+	int numReadySockets = select(self.incomingSocket + 1, &incomingSocketSet, NULL, NULL, &zeroTime);
+	BOOL isSocketReady = FD_ISSET(self.incomingSocket, &incomingSocketSet) != 0? YES : NO;
+	if(numReadySockets > 1 && isSocketReady){
 		[self openConnection];
 	}
 }
