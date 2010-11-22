@@ -37,7 +37,11 @@ int main (int argc, const char * argv[]) {
 	while(![testServer checkConnection]){
 		nanosleep(&sleepTime, NULL);
 	}
-	NSLog(@"Connection made");
+	NSLog(@"Connection ready");
+	[testServer openConnection];
+	
+	NSString *testString = @"Testing output";
+	[testServer send:[NSData dataWithBytes:[testString UTF8String] length:([testString length] + 1)]];
 	
 	// Save the managed object context
 	NSError *error = nil;    
