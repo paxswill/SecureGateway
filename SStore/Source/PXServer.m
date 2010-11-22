@@ -156,7 +156,15 @@
 
 
 -(void)send:(NSData *)data{
-	
+	if(!self.connected){
+		//Fail fast, we're no connected
+		return;
+	}
+	//So now we're positive we're connected;
+	int status = send(self.connectedSocket, [data bytes], [data length], 0);
+	if(status < 0){
+		NSLog(@"Error sending data : %s", strerror(errno));
+	}
 }
 
 #pragma mark -
