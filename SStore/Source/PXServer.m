@@ -85,6 +85,7 @@
 	status = bind(self.incomingSocket, (const struct sockaddr*)(&serverAddress), sizeof(serverAddress));
 	if(status == -1){
 		NSLog(@"Binding failed. Error: %s", strerror(errno));
+		close(self.incomingSocket);
 		return NO;
 	}
 	
@@ -94,6 +95,7 @@
 	status = listen(self.incomingSocket, 25);
 	if(status == -1){
 		NSLog(@"Setting socket to listen failed. Error: %s", strerror(errno));
+		close(self.incomingSocket);
 		return NO;
 	}
 	
