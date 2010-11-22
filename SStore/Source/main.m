@@ -34,6 +34,7 @@ int main (int argc, const char * argv[]) {
 		[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
 		NSLog(@"Run loop popped out.");
 	}
+	NSLog(@"Connection made");
 	
 	// Save the managed object context
 	NSError *error = nil;    

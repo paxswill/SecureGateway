@@ -7,6 +7,7 @@
 //
 
 #import "PXServer.h"
+#import <errno.h>
 
 //Private methods
 @interface PXServer(){
@@ -65,7 +66,7 @@
 	self.incomingSocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if(self.incomingSocket == -1){
 		//We dun goofed. Socket not created
-		NSLog(@"Socket failed to allocate. Aborting Server creation");
+		NSLog(@"Socket failed to allocate. Aborting Server creation. Error: %s", strerror(errno));
 		return NO;
 	}
 	
@@ -83,7 +84,7 @@
 	//Bind the socket
 	status = bind(self.incomingSocket, (const struct sockaddr*)(&serverAddress), sizeof(serverAddress));
 	if(status == -1){
-		NSLog(@"Binding failed.");
+		NSLog(@"Binding failed. Error: %s", strerror(errno));
 		return NO;
 	}
 	
@@ -92,7 +93,7 @@
 	//For info: On OS X (according to the listen man page), backlog is limited to 128
 	status = listen(self.incomingSocket, 25);
 	if(status == -1){
-		NSLog(@"Setting socket to listen failed.");
+		NSLog(@"Setting socket to listen failed. Error: %s", strerror(errno));
 		return NO;
 	}
 	
@@ -129,12 +130,12 @@
 	socklen_t clientAddressLength;
 	self.connectedSocket = accept(self.incomingSocket, (struct sockaddr *)clientAddress, &clientAddressLength);
 	if(self.connectedSocket < 0){
-		NSLog(@"Connection failed. Closing out.");
+		NSLog(@"Connection failed. Closing out. Error: %s", strerror(errno));
 		close(self.incomingSocket);
 	}
 	//This can sometimes take a while to load in, as it willdo DNS resolution. So we spawn it off into a cheapo thread
 	char *addressCString = inet_ntoa(clientAddress->sin_addr);
-	self.host = [NSHost hostWithAddress:[NSString stringWithUTF8String:addressCString]];
+	//self.host = [NSHost hostWithAddress:[NSString stringWithUTF8String:addressCString]];
 }
 
 
