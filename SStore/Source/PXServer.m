@@ -117,7 +117,6 @@
 	return YES;
 }
 
--(void)checkConnection{
 -(void)closeSocket{
 	//Close the sockets out
 	shutdown(self.connectedSocket, SHUT_RDWR);
