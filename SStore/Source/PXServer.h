@@ -30,6 +30,9 @@
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
 
 -(BOOL)openSocket;
+-(void)closeSocket;
+-(BOOL)checkConnection;
+-(void)openConnection;
 -(void)send:(NSData *)data;
 
 @end
