@@ -73,6 +73,13 @@
 		return NO;
 	}
 	
+	//We want to be able to resue the socket, as sometimes 
+	// we don't exit so cleanly (like now!)
+	int enabled = 1;
+	setsockopt(self.incomingSocket, SOL_SOCKET, SO_REUSEPORT, &enabled, sizeof(int));
+	//We do not block in this program, we poll
+	fcntl(self.incomingSocket, F_SETFL, O_NONBLOCK);
+	
 	//Set up the address
 	struct sockaddr_in serverAddress;
 	//Clear the memory out
