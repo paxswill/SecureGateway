@@ -136,7 +136,7 @@
 		close(self.incomingSocket);
 	}
 	//This can sometimes take a while to load in, as it willdo DNS resolution. So we spawn it off into a cheapo thread
-	char *addressCString = inet_ntoa(clientAddress->sin_addr);
+	//char *addressCString = inet_ntoa(clientAddress->sin_addr);
 	//self.host = [NSHost hostWithAddress:[NSString stringWithUTF8String:addressCString]];
 }
 
