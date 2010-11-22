@@ -40,8 +40,11 @@ int main (int argc, const char * argv[]) {
 	NSLog(@"Connection ready");
 	[testServer openConnection];
 	
-	NSString *testString = @"Testing output";
+	NSString *testString = @"Testing output\n";
 	[testServer send:[NSData dataWithBytes:[testString UTF8String] length:([testString length] + 1)]];
+	
+	//Close the connection
+	[testServer closeSocket];
 	
 	// Save the managed object context
 	NSError *error = nil;    
