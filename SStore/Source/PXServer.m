@@ -28,6 +28,7 @@
 @synthesize host;
 @synthesize incomingSocket;
 @synthesize connectedSocket;
+@dynamic connected;
 
 
 #pragma mark Memory Management/Housekeeping
@@ -40,6 +41,9 @@
 		//Set a defualt Host.
 		//Host is nil at first, as the server will accept connections form anywhere
 		host = nil;
+		//Set default/sentinel values to the file handles
+		incomingSocket = INT_MIN;
+		connectedSocket = INT_MIN;
     }
     
     return self;
@@ -135,6 +139,13 @@
 
 -(void)send:(NSData *)data{
 	
+}
+
+#pragma mark -
+#pragma mark Custom Properties
+
+-(BOOL)isConnected{
+	return (self.incomingSocket != INT_MIN && self.connectedSocket != INT_MIN);
 }
 
 

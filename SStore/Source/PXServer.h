@@ -27,6 +27,7 @@
 @property (readwrite, nonatomic) int port;
 @property (readwrite, nonatomic) NSHost *host;
 @property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
+@property (readonly, nonatomic, getter=isConnected) BOOL connected;
 
 -(BOOL)openSocket;
 -(void)send:(NSData *)data;
