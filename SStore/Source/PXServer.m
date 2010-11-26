@@ -180,7 +180,7 @@
 	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
 }
 
--(void)configureSSL{
+-(void)openSSLConnection{
 	//Force client verification, using the default checking
 	SSL_CTX_set_verify(sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
 	//Make the SSL object
@@ -190,6 +190,23 @@
 	BIO_set_fd(bioConnection, self.connection, BIO_NOCLOSE);
 	//Bind the BIO and SSL objects together
 	SSL_set_bio(sslConnection, bioConnection, bioConnection);
+	//Now open the SSL connection
+	struct timespec sleepTime;
+	sleepTime.tv_sec = 0;
+	sleepTime.tv_nsec = 250000000;
+	while(!secured){
+		//Wait for incoming data
+		while(![self checkConnection]){
+			nanosleep(&sleepTime, NULL);
+		}
+		//try to open the SSL connection
+		int err = SSL_accept(sslConnection);
+		if(err == 1){
+			//connection ready
+			secured = YES;
+		}
+	}
+	
 }
 
 
