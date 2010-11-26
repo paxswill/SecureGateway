@@ -78,20 +78,51 @@
 	self.connected = NO;
 }
 
--(void)send:(NSData *)data{
-	if(!self.connected){
-		//Fail fast, we're no connected
-		return;
-	}
-	//So now we're positive we're connected;
-	int status = send(self.socketConnection, [data bytes], [data length], 0);
-	if(status < 0){
-		NSLog(@"Error sending data : %s", strerror(errno));
-	}
+#pragma mark -
+#pragma mark SSL Methods
+
+-(void)loadCertificate:(NSURL*)privateKey{
+	SSL_CTX_use_PrivateKey_file(sslContext, [[privateKey path] UTF8String], SSL_FILETYPE_PEM);
 }
 
--(BOOL)isConnected{
-	return NO;
+-(void)loadCA:(NSURL*)certificate{
+	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
+}
+
+-(BOOL)openSSLConnection{
+	//Force client verification, using the default checking
+	SSL_CTX_set_verify(sslContext, SSL_VERIFY_PEER, NULL);
+	//Make the SSL object
+	sslConnection = SSL_new(sslContext);
+	//Make and configure the BIO object
+	bioConnection = BIO_new(BIO_s_socket());
+	BIO_set_fd(bioConnection, self.socketConnection, BIO_NOCLOSE);
+	//Bind the BIO and SSL objects together
+	SSL_set_bio(sslConnection, bioConnection, bioConnection);
+	//Now connect
+	return (SSL_connect(sslConnection) == 1 ? YES : NO);
+}
+
+-(void)send:(NSData *)data{
+	if(!self.connected){
+		//Fail fast, we're not connected
+		return;
+	}
+	//If we're not connected via SSL, send in the clear
+	if(!secured){
+		//So now we're positive we're connected;
+		int status = send(self.socketConnection, [data bytes], [data length], 0);
+		if(status < 0){
+			NSLog(@"Error sending data : %s", strerror(errno));
+		}
+	}else{
+		//We're secured, so use SSL_write
+		int status = SSL_write(sslConnection, [data bytes], [data length]);
+		if(status < 0){
+			NSLog(@"Error sending data : %d", SSL_get_error(sslConnection, status));
+		}
+	}
+	
 }
 
 @end

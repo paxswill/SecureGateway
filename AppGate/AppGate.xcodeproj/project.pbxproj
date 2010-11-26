@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B18C021F12A02920003C042B /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021E12A02920003C042B /* libssl.dylib */; };
+		B18C022212A02929003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C022112A02929003C042B /* libcrypto.dylib */; };
 		B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BCE5BF12A00CA80011556A /* Foundation.framework */; };
 		B1BCE5C312A00CA80011556A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BCE5C212A00CA80011556A /* main.m */; };
 		B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8320C12A00D0F00F319B2 /* PXClient.m */; };
@@ -25,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B18C021E12A02920003C042B /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		B18C022112A02929003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		B1BCE5BB12A00CA80011556A /* AppGate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppGate; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BCE5BF12A00CA80011556A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1BCE5C112A00CA80011556A /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18C022212A02929003C042B /* libcrypto.dylib in Frameworks */,
+				B18C021F12A02920003C042B /* libssl.dylib in Frameworks */,
 				B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +94,8 @@
 		B1BCE5BE12A00CA80011556A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B18C022112A02929003C042B /* libcrypto.dylib */,
+				B18C021E12A02920003C042B /* libssl.dylib */,
 				B1BCE5BF12A00CA80011556A /* Foundation.framework */,
 			);
 			name = Frameworks;
