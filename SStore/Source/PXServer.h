@@ -29,8 +29,8 @@
 	int incomingSocket;
 	int connection;
 	//SSL Hell
-	SSL_METHOD sslMethod;
-	SSL_CTX sslContext;
+	SSL_METHOD *sslMethod;
+	SSL_CTX *sslContext;
 }
 
 @property (readwrite, nonatomic) int port;

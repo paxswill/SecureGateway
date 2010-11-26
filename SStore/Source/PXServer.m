@@ -165,11 +165,11 @@
 #pragma mark SSL Methods
 
 -(void)loadCertificate:(NSURL*)privateKey{
-	SSL_CTX_use_PrivateKey_file(sslContext, [privateKey path], SSL_FILETYPE_PEM);
+	SSL_CTX_use_PrivateKey_file(sslContext, [[privateKey path] UTF8String], SSL_FILETYPE_PEM);
 }
 
 -(void)loadCA:(NSURL*)certificate{
-	SSL_CTX_use_certificate_file(sslContext, [certificate path], SSL_FILETYPE_PEM);
+	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
 }
 
 #pragma mark -
