@@ -7,12 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PXClient.h"
 
 int main (int argc, const char * argv[]) {
 
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	// insert code here...
-	NSLog(@"Hello, World!");
+	//test the client
+	PXClient *testClient = [[PXClient alloc] init];
+	if(![testClient connectToServer:@"127.0.0.1" onPort:6968]){
+		NSLog(@"Connection failed");
+	}else{
+		NSLog(@"Connection succeeded!");
+	}
+	
+	[testClient closeConnection];
+
 	[pool drain];
     return 0;
 }
