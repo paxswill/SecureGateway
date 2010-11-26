@@ -21,7 +21,7 @@
 	id<PXConnectionDelegate> delegate;
 	
 	int incomingSocket;
-	int connectedSocket;
+	int connection;
 }
 
 @property (readwrite, nonatomic) int port;

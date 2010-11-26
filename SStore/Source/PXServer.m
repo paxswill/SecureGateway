@@ -15,7 +15,7 @@
 }
 
 @property (readwrite, nonatomic) int incomingSocket;
-@property (readwrite, nonatomic) int connectedSocket;
+@property (readwrite, nonatomic) int connection;
 
 @end
 
@@ -26,7 +26,7 @@
 @synthesize delegate;
 @synthesize host;
 @synthesize incomingSocket;
-@synthesize connectedSocket;
+@synthesize connection;
 @dynamic connected;
 
 
@@ -42,7 +42,7 @@
 		host = nil;
 		//Set default/sentinel values to the file handles
 		incomingSocket = INT_MIN;
-		connectedSocket = INT_MIN;
+		connection = INT_MIN;
     }
     
     return self;
@@ -119,11 +119,11 @@
 
 -(void)closeSocket{
 	//Close the sockets out
-	shutdown(self.connectedSocket, SHUT_RDWR);
-	close(self.connectedSocket);
+	shutdown(self.connection, SHUT_RDWR);
+	close(self.connection);
 	close(self.incomingSocket);
 	//Put the sentinel values back
-	self.connectedSocket = INT_MIN;
+	self.connection = INT_MIN;
 	self.incomingSocket = INT_MIN;
 }
 
@@ -143,8 +143,8 @@
 	//At this time, the socket should have an incoming connection
 	struct sockaddr_in *clientAddress;
 	socklen_t clientAddressLength;
-	self.connectedSocket = accept(self.incomingSocket, (struct sockaddr *)clientAddress, &clientAddressLength);
-	if(self.connectedSocket < 0){
+	self.connection = accept(self.incomingSocket, (struct sockaddr *)clientAddress, &clientAddressLength);
+	if(self.connection < 0){
 		NSLog(@"Connection failed. Closing out. Error: %s", strerror(errno));
 		close(self.incomingSocket);
 	}
@@ -161,7 +161,7 @@
 		return;
 	}
 	//So now we're positive we're connected;
-	int status = send(self.connectedSocket, [data bytes], [data length], 0);
+	int status = send(self.connection, [data bytes], [data length], 0);
 	if(status < 0){
 		NSLog(@"Error sending data : %s", strerror(errno));
 	}
@@ -171,7 +171,7 @@
 #pragma mark Custom Properties
 
 -(BOOL)isConnected{
-	return (self.incomingSocket != INT_MIN && self.connectedSocket != INT_MIN);
+	return (self.incomingSocket != INT_MIN && self.connection != INT_MIN);
 }
 
 
