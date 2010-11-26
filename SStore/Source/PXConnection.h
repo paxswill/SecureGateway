@@ -12,7 +12,6 @@
 @protocol PXConnection <NSObject>
 
 @property (readwrite, nonatomic) int port;
-@property (readwrite, nonatomic, retain) NSHost *host;
 @property (readwrite, nonatomic, assign) id<PXConnectionDelegate> delegate;
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
 

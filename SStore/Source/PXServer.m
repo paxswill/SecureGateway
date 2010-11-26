@@ -24,7 +24,6 @@
 
 @synthesize port;
 @synthesize delegate;
-@synthesize host;
 @synthesize incomingSocket;
 @synthesize connection;
 @dynamic connected;
@@ -37,9 +36,6 @@
 		//6968 is an unregistered port (but within the IANA registered port range)
 		//I just chose it as it was my student number in middle school
 		port = 6968;
-		//Set a defualt Host.
-		//Host is nil at first, as the server will accept connections form anywhere
-		host = nil;
 		//Set default/sentinel values to the file handles
 		incomingSocket = INT_MIN;
 		connection = INT_MIN;
@@ -51,11 +47,6 @@
 - (void)dealloc {
 	//Shut the socket down
 	[self closeSocket];
-	//Nil out NSHost
-	if(host != nil){
-		[host release];
-	}
-	host = nil;
     [super dealloc];
 }
 
