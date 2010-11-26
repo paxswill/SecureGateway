@@ -33,6 +33,7 @@
 	SSL_CTX *sslContext;
 	SSL *sslConnection;
 	BIO *bioConnection;
+	BOOL secured;
 }
 
 @property (readwrite, nonatomic) int port;

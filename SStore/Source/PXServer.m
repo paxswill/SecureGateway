@@ -47,6 +47,7 @@
 		SSL_library_init();
 		sslMethod = TLSv1_method();
 		sslContext = SSL_CTX_new(sslMethod);
+		secured = NO;
     }
     return self;
 }
@@ -151,14 +152,21 @@
 
 -(void)send:(NSData *)data{
 	if(!self.connected){
-		//Fail fast, we're no connected
+		//Fail fast, we're not connected
 		return;
 	}
-	//So now we're positive we're connected;
-	int status = send(self.connection, [data bytes], [data length], 0);
-	if(status < 0){
-		NSLog(@"Error sending data : %s", strerror(errno));
+	//If we're not connected via SSL, send in the clear
+	if(!secured){
+		//So now we're positive we're connected;
+		int status = send(self.connection, [data bytes], [data length], 0);
+		if(status < 0){
+			NSLog(@"Error sending data : %s", strerror(errno));
+		}
+	}else{
+		//We're secured, so use SSL_write
+		
 	}
+	
 }
 
 #pragma mark -
