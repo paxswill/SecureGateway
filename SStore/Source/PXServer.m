@@ -112,9 +112,6 @@
 		return NO;
 	}
 	
-	//And now to start securing the connection
-	
-	
 	//All done
 	return YES;
 }
@@ -167,6 +164,17 @@
 	if(status < 0){
 		NSLog(@"Error sending data : %s", strerror(errno));
 	}
+}
+
+#pragma mark -
+#pragma mark SSL Methods
+
+-(void)loadCertificate:(NSURL*)privateKey{
+	SSL_CTX_use_PrivateKey_file(sslContext, [privateKey path], SSL_FILETYPE_PEM);
+}
+
+-(void)loadCA:(NSURL*)certificate{
+	SSL_CTX_use_certificate_file(sslContext, [certificate path], SSL_FILETYPE_PEM);
 }
 
 #pragma mark -

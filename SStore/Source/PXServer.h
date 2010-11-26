@@ -36,4 +36,8 @@
 -(void)openConnection;
 -(void)send:(NSData *)data;
 
+//SSL fun
+-(void)loadCertificate:(NSURL*)privateKey;
+-(void)loadCA:(NSURL*)certificate;
+
 @end
