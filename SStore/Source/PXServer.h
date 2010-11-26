@@ -31,6 +31,8 @@
 	//SSL Hell
 	SSL_METHOD *sslMethod;
 	SSL_CTX *sslContext;
+	SSL *sslConnection;
+	BIO *bioConnection;
 }
 
 @property (readwrite, nonatomic) int port;
@@ -46,5 +48,5 @@
 //SSL fun
 -(void)loadCertificate:(NSURL*)privateKey;
 -(void)loadCA:(NSURL*)certificate;
-
+-(void)configureSSL;
 @end

@@ -172,6 +172,20 @@
 	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
 }
 
+-(void)configureSSL{
+	//Force client verification, using the default checking
+	SSL_CTX_set_verify(sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
+	//Make the SSL object
+	sslConnection = SSL_new(sslContext);
+	//Make and configure the BIO object
+	bioConnection = BIO_new(BIO_s_socket());
+	BIO_set_fd(bioConnection, self.connection, BIO_NOCLOSE);
+	//Bind the BIO and SSL objects together
+	SSL_set_bio(sslConnection, bioConnection, bioConnection);
+}
+
+
+
 #pragma mark -
 #pragma mark Custom Properties
 
