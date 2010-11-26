@@ -7,15 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B12218D912A0076900A07409 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12218D812A0076900A07409 /* CoreFoundation.framework */; };
-		B12218DC12A0076900A07409 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B12218DB12A0076900A07409 /* main.c */; };
-		B1833B6F12A007AB00287B9C /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1833B6E12A007AB00287B9C /* libssl.dylib */; };
-		B1833B7212A007B300287B9C /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1833B7112A007B300287B9C /* libcrypto.dylib */; };
-		B1833B7512A007DC00287B9C /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1833B7412A007DC00287B9C /* PXClient.m */; };
+		B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BCE5BF12A00CA80011556A /* Foundation.framework */; };
+		B1BCE5C312A00CA80011556A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BCE5C212A00CA80011556A /* main.m */; };
+		B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8320C12A00D0F00F319B2 /* PXClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B12218D212A0076900A07409 /* CopyFiles */ = {
+		B1BCE5B912A00CA80011556A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -27,86 +25,92 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B12218D412A0076900A07409 /* AppGate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppGate; sourceTree = BUILT_PRODUCTS_DIR; };
-		B12218D812A0076900A07409 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		B12218DA12A0076900A07409 /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
-		B12218DB12A0076900A07409 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		B1833B6E12A007AB00287B9C /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libssl.dylib; sourceTree = SDKROOT; };
-		B1833B7112A007B300287B9C /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
-		B1833B7312A007DC00287B9C /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
-		B1833B7412A007DC00287B9C /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
+		B1BCE5BB12A00CA80011556A /* AppGate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppGate; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1BCE5BF12A00CA80011556A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B1BCE5C112A00CA80011556A /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
+		B1BCE5C212A00CA80011556A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B1BCE5C512A00CA80011556A /* AppGate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppGate-Prefix.pch"; sourceTree = "<group>"; };
+		B1C8320B12A00D0F00F319B2 /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
+		B1C8320C12A00D0F00F319B2 /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
+		B1C8320F12A00D4800F319B2 /* PXConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnection.h; path = ../../SStore/Source/PXConnection.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B12218D112A0076900A07409 /* Frameworks */ = {
+		B1BCE5B812A00CA80011556A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1833B7212A007B300287B9C /* libcrypto.dylib in Frameworks */,
-				B1833B6F12A007AB00287B9C /* libssl.dylib in Frameworks */,
-				B12218D912A0076900A07409 /* CoreFoundation.framework in Frameworks */,
+				B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B12218C712A0076900A07409 = {
+		B1BCE5AE12A00CA70011556A = {
 			isa = PBXGroup;
 			children = (
-				B12218CE12A0076900A07409 /* Source */,
-				B12218CF12A0076900A07409 /* Documentation */,
-				B12218D512A0076900A07409 /* Products */,
-				B12218D712A0076900A07409 /* Frameworks */,
+				B1BCE5B512A00CA80011556A /* Source */,
+				B1BCE5B612A00CA80011556A /* Documentation */,
+				B1BCE5BC12A00CA80011556A /* Products */,
+				B1BCE5BE12A00CA80011556A /* Frameworks */,
+				B1BCE5C412A00CA80011556A /* Other Sources */,
 			);
 			sourceTree = "<group>";
 		};
-		B12218CE12A0076900A07409 /* Source */ = {
+		B1BCE5B512A00CA80011556A /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B12218DB12A0076900A07409 /* main.c */,
-				B1833B7312A007DC00287B9C /* PXClient.h */,
-				B1833B7412A007DC00287B9C /* PXClient.m */,
+				B1BCE5C212A00CA80011556A /* main.m */,
+				B1C8320F12A00D4800F319B2 /* PXConnection.h */,
+				B1C8320B12A00D0F00F319B2 /* PXClient.h */,
+				B1C8320C12A00D0F00F319B2 /* PXClient.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		B12218CF12A0076900A07409 /* Documentation */ = {
+		B1BCE5B612A00CA80011556A /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				B12218DA12A0076900A07409 /* AppGate.1 */,
+				B1BCE5C112A00CA80011556A /* AppGate.1 */,
 			);
 			name = Documentation;
 			sourceTree = "<group>";
 		};
-		B12218D512A0076900A07409 /* Products */ = {
+		B1BCE5BC12A00CA80011556A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B12218D412A0076900A07409 /* AppGate */,
+				B1BCE5BB12A00CA80011556A /* AppGate */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B12218D712A0076900A07409 /* Frameworks */ = {
+		B1BCE5BE12A00CA80011556A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1833B7112A007B300287B9C /* libcrypto.dylib */,
-				B1833B6E12A007AB00287B9C /* libssl.dylib */,
-				B12218D812A0076900A07409 /* CoreFoundation.framework */,
+				B1BCE5BF12A00CA80011556A /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1BCE5C412A00CA80011556A /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B1BCE5C512A00CA80011556A /* AppGate-Prefix.pch */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B12218D312A0076900A07409 /* AppGate */ = {
+		B1BCE5BA12A00CA80011556A /* AppGate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B12218DF12A0076900A07409 /* Build configuration list for PBXNativeTarget "AppGate" */;
+			buildConfigurationList = B1BCE5C812A00CA80011556A /* Build configuration list for PBXNativeTarget "AppGate" */;
 			buildPhases = (
-				B12218D012A0076900A07409 /* Sources */,
-				B12218D112A0076900A07409 /* Frameworks */,
-				B12218D212A0076900A07409 /* CopyFiles */,
+				B1BCE5B712A00CA80011556A /* Sources */,
+				B1BCE5B812A00CA80011556A /* Frameworks */,
+				B1BCE5B912A00CA80011556A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -114,48 +118,48 @@
 			);
 			name = AppGate;
 			productName = AppGate;
-			productReference = B12218D412A0076900A07409 /* AppGate */;
+			productReference = B1BCE5BB12A00CA80011556A /* AppGate */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B12218C912A0076900A07409 /* Project object */ = {
+		B1BCE5B012A00CA70011556A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "Naval Research Lab";
 			};
-			buildConfigurationList = B12218CC12A0076900A07409 /* Build configuration list for PBXProject "AppGate" */;
+			buildConfigurationList = B1BCE5B312A00CA70011556A /* Build configuration list for PBXProject "AppGate" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B12218C712A0076900A07409;
-			productRefGroup = B12218D512A0076900A07409 /* Products */;
+			mainGroup = B1BCE5AE12A00CA70011556A;
+			productRefGroup = B1BCE5BC12A00CA80011556A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B12218D312A0076900A07409 /* AppGate */,
+				B1BCE5BA12A00CA80011556A /* AppGate */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B12218D012A0076900A07409 /* Sources */ = {
+		B1BCE5B712A00CA80011556A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B12218DC12A0076900A07409 /* main.c in Sources */,
-				B1833B7512A007DC00287B9C /* PXClient.m in Sources */,
+				B1BCE5C312A00CA80011556A /* main.m in Sources */,
+				B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		B12218DD12A0076900A07409 /* Debug */ = {
+		B1BCE5C612A00CA80011556A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -172,7 +176,7 @@
 			};
 			name = Debug;
 		};
-		B12218DE12A0076900A07409 /* Release */ = {
+		B1BCE5C712A00CA80011556A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -186,25 +190,29 @@
 			};
 			name = Release;
 		};
-		B12218E012A0076900A07409 /* Debug */ = {
+		B1BCE5C912A00CA80011556A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppGate-Prefix.pch";
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		B12218E112A0076900A07409 /* Release */ = {
+		B1BCE5CA12A00CA80011556A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppGate-Prefix.pch";
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -213,25 +221,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B12218CC12A0076900A07409 /* Build configuration list for PBXProject "AppGate" */ = {
+		B1BCE5B312A00CA70011556A /* Build configuration list for PBXProject "AppGate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B12218DD12A0076900A07409 /* Debug */,
-				B12218DE12A0076900A07409 /* Release */,
+				B1BCE5C612A00CA80011556A /* Debug */,
+				B1BCE5C712A00CA80011556A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B12218DF12A0076900A07409 /* Build configuration list for PBXNativeTarget "AppGate" */ = {
+		B1BCE5C812A00CA80011556A /* Build configuration list for PBXNativeTarget "AppGate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B12218E012A0076900A07409 /* Debug */,
-				B12218E112A0076900A07409 /* Release */,
+				B1BCE5C912A00CA80011556A /* Debug */,
+				B1BCE5CA12A00CA80011556A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B12218C912A0076900A07409 /* Project object */;
+	rootObject = B1BCE5B012A00CA70011556A /* Project object */;
 }

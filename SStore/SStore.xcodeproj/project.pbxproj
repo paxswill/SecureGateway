@@ -224,6 +224,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../*/**";
 			};
 			name = Debug;
 		};
@@ -239,6 +240,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../*/**";
 			};
 			name = Release;
 		};

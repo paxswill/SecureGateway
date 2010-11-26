@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.1">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B1A9DE19128B6939006B5F57"
+               BuildableName = "SStore"
+               BlueprintName = "SStore"
+               ReferencedContainer = "container:SStore/SStore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B12218D312A0076900A07409"
+               ReferencedContainer = "container:AppGate/AppGate.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug">
+      <Testables>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      loadSymbolsForSpecifiedModules = "NO"
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+   </ProfileAction>
+   <ArchiveAction
+      buildConfiguration = "Release">
+   </ArchiveAction>
+</Scheme>

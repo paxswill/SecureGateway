@@ -22,9 +22,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B12218D312A0076900A07409"
-            BuildableName = "AppGate"
-            BlueprintName = "AppGate"
+            BlueprintIdentifier = "B1BCE5BA12A00CA80011556A"
             ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -41,9 +39,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B12218D312A0076900A07409"
-            BuildableName = "AppGate"
-            BlueprintName = "AppGate"
+            BlueprintIdentifier = "B1BCE5BA12A00CA80011556A"
             ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

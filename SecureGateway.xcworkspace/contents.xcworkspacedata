@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:SStore/SStore.xcodeproj">
+      location = "container:AppGate/AppGate.xcodeproj">
    </FileRef>
    <FileRef
-      location = "absolute:/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate/AppGate.xcodeproj">
+      location = "container:SStore/SStore.xcodeproj">
    </FileRef>
 </Workspace>
