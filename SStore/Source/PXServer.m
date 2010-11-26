@@ -9,11 +9,6 @@
 #import "PXServer.h"
 #import <errno.h>
 
-//OpenSSL
-#include "openssl/bio.h"
-#include "openssl/ssl.h"
-#include "openssl/err.h"
-
 //Private methods
 @interface PXServer(){
     

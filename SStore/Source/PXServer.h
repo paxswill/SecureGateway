@@ -9,10 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "PXConnection.h"
 #import "PXConnectionDelegate.h"
+
+//Sockets
 #import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
 #import <netdb.h>
+
+//OpenSSL
+#include "openssl/bio.h"
+#include "openssl/ssl.h"
+#include "openssl/err.h"
 
 @interface PXServer : NSObject<PXConnection> {
 @private
