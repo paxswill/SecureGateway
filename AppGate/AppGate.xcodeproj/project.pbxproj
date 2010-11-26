@@ -1,0 +1,237 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B12218D912A0076900A07409 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12218D812A0076900A07409 /* CoreFoundation.framework */; };
+		B12218DC12A0076900A07409 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B12218DB12A0076900A07409 /* main.c */; };
+		B1833B6F12A007AB00287B9C /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1833B6E12A007AB00287B9C /* libssl.dylib */; };
+		B1833B7212A007B300287B9C /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1833B7112A007B300287B9C /* libcrypto.dylib */; };
+		B1833B7512A007DC00287B9C /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1833B7412A007DC00287B9C /* PXClient.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B12218D212A0076900A07409 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B12218D412A0076900A07409 /* AppGate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppGate; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12218D812A0076900A07409 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		B12218DA12A0076900A07409 /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
+		B12218DB12A0076900A07409 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		B1833B6E12A007AB00287B9C /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libssl.dylib; sourceTree = SDKROOT; };
+		B1833B7112A007B300287B9C /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = Xcode4/SDKs/MacOSX10.6.sdk/usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		B1833B7312A007DC00287B9C /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
+		B1833B7412A007DC00287B9C /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B12218D112A0076900A07409 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1833B7212A007B300287B9C /* libcrypto.dylib in Frameworks */,
+				B1833B6F12A007AB00287B9C /* libssl.dylib in Frameworks */,
+				B12218D912A0076900A07409 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B12218C712A0076900A07409 = {
+			isa = PBXGroup;
+			children = (
+				B12218CE12A0076900A07409 /* Source */,
+				B12218CF12A0076900A07409 /* Documentation */,
+				B12218D512A0076900A07409 /* Products */,
+				B12218D712A0076900A07409 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B12218CE12A0076900A07409 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B12218DB12A0076900A07409 /* main.c */,
+				B1833B7312A007DC00287B9C /* PXClient.h */,
+				B1833B7412A007DC00287B9C /* PXClient.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B12218CF12A0076900A07409 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				B12218DA12A0076900A07409 /* AppGate.1 */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		B12218D512A0076900A07409 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B12218D412A0076900A07409 /* AppGate */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B12218D712A0076900A07409 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1833B7112A007B300287B9C /* libcrypto.dylib */,
+				B1833B6E12A007AB00287B9C /* libssl.dylib */,
+				B12218D812A0076900A07409 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B12218D312A0076900A07409 /* AppGate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B12218DF12A0076900A07409 /* Build configuration list for PBXNativeTarget "AppGate" */;
+			buildPhases = (
+				B12218D012A0076900A07409 /* Sources */,
+				B12218D112A0076900A07409 /* Frameworks */,
+				B12218D212A0076900A07409 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppGate;
+			productName = AppGate;
+			productReference = B12218D412A0076900A07409 /* AppGate */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B12218C912A0076900A07409 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Naval Research Lab";
+			};
+			buildConfigurationList = B12218CC12A0076900A07409 /* Build configuration list for PBXProject "AppGate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B12218C712A0076900A07409;
+			productRefGroup = B12218D512A0076900A07409 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B12218D312A0076900A07409 /* AppGate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B12218D012A0076900A07409 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B12218DC12A0076900A07409 /* main.c in Sources */,
+				B1833B7512A007DC00287B9C /* PXClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B12218DD12A0076900A07409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B12218DE12A0076900A07409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B12218E012A0076900A07409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B12218E112A0076900A07409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B12218CC12A0076900A07409 /* Build configuration list for PBXProject "AppGate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B12218DD12A0076900A07409 /* Debug */,
+				B12218DE12A0076900A07409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B12218DF12A0076900A07409 /* Build configuration list for PBXNativeTarget "AppGate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B12218E012A0076900A07409 /* Debug */,
+				B12218E112A0076900A07409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B12218C912A0076900A07409 /* Project object */;
+}

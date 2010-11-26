@@ -22,10 +22,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1A9DE19128B6939006B5F57"
-            BuildableName = "SStore"
-            BlueprintName = "SStore"
-            ReferencedContainer = "container:SStore.xcodeproj">
+            BlueprintIdentifier = "B12218D312A0076900A07409"
+            BuildableName = "AppGate"
+            BlueprintName = "AppGate"
+            ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -41,10 +41,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1A9DE19128B6939006B5F57"
-            BuildableName = "SStore"
-            BlueprintName = "SStore"
-            ReferencedContainer = "container:SStore.xcodeproj">
+            BlueprintIdentifier = "B12218D312A0076900A07409"
+            BuildableName = "AppGate"
+            BlueprintName = "AppGate"
+            ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
