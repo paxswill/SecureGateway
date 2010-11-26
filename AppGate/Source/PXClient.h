@@ -16,14 +16,16 @@
 @interface PXClient : NSObject<PXConnection> {
 @private
 	int port;
-	NSHost *host;
 	id<PXConnectionDelegate> delegate;
-    
+    BOOL connected;
+	int socketConnection;
 }
 
 @property (readwrite, nonatomic) int port;
-@property (readwrite, nonatomic) NSHost *host;
-@property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
+@property (readwrite, nonatomic, assign) id<PXConnectionDelegate> delegate;
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
+
+-(BOOL)connectToServer:(NSString*)host onPort:(int)portNum;
+-(void)closeConnection;
 
 @end
