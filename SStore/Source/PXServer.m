@@ -9,6 +9,11 @@
 #import "PXServer.h"
 #import <errno.h>
 
+//OpenSSL
+#include "openssl/bio.h"
+#include "openssl/ssl.h"
+#include "openssl/err.h"
+
 //Private methods
 @interface PXServer(){
     
@@ -39,8 +44,15 @@
 		//Set default/sentinel values to the file handles
 		incomingSocket = INT_MIN;
 		connection = INT_MIN;
+		
+		//Initialize OpenSSL
+		SSL_load_error_strings();
+		ERR_load_BIO_strings();
+		OpenSSL_add_all_algorithms();
+		SSL_library_init();
+		sslMethod = TLSv1_method();
+		sslContext = SSL_CTX_new(sslMethod);
     }
-    
     return self;
 }
 
@@ -99,6 +111,9 @@
 		close(self.incomingSocket);
 		return NO;
 	}
+	
+	//And now to start securing the connection
+	
 	
 	//All done
 	return YES;
