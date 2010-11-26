@@ -11,6 +11,11 @@
 
 @implementation PXClient
 
+@synthesize port;
+@synthesize delegate;
+@synthesize host;
+@dynamic connected;
+
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.
@@ -23,6 +28,10 @@
     // Clean-up code here.
     
     [super dealloc];
+}
+
+-(BOOL)connectToServer:(NSString*)host onPort:(int)portNum{
+	
 }
 
 @end
