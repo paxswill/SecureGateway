@@ -164,7 +164,10 @@
 		}
 	}else{
 		//We're secured, so use SSL_write
-		
+		int status = SSL_write(sslConnection, [data bytes], [data length]);
+		if(status < 0){
+			NSLog(@"Error sending data : %d", SSL_get_error(sslConnection, status));
+		}
 	}
 	
 }
@@ -180,7 +183,7 @@
 	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
 }
 
--(void)openSSLConnection{
+-(BOOL)openSSLConnection{
 	//Force client verification, using the default checking
 	SSL_CTX_set_verify(sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
 	//Make the SSL object
@@ -206,7 +209,7 @@
 			secured = YES;
 		}
 	}
-	
+	return YES;
 }
 
 

@@ -89,7 +89,6 @@
 		B1A9DE0D128B6938006B5F57 = {
 			isa = PBXGroup;
 			children = (
-				B18C021B12A0204A003C042B /* libcrypto.dylib */,
 				B1A9DE14128B6939006B5F57 /* Source */,
 				B1A9DE15128B6939006B5F57 /* Documentation */,
 				B1A9DE1B128B6939006B5F57 /* Products */,
@@ -131,6 +130,7 @@
 		B1A9DE1D128B6939006B5F57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B18C021B12A0204A003C042B /* libcrypto.dylib */,
 				B10800BA12938ECE005E9242 /* libssl.dylib */,
 				B1A9DE1E128B6939006B5F57 /* CoreData.framework */,
 				B1A9DE20128B6939006B5F57 /* Foundation.framework */,
