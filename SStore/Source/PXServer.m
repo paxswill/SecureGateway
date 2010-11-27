@@ -187,8 +187,32 @@
 #pragma mark -
 #pragma mark SSL Methods
 
--(void)loadCertificate:(NSURL*)privateKey{
-	SSL_CTX_use_PrivateKey_file(sslContext, [[privateKey path] UTF8String], SSL_FILETYPE_PEM);
+//This is a private method, used only in the method below it
+int getPemPassword(char *buffer, int size, int rwflag, void *userdata){
+	if(userdata != NULL){
+		//Userdata is an NSString
+		NSString *password = userdata;
+		int pwLength = [password length];
+		//Convert the password to a C-String
+		const char *sourceBuffer = [password UTF8String];
+		//Copy the temp buffer to the real buffer
+		//This is because sourceBuffer will disappear when password does
+		char *destBuffer = malloc(sizeof(char) * (pwLength + 1));
+		memcpy((void *)sourceBuffer, (void *)destBuffer, (sizeof(char) * (pwLength + 1)));
+		return pwLength;
+	}else{
+		return 0;
+	}
+}
+
+-(void)loadKey:(NSURL*)privateKey withPassword:(NSString*)password{
+	//Set userdata
+	self.pemPassword = password;
+	SSL_CTX_set_default_passwd_cb_userdata(self.sslContext, self.pemPassword);
+	//This feels a bit hacky
+	SSL_CTX_set_default_passwd_cb(self.sslContext, getPemPassword);
+	//Actually load the key file in
+	SSL_CTX_use_PrivateKey_file(self.sslContext, [[privateKey path] UTF8String], SSL_FILETYPE_PEM);
 }
 
 -(void)loadCA:(NSURL*)certificate{

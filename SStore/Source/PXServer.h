@@ -49,7 +49,7 @@
 -(void)send:(NSData *)data;
 
 //SSL fun
--(void)loadCertificate:(NSURL*)privateKey;
+-(void)loadKey:(NSURL*)privateKey withPassword:(NSString*)password;
 -(void)loadCA:(NSURL*)certificate;
 -(void)prepareSSLConnection;
 -(BOOL)openSSLConnection;
