@@ -46,7 +46,7 @@ int main (int argc, const char * argv[]) {
 	//Try setting up SSL
 	[testServer prepareSSLConnection];
 	[testServer loadCA:[NSURL URLWithString:@"file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem"]];
-	[testServer loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/SStore Certs/newkey.pem"]];
+	[testServer loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem"]];
 	[testServer openSSLConnection];
 	
 	//Close the connection

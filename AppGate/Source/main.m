@@ -21,7 +21,7 @@ int main (int argc, const char * argv[]) {
 	}
 	[testClient prepareSSL];
 	[testClient loadCA:[NSURL URLWithString:@"file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem"]];
-	[testClient loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate Certs/newkey.pem"]];
+	[testClient loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate/key.pem"]];
 	[testClient openSSLConnection];
 	
 	[testClient closeConnection];
