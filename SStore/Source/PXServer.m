@@ -17,6 +17,13 @@
 @property (readwrite, nonatomic) int incomingSocket;
 @property (readwrite, nonatomic) int connection;
 
+//SSL properties
+@property (readwrite, nonatomic) SSL_METHOD *sslMethod;
+@property (readwrite, nonatomic) SSL_CTX *sslContext;
+@property (readwrite, nonatomic) SSL *sslConnection;
+@property (readwrite, nonatomic) BIO *bioConnection;
+@property (readwrite, nonatomic, retain) NSString *pemPassword;
+
 @end
 
 
@@ -27,6 +34,12 @@
 @synthesize incomingSocket;
 @synthesize connection;
 @dynamic connected;
+@synthesize sslMethod;
+@synthesize sslContext;
+@synthesize sslConnection;
+@synthesize bioConnection;
+@synthesize secured;
+@synthesize pemPassword;
 
 
 #pragma mark Memory Management/Housekeeping
@@ -156,7 +169,7 @@
 		return;
 	}
 	//If we're not connected via SSL, send in the clear
-	if(!secured){
+	if(!self.secured){
 		//So now we're positive we're connected;
 		int status = send(self.connection, [data bytes], [data length], 0);
 		if(status < 0){
@@ -164,9 +177,9 @@
 		}
 	}else{
 		//We're secured, so use SSL_write
-		int status = SSL_write(sslConnection, [data bytes], [data length]);
+		int status = SSL_write(self.sslConnection, [data bytes], [data length]);
 		if(status < 0){
-			NSLog(@"Error sending data : %d", SSL_get_error(sslConnection, status));
+			NSLog(@"Error sending data : %d", SSL_get_error(self.sslConnection, status));
 		}
 	}
 }
@@ -179,19 +192,21 @@
 }
 
 -(void)loadCA:(NSURL*)certificate{
-	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
+	SSL_CTX_use_certificate_file(self.sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
 }
+
+
 
 -(void)prepareSSLConnection{
 	//Force client verification, using the default checking
-	SSL_CTX_set_verify(sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
+	SSL_CTX_set_verify(self.sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
 	//Make the SSL object
-	sslConnection = SSL_new(sslContext);
+	self.sslConnection = SSL_new(self.sslContext);
 	//Make and configure the BIO object
-	bioConnection = BIO_new(BIO_s_socket());
-	BIO_set_fd(bioConnection, self.connection, BIO_NOCLOSE);
+	self.bioConnection = BIO_new(BIO_s_socket());
+	BIO_set_fd(self.bioConnection, self.connection, BIO_NOCLOSE);
 	//Bind the BIO and SSL objects together
-	SSL_set_bio(sslConnection, bioConnection, bioConnection);
+	SSL_set_bio(self.sslConnection, self.bioConnection, self.bioConnection);
 }
 
 -(BOOL)openSSLConnection{
@@ -199,16 +214,16 @@
 	struct timespec sleepTime;
 	sleepTime.tv_sec = 0;
 	sleepTime.tv_nsec = 250000000;
-	while(!secured){
+	while(!self.secured){
 		//Wait for incoming data
 		while(![self checkConnection]){
 			nanosleep(&sleepTime, NULL);
 		}
 		//try to open the SSL connection
-		int err = SSL_accept(sslConnection);
+		int err = SSL_accept(self.sslConnection);
 		if(err == 1){
 			//connection ready
-			secured = YES;
+			self.secured = YES;
 		}
 	}
 	return YES;

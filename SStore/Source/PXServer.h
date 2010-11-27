@@ -34,11 +34,13 @@
 	SSL *sslConnection;
 	BIO *bioConnection;
 	BOOL secured;
+	NSString *pemPassword;
 }
 
 @property (readwrite, nonatomic) int port;
 @property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
+@property (readwrite, nonatomic, getter=isSecured) BOOL secured;
 
 -(BOOL)openSocket;
 -(void)closeSocket;
