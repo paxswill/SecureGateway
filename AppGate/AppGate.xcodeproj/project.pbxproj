@@ -37,6 +37,10 @@
 		B1C8320B12A00D0F00F319B2 /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
 		B1C8320C12A00D0F00F319B2 /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
 		B1C8320F12A00D4800F319B2 /* PXConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnection.h; path = ../../SStore/Source/PXConnection.h; sourceTree = "<group>"; };
+		B1FAB25E12A067F50042D32A /* newcert.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; name = newcert.p12; path = "../AppGate Certs/newcert.p12"; sourceTree = "<group>"; };
+		B1FAB25F12A067F50042D32A /* newcert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newcert.pem; path = "../AppGate Certs/newcert.pem"; sourceTree = "<group>"; };
+		B1FAB26012A067F50042D32A /* newkey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newkey.pem; path = "../AppGate Certs/newkey.pem"; sourceTree = "<group>"; };
+		B1FAB26212A069260042D32A /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = ../demoCA/cacert.pem; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +108,21 @@
 		B1BCE5C412A00CA80011556A /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B1FAB26112A069050042D32A /* CA */,
+				B1FAB25E12A067F50042D32A /* newcert.p12 */,
+				B1FAB25F12A067F50042D32A /* newcert.pem */,
+				B1FAB26012A067F50042D32A /* newkey.pem */,
 				B1BCE5C512A00CA80011556A /* AppGate-Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		B1FAB26112A069050042D32A /* CA */ = {
+			isa = PBXGroup;
+			children = (
+				B1FAB26212A069260042D32A /* cacert.pem */,
+			);
+			name = CA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

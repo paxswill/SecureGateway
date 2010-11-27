@@ -24,7 +24,14 @@
 
 - (id)init {
     if ((self = [super init])) {
-        // Initialization code here.
+        //Initialize OpenSSL
+		SSL_load_error_strings();
+		ERR_load_BIO_strings();
+		OpenSSL_add_all_algorithms();
+		SSL_library_init();
+		sslMethod = TLSv1_method();
+		sslContext = SSL_CTX_new(sslMethod);
+		secured = NO;
     }
     
     return self;
@@ -86,10 +93,14 @@
 }
 
 -(void)loadCA:(NSURL*)certificate{
-	SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
+	int status = SSL_CTX_use_certificate_file(sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
+	if(status != 1){
+		//error
+		NSLog(@"Error sending data : %d", SSL_get_error(sslConnection, status));
+	}
 }
 
--(BOOL)openSSLConnection{
+-(void)prepareSSL{
 	//Force client verification, using the default checking
 	SSL_CTX_set_verify(sslContext, SSL_VERIFY_PEER, NULL);
 	//Make the SSL object
@@ -99,6 +110,9 @@
 	BIO_set_fd(bioConnection, self.socketConnection, BIO_NOCLOSE);
 	//Bind the BIO and SSL objects together
 	SSL_set_bio(sslConnection, bioConnection, bioConnection);
+}
+
+-(BOOL)openSSLConnection{
 	//Now connect
 	return (SSL_connect(sslConnection) == 1 ? YES : NO);
 }

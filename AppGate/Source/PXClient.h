@@ -41,6 +41,7 @@
 -(BOOL)connectToServer:(NSString*)host onPort:(int)portNum;
 -(void)loadCertificate:(NSURL*)privateKey;
 -(void)loadCA:(NSURL*)certificate;
+-(void)prepareSSL;
 -(BOOL)openSSLConnection;
 -(void)closeConnection;
 

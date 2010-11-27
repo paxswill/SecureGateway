@@ -52,6 +52,9 @@
 		B1A9DE23128B6939006B5F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SStore_Prefix.pch; sourceTree = "<group>"; };
 		B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SStore.xcdatamodel; sourceTree = "<group>"; };
+		B1CF39C312A06C530083E308 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
+		B1CF39C512A06C5F0083E308 /* newcert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newcert.pem; path = "/Users/paxswill/Developer/School/CS472/SecureGateway/SStore Certs/newcert.pem"; sourceTree = "<absolute>"; };
+		B1CF39C612A06C5F0083E308 /* newkey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = newkey.pem; path = "/Users/paxswill/Developer/School/CS472/SecureGateway/SStore Certs/newkey.pem"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,9 @@
 		B1A9DE25128B6939006B5F57 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B1CF39C512A06C5F0083E308 /* newcert.pem */,
+				B1CF39C612A06C5F0083E308 /* newkey.pem */,
+				B1CF39C312A06C530083E308 /* cacert.pem */,
 				B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */,
 			);
 			name = "Other Sources";

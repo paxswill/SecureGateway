@@ -19,6 +19,10 @@ int main (int argc, const char * argv[]) {
 	}else{
 		NSLog(@"Connection succeeded!");
 	}
+	[testClient prepareSSL];
+	[testClient loadCA:[NSURL URLWithString:@"file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem"]];
+	[testClient loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate Certs/newkey.pem"]];
+	[testClient openSSLConnection];
 	
 	[testClient closeConnection];
 

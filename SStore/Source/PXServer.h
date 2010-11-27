@@ -49,5 +49,6 @@
 //SSL fun
 -(void)loadCertificate:(NSURL*)privateKey;
 -(void)loadCA:(NSURL*)certificate;
+-(void)prepareSSLConnection;
 -(BOOL)openSSLConnection;
 @end

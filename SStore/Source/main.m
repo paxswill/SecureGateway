@@ -43,6 +43,12 @@ int main (int argc, const char * argv[]) {
 	NSString *testString = @"Testing output\n";
 	[testServer send:[NSData dataWithBytes:[testString UTF8String] length:([testString length] + 1)]];
 	
+	//Try setting up SSL
+	[testServer prepareSSLConnection];
+	[testServer loadCA:[NSURL URLWithString:@"file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem"]];
+	[testServer loadCertificate:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/SStore Certs/newkey.pem"]];
+	[testServer openSSLConnection];
+	
 	//Close the connection
 	[testServer closeSocket];
 	
