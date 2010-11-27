@@ -40,3 +40,6 @@ Backup[ ]of[ ]*.numbers/
 
 # Save the stuff in the pre-built binaries directory
 !./Developer/**
+
+# Ignore the CA passwords file
+CertPasswords.txt
