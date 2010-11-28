@@ -8,39 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PXConnection.h"
-#import "PXConnectionDelegate.h"
 
-//Sockets
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <arpa/inet.h>
-#import <netdb.h>
-
-//OpenSSL
-#include "openssl/bio.h"
-#include "openssl/ssl.h"
-#include "openssl/err.h"
-
-@interface PXServer : NSObject<PXConnection> {
+@interface PXServer : PXConnection {
 @private
-	int port;
-	id<PXConnectionDelegate> delegate;
-	//Sockets
-	int incomingSocket;
-	int connection;
-	//SSL Hell
-	SSL_METHOD *sslMethod;
-	SSL_CTX *sslContext;
-	SSL *sslConnection;
-	BIO *bioConnection;
-	BOOL secured;
-	NSString *pemPassword;
+	//Extra listening socket
+	int listeningSocket;
 }
-
-@property (readwrite, nonatomic) int port;
-@property (readwrite, nonatomic) id<PXConnectionDelegate> delegate;
-@property (readonly, nonatomic, getter=isConnected) BOOL connected;
-@property (readwrite, nonatomic, getter=isSecured) BOOL secured;
+@property (readwrite, nonatomic) int listeningSocket;
 
 -(BOOL)openSocket;
 -(void)closeSocket;
@@ -49,8 +23,5 @@
 -(void)send:(NSData *)data;
 
 //SSL fun
--(void)loadKey:(NSURL*)privateKey withPassword:(NSString*)password;
--(void)loadCA:(NSURL*)certificate;
--(void)prepareSSLConnection;
 -(BOOL)openSSLConnection;
 @end
