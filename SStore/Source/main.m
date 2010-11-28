@@ -19,13 +19,6 @@ int main (int argc, const char * argv[]) {
 	//Start Garbage Collection
 	objc_startCollectorThread();
 	
-	// Create the managed object context
-	NSManagedObjectContext *context = managedObjectContext();
-	
-	//Register the Value Transformers
-	
-	
-	
 	//If no path given, set the default one
 	NSString *configPath;
 	if(argc == 2){
@@ -75,14 +68,5 @@ int main (int argc, const char * argv[]) {
 	
 	//Close the connection
 	[testServer closeSocket];
-	
-	// Save the managed object context
-	NSError *error = nil;    
-	if (![context save:&error]) {
-		NSLog(@"Error while saving\n%@",
-			  ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
-		exit(1);
-	}
-    return 0;
 }
 

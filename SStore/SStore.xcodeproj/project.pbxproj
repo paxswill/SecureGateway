@@ -15,7 +15,10 @@
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
 		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
 		B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */; };
+		B1C8BB4B12A2E40D008ACEAB /* PXSQLiteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */; };
 		B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1612A1C6CC00BF2181 /* PXConnection.m */; };
+		B1F834A012A2E180005F1DD4 /* PXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F8349F12A2E180005F1DD4 /* PXPerson.m */; };
+		B1F834A312A2E2FE005F1DD4 /* PXFaculty.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F834A212A2E2FE005F1DD4 /* PXFaculty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,10 +51,16 @@
 		B1A9DE23128B6939006B5F57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SStore_Prefix.pch; sourceTree = "<group>"; };
 		B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SStore.xcdatamodel; sourceTree = "<group>"; };
+		B1C8BB4912A2E40D008ACEAB /* PXSQLiteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSQLiteObject.h; sourceTree = "<group>"; };
+		B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteObject.m; sourceTree = "<group>"; };
 		B1CF39C312A06C530083E308 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
 		B1F21C1212A1B1A900BF2181 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
 		B1F21C1312A1B1A900BF2181 /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
 		B1F21C1612A1C6CC00BF2181 /* PXConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PXConnection.m; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SStore/Source/PXConnection.m; sourceTree = "<absolute>"; };
+		B1F8349E12A2E180005F1DD4 /* PXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPerson.h; sourceTree = "<group>"; };
+		B1F8349F12A2E180005F1DD4 /* PXPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPerson.m; sourceTree = "<group>"; };
+		B1F834A112A2E2FE005F1DD4 /* PXFaculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFaculty.h; sourceTree = "<group>"; };
+		B1F834A212A2E2FE005F1DD4 /* PXFaculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFaculty.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +158,12 @@
 		B1F8349D12A2DAB3005F1DD4 /* Model Objects */ = {
 			isa = PBXGroup;
 			children = (
+				B1C8BB4912A2E40D008ACEAB /* PXSQLiteObject.h */,
+				B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */,
+				B1F8349E12A2E180005F1DD4 /* PXPerson.h */,
+				B1F8349F12A2E180005F1DD4 /* PXPerson.m */,
+				B1F834A112A2E2FE005F1DD4 /* PXFaculty.h */,
+				B1F834A212A2E2FE005F1DD4 /* PXFaculty.m */,
 			);
 			name = "Model Objects";
 			sourceTree = "<group>";
@@ -179,7 +194,7 @@
 		B1A9DE0F128B6938006B5F57 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "Naval Research Lab";
+				ORGANIZATIONNAME = "Will Ross";
 			};
 			buildConfigurationList = B1A9DE12128B6938006B5F57 /* Build configuration list for PBXProject "SStore" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -207,6 +222,9 @@
 				B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */,
 				B10800C01293913E005E9242 /* PXServer.m in Sources */,
 				B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */,
+				B1F834A012A2E180005F1DD4 /* PXPerson.m in Sources */,
+				B1F834A312A2E2FE005F1DD4 /* PXFaculty.m in Sources */,
+				B1C8BB4B12A2E40D008ACEAB /* PXSQLiteObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
