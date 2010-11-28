@@ -7,11 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/objc-runtime.h>
 
+//This is a fun litle class that makes the SQLite saving easier
+
+typedef enum{
+	SQL_NULL = 0, //Stuck because NULL is a reserved word in C
+	SQL_INTEGER = 1,
+	SQL_REAL = 2,
+	SQL_TEXT = 3,
+	SQL_BLOB = 4
+} SQLITE_TYPE;
 
 @interface PXSQLiteObject : NSObject {
 @private
     
 }
+
++(NSDictionary *)getProperties;
 
 @end
