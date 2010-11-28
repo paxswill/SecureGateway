@@ -10,6 +10,7 @@
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
+		B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E1A3F12A2D97600886783 /* libsqlcipher.a */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
 		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
@@ -35,21 +36,11 @@
 		B10800BD129390B3005E9242 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXConnectionDelegate.h; sourceTree = "<group>"; };
 		B10800BE1293913E005E9242 /* PXServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXServer.h; sourceTree = "<group>"; };
 		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
-		B13035DB12A28819003DD6A4 /* SSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSCrypto.h; path = ../../SSCrypto/SSCrypto.h; sourceTree = "<group>"; };
-		B13035DC12A28819003DD6A4 /* SSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSCrypto.m; path = ../../SSCrypto/SSCrypto.m; sourceTree = "<group>"; };
-		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
-		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
-		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
-		B1482971128BA04300F94AFB /* PXDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXDocument.m; path = "Model Objects/PXDocument.m"; sourceTree = "<group>"; };
-		B1482972128BA04300F94AFB /* PXStudent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXStudent.h; path = "Model Objects/PXStudent.h"; sourceTree = "<group>"; };
-		B1482973128BA04300F94AFB /* PXStudent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXStudent.m; path = "Model Objects/PXStudent.m"; sourceTree = "<group>"; };
-		B1482978128BA0AB00F94AFB /* PXCourse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXCourse.h; path = "Model Objects/PXCourse.h"; sourceTree = "<group>"; };
-		B1482979128BA0AB00F94AFB /* PXCourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXCourse.m; path = "Model Objects/PXCourse.m"; sourceTree = "<group>"; };
-		B148297A128BA0AC00F94AFB /* PXPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXPerson.h; path = "Model Objects/PXPerson.h"; sourceTree = "<group>"; };
-		B148297B128BA0AC00F94AFB /* PXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXPerson.m; path = "Model Objects/PXPerson.m"; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		B18E1A3F12A2D97600886783 /* libsqlcipher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; name = libsqlcipher.a; path = Users/paxswill/Developer/School/CS472/SecureGateway/SStore/libsqlcipher.a; sourceTree = SDKROOT; };
+		B18E1A4112A2DA1C00886783 /* sqlcipher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sqlcipher.xcodeproj; path = ../SQLCipher/sqlcipher.xcodeproj; sourceTree = "<group>"; };
 		B1A9DE1A128B6939006B5F57 /* SStore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SStore; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A9DE1E128B6939006B5F57 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B1A9DE20128B6939006B5F57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */,
 				B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */,
 				B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */,
 				B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */,
@@ -78,35 +70,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B13035DA12A28809003DD6A4 /* SSCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				B13035DB12A28819003DD6A4 /* SSCrypto.h */,
-				B13035DC12A28819003DD6A4 /* SSCrypto.m */,
-			);
-			name = SSCrypto;
-			sourceTree = "<group>";
-		};
-		B148296C128BA00B00F94AFB /* Model Objects */ = {
-			isa = PBXGroup;
-			children = (
-				B148297A128BA0AC00F94AFB /* PXPerson.h */,
-				B148297B128BA0AC00F94AFB /* PXPerson.m */,
-				B1482978128BA0AB00F94AFB /* PXCourse.h */,
-				B1482979128BA0AB00F94AFB /* PXCourse.m */,
-				B1482972128BA04300F94AFB /* PXStudent.h */,
-				B1482973128BA04300F94AFB /* PXStudent.m */,
-				B1482970128BA04300F94AFB /* PXDocument.h */,
-				B1482971128BA04300F94AFB /* PXDocument.m */,
-				B148296E128BA04200F94AFB /* PXFaculty.h */,
-				B148296F128BA04200F94AFB /* PXFaculty.m */,
-			);
-			name = "Model Objects";
-			sourceTree = "<group>";
-		};
 		B1A9DE0D128B6938006B5F57 = {
 			isa = PBXGroup;
 			children = (
+				B18E1A4112A2DA1C00886783 /* sqlcipher.xcodeproj */,
 				B1A9DE14128B6939006B5F57 /* Source */,
 				B1A9DE15128B6939006B5F57 /* Documentation */,
 				B1A9DE1B128B6939006B5F57 /* Products */,
@@ -119,8 +86,7 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B13035DA12A28809003DD6A4 /* SSCrypto */,
-				B148296C128BA00B00F94AFB /* Model Objects */,
+				B1F8349D12A2DAB3005F1DD4 /* Model Objects */,
 				B10800BE1293913E005E9242 /* PXServer.h */,
 				B10800BF1293913E005E9242 /* PXServer.m */,
 				B10800BD129390B3005E9242 /* PXConnectionDelegate.h */,
@@ -150,6 +116,7 @@
 		B1A9DE1D128B6939006B5F57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B18E1A3F12A2D97600886783 /* libsqlcipher.a */,
 				B183148612A285D40071A678 /* SSCrypto.framework */,
 				B18C021B12A0204A003C042B /* libcrypto.dylib */,
 				B10800BA12938ECE005E9242 /* libssl.dylib */,
@@ -177,6 +144,13 @@
 				B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B1F8349D12A2DAB3005F1DD4 /* Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Model Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +265,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SStore_Prefix.pch;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -310,6 +288,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SStore_Prefix.pch;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
