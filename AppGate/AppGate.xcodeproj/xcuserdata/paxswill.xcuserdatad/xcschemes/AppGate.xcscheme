@@ -28,6 +28,12 @@
             ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate/config.plist"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -47,6 +53,12 @@
             ReferencedContainer = "container:AppGate.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/paxswill/Developer/School/CS472/SecureGateway/AppGate/config.plist"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </ProfileAction>
    <ArchiveAction
       buildConfiguration = "Release">

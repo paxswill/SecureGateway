@@ -28,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B183147012A2499B0071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B18C021E12A02920003C042B /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = usr/lib/libssl.dylib; sourceTree = SDKROOT; };
 		B18C022112A02929003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		B1BCE5BB12A00CA80011556A /* AppGate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppGate; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +111,7 @@
 		B1BCE5C412A00CA80011556A /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B183147012A2499B0071A678 /* config.plist */,
 				B1F21C1112A1B19B00BF2181 /* cacert.pem */,
 				B1F21C0F12A1B18E00BF2181 /* cert.pem */,
 				B1F21C1012A1B18E00BF2181 /* key.pem */,
