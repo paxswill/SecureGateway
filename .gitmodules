@@ -1,0 +1,3 @@
+[submodule "SQLCipher"]
+	path = SQLCipher
+	url = git://github.com/sjlombardo/sqlcipher.git
