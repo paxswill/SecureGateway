@@ -100,4 +100,8 @@
 	return [propertyList autorelease];
 }
 
++(NSString*)getName{
+	return [NSString stringWithUTF8String:class_getName([self class])];
+}
+
 @end

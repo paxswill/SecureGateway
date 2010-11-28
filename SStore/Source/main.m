@@ -20,9 +20,9 @@ int main (int argc, const char * argv[]) {
 	objc_startCollectorThread();
 	
 	//Test the SQLite objects
-	NSLog(@"%@", [PXFaculty getProperties]);
-	NSLog(@"%@", [PXPerson getProperties]);
-	NSLog(@"%@", [PXSQLiteObject getProperties]);
+	NSLog(@"%@ variables:%@", [PXFaculty getName], [PXFaculty getProperties]);
+	NSLog(@"%@ variables:%@", [PXPerson getName], [PXPerson getProperties]);
+	NSLog(@"%@ variables:%@", [PXSQLiteObject getName], [PXSQLiteObject getProperties]);
 	
 	//testServer;
 	
