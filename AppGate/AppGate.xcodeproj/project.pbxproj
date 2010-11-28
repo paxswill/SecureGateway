@@ -12,6 +12,7 @@
 		B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BCE5BF12A00CA80011556A /* Foundation.framework */; };
 		B1BCE5C312A00CA80011556A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BCE5C212A00CA80011556A /* main.m */; };
 		B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8320C12A00D0F00F319B2 /* PXClient.m */; };
+		B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1412A1C6C400BF2181 /* PXConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		B1F21C0F12A1B18E00BF2181 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
 		B1F21C1012A1B18E00BF2181 /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
 		B1F21C1112A1B19B00BF2181 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
+		B1F21C1412A1C6C400BF2181 /* PXConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PXConnection.m; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SStore/Source/PXConnection.m; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				B1BCE5C212A00CA80011556A /* main.m */,
 				B1C8320F12A00D4800F319B2 /* PXConnection.h */,
+				B1F21C1412A1C6C400BF2181 /* PXConnection.m */,
 				B1C8320B12A00D0F00F319B2 /* PXClient.h */,
 				B1C8320C12A00D0F00F319B2 /* PXClient.m */,
 			);
@@ -167,6 +170,7 @@
 			files = (
 				B1BCE5C312A00CA80011556A /* main.m in Sources */,
 				B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */,
+				B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
