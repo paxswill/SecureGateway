@@ -65,7 +65,7 @@ int main (int argc, const char * argv[]) {
 	
 	//Try setting up SSL
 	[testServer prepareSSLConnection];
-	[testServer loadCA:certURL]];
+	[testServer loadCA:certURL];
 	[testServer loadKey:keyURL withPassword:keyPassword];
 	[testServer openSSLConnection];
 	
