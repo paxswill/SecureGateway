@@ -10,7 +10,7 @@
 #import "SSCrypto.h"
 
 @interface PXAESDataTransformer : NSValueTransformer {
-@private
+@protected
 	SSCrypto *cryptor;
 }
 
