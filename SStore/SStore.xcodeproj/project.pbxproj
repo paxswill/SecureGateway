@@ -17,6 +17,30 @@
 		B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1612A1C6CC00BF2181 /* PXConnection.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B183147B12A280340071A678 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* SSCrypto.framework */;
+			remoteInfo = SSCrypto;
+		};
+		B183147D12A280340071A678 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6404DE36064817A000087955 /* SSCryptoTest */;
+			remoteInfo = SSCryptoTest;
+		};
+		B183147F12A280480071A678 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SSCrypto */;
+			remoteInfo = SSCrypto;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		B1A9DE18128B6939006B5F57 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -45,6 +69,8 @@
 		B1482979128BA0AB00F94AFB /* PXCourse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXCourse.m; path = "Model Objects/PXCourse.m"; sourceTree = "<group>"; };
 		B148297A128BA0AC00F94AFB /* PXPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXPerson.h; path = "Model Objects/PXPerson.h"; sourceTree = "<group>"; };
 		B148297B128BA0AC00F94AFB /* PXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXPerson.m; path = "Model Objects/PXPerson.m"; sourceTree = "<group>"; };
+		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		B183147212A280310071A678 /* SSCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSCrypto.xcodeproj; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SSCrypto/SSCrypto.xcodeproj; sourceTree = "<absolute>"; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		B1A9DE1A128B6939006B5F57 /* SStore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SStore; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A9DE1E128B6939006B5F57 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -91,9 +117,19 @@
 			name = "Model Objects";
 			sourceTree = "<group>";
 		};
+		B183147312A280310071A678 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B183147C12A280340071A678 /* SSCrypto.framework */,
+				B183147E12A280340071A678 /* SSCryptoTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B1A9DE0D128B6938006B5F57 = {
 			isa = PBXGroup;
 			children = (
+				B183147212A280310071A678 /* SSCrypto.xcodeproj */,
 				B1A9DE14128B6939006B5F57 /* Source */,
 				B1A9DE15128B6939006B5F57 /* Documentation */,
 				B1A9DE1B128B6939006B5F57 /* Products */,
@@ -106,12 +142,12 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B148296C128BA00B00F94AFB /* Model Objects */,
 				B10800BE1293913E005E9242 /* PXServer.h */,
 				B10800BF1293913E005E9242 /* PXServer.m */,
 				B10800BD129390B3005E9242 /* PXConnectionDelegate.h */,
 				B10800BC12938F9E005E9242 /* PXConnection.h */,
 				B1F21C1612A1C6CC00BF2181 /* PXConnection.m */,
-				B148296C128BA00B00F94AFB /* Model Objects */,
 				B1A9DE23128B6939006B5F57 /* main.m */,
 			);
 			path = Source;
@@ -151,6 +187,7 @@
 				B1F21C1312A1B1A900BF2181 /* key.pem */,
 				B1CF39C312A06C530083E308 /* cacert.pem */,
 				B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */,
+				B183147112A24D350071A678 /* config.plist */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -177,6 +214,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B183148012A280480071A678 /* PBXTargetDependency */,
 			);
 			name = SStore;
 			productName = SStore;
@@ -201,12 +239,35 @@
 			mainGroup = B1A9DE0D128B6938006B5F57;
 			productRefGroup = B1A9DE1B128B6939006B5F57 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B183147312A280310071A678 /* Products */;
+					ProjectRef = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B1A9DE19128B6939006B5F57 /* SStore */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B183147C12A280340071A678 /* SSCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SSCrypto.framework;
+			remoteRef = B183147B12A280340071A678 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B183147E12A280340071A678 /* SSCryptoTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SSCryptoTest;
+			remoteRef = B183147D12A280340071A678 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B1A9DE16128B6939006B5F57 /* Sources */ = {
@@ -221,6 +282,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B183148012A280480071A678 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSCrypto;
+			targetProxy = B183147F12A280480071A678 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B1A9DE2A128B6939006B5F57 /* Debug */ = {

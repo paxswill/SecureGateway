@@ -16,15 +16,35 @@ NSManagedObjectModel *managedObjectModel();
 NSManagedObjectContext *managedObjectContext();
 
 int main (int argc, const char * argv[]) {
-	
+	//Start Garbage Collection
 	objc_startCollectorThread();
 	
 	// Create the managed object context
 	NSManagedObjectContext *context = managedObjectContext();
 	
+	//If no path given, set the default one
+	NSString *configPath;
+	if(argc == 2){
+		configPath = [NSString stringWithUTF8String:argv[1]];
+	}else{
+		configPath = @"./config.plist";
+	}
+	//Read in the configuration variables
+	NSDictionary *configuration = [NSDictionary dictionaryWithContentsOfFile:configPath];
+	if(configuration == nil){
+		//The configuration is invalid.
+		NSLog(@"Invalid Cnfiguration file. Either place a proper plist named 'config.plist' in the current directory, or specify one following the command.");
+		exit(1);
+	}
+	int port = [[configuration objectForKey:@"portNumber"] intValue];
+	NSURL *certURL = [NSURL URLWithString:[configuration objectForKey:@"CACertificate"]];
+	NSURL *keyURL = [NSURL URLWithString:[configuration objectForKey:@"keyFile"]];
+	NSString *keyPassword = [configuration objectForKey:@"keyPassword"];
+	
 	//Testing:
 	//Start a server
 	PXServer *testServer = [[PXServer alloc] init];
+	testServer.port = port;
 	if(![testServer openSocket]){
 		NSLog(@"Fatal error in opening socket. Try re-running the program");
 		return 1;
@@ -45,8 +65,8 @@ int main (int argc, const char * argv[]) {
 	
 	//Try setting up SSL
 	[testServer prepareSSLConnection];
-	[testServer loadCA:[NSURL URLWithString:@"file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem"]];
-	[testServer loadKey:[NSURL URLWithString:@"/Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem"] withPassword:@"webbCenter"];
+	[testServer loadCA:certURL]];
+	[testServer loadKey:keyURL withPassword:keyPassword];
 	[testServer openSSLConnection];
 	
 	//Close the connection
