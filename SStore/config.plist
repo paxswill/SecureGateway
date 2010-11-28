@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>portNumber</key>
+	<string>6968</string>
+	<key>CACertificate</key>
+	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem</string>
+	<key>keyFile</key>
+	<string>/Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem</string>
+	<key>keyPassword</key>
+	<string>webbCenter</string>
+</dict>
 </plist>
