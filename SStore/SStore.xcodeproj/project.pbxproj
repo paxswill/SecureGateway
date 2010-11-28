@@ -10,6 +10,7 @@
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
 		B13035DD12A28819003DD6A4 /* SSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = B13035DC12A28819003DD6A4 /* SSCrypto.m */; };
+		B13035E112A28D2D003DD6A4 /* PXAESStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B13035E012A28D2D003DD6A4 /* PXAESStringTransformer.m */; };
 		B183148312A281CD0071A678 /* PXAESDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B183148212A281CD0071A678 /* PXAESDataTransformer.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
@@ -63,6 +64,8 @@
 		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
 		B13035DB12A28819003DD6A4 /* SSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSCrypto.h; path = ../../SSCrypto/SSCrypto.h; sourceTree = "<group>"; };
 		B13035DC12A28819003DD6A4 /* SSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSCrypto.m; path = ../../SSCrypto/SSCrypto.m; sourceTree = "<group>"; };
+		B13035DF12A28D2D003DD6A4 /* PXAESStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAESStringTransformer.h; sourceTree = "<group>"; };
+		B13035E012A28D2D003DD6A4 /* PXAESStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAESStringTransformer.m; sourceTree = "<group>"; };
 		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
 		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
 		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
@@ -75,7 +78,7 @@
 		B148297B128BA0AC00F94AFB /* PXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXPerson.m; path = "Model Objects/PXPerson.m"; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183147212A280310071A678 /* SSCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSCrypto.xcodeproj; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SSCrypto/SSCrypto.xcodeproj; sourceTree = "<absolute>"; };
-		B183148112A281CD0071A678 /* PXAESDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PXAESDataTransformer.h; sourceTree = "<group>"; };
+		B183148112A281CD0071A678 /* PXAESDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAESDataTransformer.h; sourceTree = "<group>"; };
 		B183148212A281CD0071A678 /* PXAESDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAESDataTransformer.m; sourceTree = "<group>"; };
 		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
@@ -114,6 +117,17 @@
 				B13035DC12A28819003DD6A4 /* SSCrypto.m */,
 			);
 			name = SSCrypto;
+			sourceTree = "<group>";
+		};
+		B13035DE12A28D0F003DD6A4 /* Data Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				B183148112A281CD0071A678 /* PXAESDataTransformer.h */,
+				B183148212A281CD0071A678 /* PXAESDataTransformer.m */,
+				B13035DF12A28D2D003DD6A4 /* PXAESStringTransformer.h */,
+				B13035E012A28D2D003DD6A4 /* PXAESStringTransformer.m */,
+			);
+			name = "Data Transformers";
 			sourceTree = "<group>";
 		};
 		B148296C128BA00B00F94AFB /* Model Objects */ = {
@@ -166,8 +180,7 @@
 				B10800BC12938F9E005E9242 /* PXConnection.h */,
 				B1F21C1612A1C6CC00BF2181 /* PXConnection.m */,
 				B1A9DE23128B6939006B5F57 /* main.m */,
-				B183148112A281CD0071A678 /* PXAESDataTransformer.h */,
-				B183148212A281CD0071A678 /* PXAESDataTransformer.m */,
+				B13035DE12A28D0F003DD6A4 /* Data Transformers */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -300,6 +313,7 @@
 				B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */,
 				B183148312A281CD0071A678 /* PXAESDataTransformer.m in Sources */,
 				B13035DD12A28819003DD6A4 /* SSCrypto.m in Sources */,
+				B13035E112A28D2D003DD6A4 /* PXAESStringTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
