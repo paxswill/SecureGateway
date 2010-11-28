@@ -7,13 +7,21 @@
 //
 #import "PXConnection.h"
 
+@interface PXConnection()
+
+@property (readwrite, nonatomic, getter=isConnected) BOOL connected;
+@property (readwrite, nonatomic, getter=isSecure) BOOL secure;
+
+@end
+
+
 @implementation PXConnection
 
 //Sockets
 @synthesize mainSocket;
+@synthesize port;
 
 //SSL
-@synthesize sslMethod;
 @synthesize sslContext;
 @synthesize sslConnection;
 @synthesize bioConnection;
@@ -39,8 +47,8 @@
 		ERR_load_BIO_strings();
 		OpenSSL_add_all_algorithms();
 		SSL_library_init();
-		sslMethod = TLSv1_method();
-		sslContext = SSL_CTX_new(sslMethod);
+		SSL_METHOD *method = TLSv1_method();
+		sslContext = SSL_CTX_new(method);
 		secure = NO;
     }
     return self;

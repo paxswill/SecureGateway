@@ -26,13 +26,12 @@
 #include "openssl/err.h"
 
 @interface PXConnection : NSObject{
-@private
+@protected
 	//Socket members
 	int mainSocket;
-	int port
+	int port;
 	
 	//SSL members
-	SSL_METHOD *sslMethod;
 	SSL_CTX *sslContext;
 	SSL *sslConnection;
 	BIO *bioConnection;
@@ -48,7 +47,6 @@
 @property (readwrite, nonatomic) int port;
 
 //SSL properties
-@property (readwrite, nonatomic) SSL_METHOD *sslMethod;
 @property (readwrite, nonatomic) SSL_CTX *sslContext;
 @property (readwrite, nonatomic) SSL *sslConnection;
 @property (readwrite, nonatomic) BIO *bioConnection;
