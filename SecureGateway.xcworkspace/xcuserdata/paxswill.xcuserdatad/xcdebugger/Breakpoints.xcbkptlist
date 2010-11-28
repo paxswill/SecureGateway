@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SStore/Source/main.m"
-         timestampString = "312121332.485707"
+         timestampString = "312674430.142321"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
          landmarkName = "main()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -65,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SStore/Source/main.m"
-         timestampString = "312503606.916795"
+         timestampString = "312674430.142321"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
          landmarkName = "main()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -79,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SStore/Source/main.m"
-         timestampString = "312503606.916795"
+         timestampString = "312674430.142321"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
          landmarkName = "main()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "SStore/Source/main.m"
-         timestampString = "312121451.588872"
+         timestampString = "312674430.142321"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
          landmarkName = "main()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -127,20 +127,6 @@
          startingLineNumber = "157"
          endingLineNumber = "157"
          landmarkName = "@implementation PXServer"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "SStore/Source/PXSQLiteObject.m"
-         timestampString = "312672192.478689"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
-         landmarkName = "@implementation PXSQLiteObject"
          landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>

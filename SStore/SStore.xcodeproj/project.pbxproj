@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
+		B10EB07712A31B9C00684368 /* PXSQLiteRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
 		B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E1A3F12A2D97600886783 /* libsqlcipher.a */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
@@ -39,6 +40,8 @@
 		B10800BD129390B3005E9242 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXConnectionDelegate.h; sourceTree = "<group>"; };
 		B10800BE1293913E005E9242 /* PXServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXServer.h; sourceTree = "<group>"; };
 		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
+		B10EB07512A31B9C00684368 /* PXSQLiteRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSQLiteRecords.h; sourceTree = "<group>"; };
+		B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteRecords.m; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
@@ -95,6 +98,8 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B10EB07512A31B9C00684368 /* PXSQLiteRecords.h */,
+				B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */,
 				B1F8349D12A2DAB3005F1DD4 /* Model Objects */,
 				B10800BE1293913E005E9242 /* PXServer.h */,
 				B10800BF1293913E005E9242 /* PXServer.m */,
@@ -225,6 +230,7 @@
 				B1F834A012A2E180005F1DD4 /* PXPerson.m in Sources */,
 				B1F834A312A2E2FE005F1DD4 /* PXFaculty.m in Sources */,
 				B1C8BB4B12A2E40D008ACEAB /* PXSQLiteObject.m in Sources */,
+				B10EB07712A31B9C00684368 /* PXSQLiteRecords.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
