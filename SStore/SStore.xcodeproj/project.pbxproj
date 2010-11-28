@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
+		B13035DD12A28819003DD6A4 /* SSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = B13035DC12A28819003DD6A4 /* SSCrypto.m */; };
+		B183148312A281CD0071A678 /* PXAESDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B183148212A281CD0071A678 /* PXAESDataTransformer.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
 		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
@@ -22,21 +24,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* SSCrypto.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = SSCrypto;
 		};
 		B183147D12A280340071A678 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6404DE36064817A000087955 /* SSCryptoTest */;
+			remoteGlobalIDString = 6404DE36064817A000087955;
 			remoteInfo = SSCryptoTest;
 		};
 		B183147F12A280480071A678 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B183147212A280310071A678 /* SSCrypto.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SSCrypto */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = SSCrypto;
 		};
 /* End PBXContainerItemProxy section */
@@ -44,12 +46,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		B1A9DE18128B6939006B5F57 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 10;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -59,6 +61,8 @@
 		B10800BD129390B3005E9242 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXConnectionDelegate.h; sourceTree = "<group>"; };
 		B10800BE1293913E005E9242 /* PXServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXServer.h; sourceTree = "<group>"; };
 		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
+		B13035DB12A28819003DD6A4 /* SSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSCrypto.h; path = ../../SSCrypto/SSCrypto.h; sourceTree = "<group>"; };
+		B13035DC12A28819003DD6A4 /* SSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSCrypto.m; path = ../../SSCrypto/SSCrypto.m; sourceTree = "<group>"; };
 		B148296E128BA04200F94AFB /* PXFaculty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXFaculty.h; path = "Model Objects/PXFaculty.h"; sourceTree = "<group>"; };
 		B148296F128BA04200F94AFB /* PXFaculty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXFaculty.m; path = "Model Objects/PXFaculty.m"; sourceTree = "<group>"; };
 		B1482970128BA04300F94AFB /* PXDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDocument.h; path = "Model Objects/PXDocument.h"; sourceTree = "<group>"; };
@@ -71,6 +75,9 @@
 		B148297B128BA0AC00F94AFB /* PXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXPerson.m; path = "Model Objects/PXPerson.m"; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183147212A280310071A678 /* SSCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSCrypto.xcodeproj; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SSCrypto/SSCrypto.xcodeproj; sourceTree = "<absolute>"; };
+		B183148112A281CD0071A678 /* PXAESDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PXAESDataTransformer.h; sourceTree = "<group>"; };
+		B183148212A281CD0071A678 /* PXAESDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAESDataTransformer.m; sourceTree = "<group>"; };
+		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		B1A9DE1A128B6939006B5F57 /* SStore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SStore; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A9DE1E128B6939006B5F57 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -100,6 +107,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B13035DA12A28809003DD6A4 /* SSCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				B13035DB12A28819003DD6A4 /* SSCrypto.h */,
+				B13035DC12A28819003DD6A4 /* SSCrypto.m */,
+			);
+			name = SSCrypto;
+			sourceTree = "<group>";
+		};
 		B148296C128BA00B00F94AFB /* Model Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +158,7 @@
 		B1A9DE14128B6939006B5F57 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B13035DA12A28809003DD6A4 /* SSCrypto */,
 				B148296C128BA00B00F94AFB /* Model Objects */,
 				B10800BE1293913E005E9242 /* PXServer.h */,
 				B10800BF1293913E005E9242 /* PXServer.m */,
@@ -149,6 +166,8 @@
 				B10800BC12938F9E005E9242 /* PXConnection.h */,
 				B1F21C1612A1C6CC00BF2181 /* PXConnection.m */,
 				B1A9DE23128B6939006B5F57 /* main.m */,
+				B183148112A281CD0071A678 /* PXAESDataTransformer.h */,
+				B183148212A281CD0071A678 /* PXAESDataTransformer.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -172,6 +191,7 @@
 		B1A9DE1D128B6939006B5F57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B183148612A285D40071A678 /* SSCrypto.framework */,
 				B18C021B12A0204A003C042B /* libcrypto.dylib */,
 				B10800BA12938ECE005E9242 /* libssl.dylib */,
 				B1A9DE1E128B6939006B5F57 /* CoreData.framework */,
@@ -278,6 +298,8 @@
 				B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */,
 				B10800C01293913E005E9242 /* PXServer.m in Sources */,
 				B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */,
+				B183148312A281CD0071A678 /* PXAESDataTransformer.m in Sources */,
+				B13035DD12A28819003DD6A4 /* SSCrypto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +325,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../SSCrypto/;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -320,6 +343,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../SSCrypto/;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
 				SDKROOT = macosx;
@@ -332,6 +356,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -348,6 +376,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
