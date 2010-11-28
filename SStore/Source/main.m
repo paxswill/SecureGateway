@@ -11,6 +11,9 @@
 
 
 #import "PXServer.h"
+#import "PXAESDataTransformer.h"
+#import "PXAESStringTransformer.h"
+
 
 NSManagedObjectModel *managedObjectModel();
 NSManagedObjectContext *managedObjectContext();
@@ -21,6 +24,10 @@ int main (int argc, const char * argv[]) {
 	
 	// Create the managed object context
 	NSManagedObjectContext *context = managedObjectContext();
+	
+	//Register the Value Transformers
+	
+	
 	
 	//If no path given, set the default one
 	NSString *configPath;
@@ -82,6 +89,8 @@ int main (int argc, const char * argv[]) {
     return 0;
 }
 
+
+//Core Data fun
 NSManagedObjectModel *managedObjectModel() {
     
     static NSManagedObjectModel *model = nil;
@@ -97,6 +106,7 @@ NSManagedObjectModel *managedObjectModel() {
     
     return model;
 }
+
 NSManagedObjectContext *managedObjectContext() {
 	
     static NSManagedObjectContext *context = nil;
