@@ -11,14 +11,24 @@
 
 
 #import "PXServer.h"
+#import "PXFaculty.h"
 
-NSManagedObjectModel *managedObjectModel();
-NSManagedObjectContext *managedObjectContext();
+void testServer(int argc, const char **argv);
 
 int main (int argc, const char * argv[]) {
 	//Start Garbage Collection
 	objc_startCollectorThread();
 	
+	//Test the SQLite objects
+	NSLog(@"%@", [PXFaculty getProperties]);
+	NSLog(@"%@", [PXPerson getProperties]);
+	NSLog(@"%@", [PXSQLiteObject getProperties]);
+	
+	//testServer;
+	
+}
+
+void testServer(int argc, const char **argv){
 	//If no path given, set the default one
 	NSString *configPath;
 	if(argc == 2){
@@ -44,9 +54,9 @@ int main (int argc, const char * argv[]) {
 	testServer.port = port;
 	if(![testServer openSocket]){
 		NSLog(@"Fatal error in opening socket. Try re-running the program");
-		return 1;
+		exit(1);
 	}
-
+	
 	//Loop, waiting a quarter of a second between polling
 	struct timespec sleepTime;
 	sleepTime.tv_sec = 0;
