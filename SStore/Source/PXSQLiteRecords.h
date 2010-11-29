@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "PXSQLiteObject.h"
 
 @interface PXSQLiteRecords : NSObject {
 @private
@@ -21,4 +22,5 @@
 -(id)initDatabaseAtLocation:(NSString *)dbLocation;
 -(id)initDatabaseAtLocation:(NSString *)dbLocation withPassword:(NSString *)pw;
 
+-(void)save:(PXSQLiteObject *)object;
 @end

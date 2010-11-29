@@ -96,8 +96,76 @@
 
 - (void)dealloc {
     // Clean-up code here.
-    
+    //TODO: close out the database
     [super dealloc];
+}
+
+
+
+-(void)save:(PXSQLiteObject *)object{
+	//First, is this object in the store already?
+	NSArray *familyTree = [[object class] getParents];
+	//Make the eusable statements
+	sqlite3_stmt *checkStmt;
+	sqlite3_stmt *addStmt;
+	int status = sqlite3_prepare_v2(self.db, "SELECT class_name FROM objects WHERE class_name='@CLASS' AND super_class='@SUPER' LIMIT 1;", -1, &checkStmt, NULL);
+	status = sqlite3_prepare_v2(self.db, "INSERT INTO objects(class_name, super_class) VALUES ('@CLASS', '@SUPER');", -1, &addStmt, NULL);
+	for(int i = 0; i < ([familyTree count] - 1); ++i){
+		//Check to see if the current class exists in the DB
+		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:checkStmt];
+		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:checkStmt];
+		//Run the query
+		BOOL found = NO;
+		do{
+			status = sqlite3_step(checkStmt);
+			found = (status == SQLITE_ROW) ? YES : NO;
+		}while(status != SQLITE_DONE && !found);
+		if(!found){
+			//We need to insert. Bind the var names in
+			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:addStmt];
+			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:addStmt];
+			//Run the statement
+			do{
+				status = sqlite3_step(checkStmt);
+			}while(status != SQLITE_DONE);
+			//Should be done now
+			sqlite3_reset(addStmt);
+		}
+		sqlite3_reset(checkStmt);
+	}
+	sqlite3_finalize(checkStmt);
+	sqlite3_finalize(addStmt);
+	
+	//OK, now that it is ensured that the class structure is in the DB, we can read the object in
+	//Is there a table for the Class?
+	sqlite3_stmt *checkTableStmt;
+	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name='@CLASS' LIMIT 1;", -1, &checkTableStmt, NULL);
+	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"CLASS" inStatement:checkTableStmt];
+	BOOL found = NO;
+	do{
+		status = sqlite3_step(checkTableStmt);
+		found = (status == SQLITE_ROW) ? YES : NO;
+	}while(status != SQLITE_DONE && !found);
+	sqlite3_finalize(checkTableStmt);
+	if(!found){
+		//We need to add a table for this class
+		NSMutableString *tableCreate = [NSMutableString stringWithFormat:@"CREATE TABLE %@(", [[object class] getName]];
+		NSDictionary *objectVars = [[[object class] getProperties] retain];
+		for(NSString *colName in [objectVars allKeys]){
+			[tableCreate appendFormat:@"%@ %@, ", colName, [objectVars valueForKey:colName]];
+		}
+		//Trim the last ', ' out
+		[tableCreate deleteCharactersInRange:NSMakeRange([tableCreate length] - 2, [tableCreate length])];
+		[tableCreate appendFormat:@");"];
+		//Quickly run this
+		status = sqlite3_exec(self.db, [tableCreate UTF8String], NULL, NULL, NULL);
+		//Clean up
+		[objectVars release];
+	}
+}
+
+-(PXSQLiteObject *)objectForKey:(NSString *)keyPath value:(NSString *)value{
+	
 }
 
 //Private binding methods
