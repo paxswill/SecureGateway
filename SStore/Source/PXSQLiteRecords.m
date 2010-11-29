@@ -231,8 +231,70 @@
 	[objectProperties release];
 }
 
--(PXSQLiteObject *)objectForKey:(NSString *)keyPath value:(NSString *)value{
-	
+-(NSSet *)objectsOfType:(Class)class forKey:(NSString *)keyPath value:(id)value{
+	//First, what type are we looking at here
+	objc_property_t property = class_getProperty(class, [keyPath UTF8String]);
+	NSString *sqlType = [PXSQLiteObject typeForObjCProperty:property];
+	NSDictionary *properties = [class getProperties];
+	//The Set to return
+	NSMutableSet *returnSet = [[NSMutableSet alloc] init];
+	//Build a Select query for this type
+	NSArray *keys = [properties allKeys];
+	NSMutableString *select = [[NSMutableString alloc] initWithString:@"SELECT "];
+	for(NSString *prop in keys){
+		[select appendFormat:@"%@, ", prop]; 
+	}
+	[select deleteCharactersInRange:NSMakeRange([select length] - 2, [select length])];
+	[select appendString:@" FROM @CLASS WHERE @KEYPATH="];
+	if([sqlType isEqualToString:@"TEXT"]){
+		[select appendString:@"'@VALUE';"];
+	}else{
+		//something other than text
+		[select appendString:@"@VALUE;"];
+	}
+	//Build the query
+	sqlite3_stmt *keyStmt;
+	int status = sqlite3_prepare_v2(self.db, [select UTF8String], -1, &keyStmt, NULL);
+	//Bind the vars
+	[PXSQLiteRecords bindString:[class getName] forName:@"@CLASS" inStatement:keyStmt];
+	[PXSQLiteRecords bindString:keyPath forName:@"@KEYPATH" inStatement:keyStmt];
+	if([sqlType isEqualToString:@"TEXT"]){
+		[PXSQLiteRecords bindString:value forName:@"@VALUE" inStatement:keyStmt];
+	}else if([sqlType isEqualToString:@"REAL"]){
+		[PXSQLiteRecords bindDouble:[value doubleValue] forName:@"@VALUE" inStatement:keyStmt];
+	}else if([sqlType isEqualToString:@"INTEGER"]){
+		[PXSQLiteRecords bindInt:[value intValue] forName:@"@VALUE" inStatement:keyStmt];
+	}else if([sqlType isEqualToString:@"BLOB"]){
+		[PXSQLiteRecords bindData:[NSKeyedArchiver archivedDataWithRootObject:value] forName:@"@VALUE" inStatement:keyStmt];
+	}
+	//Run the query
+	do{
+		status = sqlite3_step(keyStmt);
+		if(status == SQLITE_ROW){
+			//Instantiate the class
+			id someClassInstance = class_createInstance(class, 0);
+			//Retrieve the column data
+			for(int i = 0; i < [keys count]; ++i){
+				NSString *key = [keys objectAtIndex:i];
+				objc_property_t keyProp = class_getProperty(class, [key UTF8String]);
+				
+				//Now to branch based on what the types of this property is
+				if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"TEXT"]){
+					[someClassInstance setValue:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(keyStmt, i)] forKeyPath:key];
+				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"REAL"]){
+					[someClassInstance setValue:[NSNumber numberWithDouble:sqlite3_column_double(keyStmt, i)] forKeyPath:key];
+				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"INTEGER"]){
+					[someClassInstance setValue:[NSNumber numberWithInt:sqlite3_column_int(keyStmt, i)] forKeyPath:key];
+				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"BLOB"]){
+					[someClassInstance setValue:[NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithBytes:sqlite3_column_blob(keyStmt, i) length:sqlite3_column_bytes(keyStmt, i)]] forKeyPath:key];
+				}
+			}
+			//Now that the object is made, put it in the Set
+			[returnSet addObject:someClassInstance];
+		}
+	}while(status != SQLITE_DONE);
+	sqlite3_finalize(keyStmt);
+	return [returnSet autorelease];
 }
 
 //Private binding methods

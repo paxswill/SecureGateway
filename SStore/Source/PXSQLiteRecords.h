@@ -23,4 +23,6 @@
 -(id)initDatabaseAtLocation:(NSString *)dbLocation withPassword:(NSString *)pw;
 
 -(void)save:(PXSQLiteObject *)object;
+-(NSSet *)objectsOfType:(Class)class forKey:(NSString *)keyPath value:(id)value;
+
 @end
