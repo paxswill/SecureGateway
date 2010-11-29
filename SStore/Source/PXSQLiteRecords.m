@@ -49,7 +49,7 @@
 			sqlite3_stmt *cryptoStmt;
 			status = sqlite3_prepare_v2(db, "PRAGMA key = '@KEY'", -1, &cryptoStmt, NULL);
 			//Bind the password in
-			status = [PXSQLiteRecords bindString:pw forName:@"KEY" inStatement:cryptoStmt];
+			status = [PXSQLiteRecords bindString:pw forName:@"@KEY" inStatement:cryptoStmt];
 			//Step until done
 			[self runStatement:cryptoStmt];
 			//close out the statement
@@ -110,14 +110,14 @@
 	status = sqlite3_prepare_v2(self.db, "INSERT INTO objects(class_name, super_class) VALUES ('@CLASS', '@SUPER');", -1, &addStmt, NULL);
 	for(int i = 0; i < ([familyTree count] - 1); ++i){
 		//Check to see if the current class exists in the DB
-		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:checkStmt];
-		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:checkStmt];
+		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"@CLASS" inStatement:checkStmt];
+		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"@SUPER" inStatement:checkStmt];
 		//Run the query
 		BOOL found = [self runStatementLookingForResults:checkStmt];
 		if(!found){
 			//We need to insert. Bind the var names in
-			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:addStmt];
-			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:addStmt];
+			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"@CLASS" inStatement:addStmt];
+			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"@SUPER" inStatement:addStmt];
 			//Run the statement
 			[self runStatement:addStmt];
 			//Should be done now
@@ -132,7 +132,7 @@
 	//Is there a table for the Class?
 	sqlite3_stmt *checkTableStmt;
 	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name='@CLASS' LIMIT 1;", -1, &checkTableStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"CLASS" inStatement:checkTableStmt];
+	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkTableStmt];
 	BOOL found = [self runStatementLookingForResults:checkTableStmt];
 	sqlite3_finalize(checkTableStmt);
 	if(!found){
@@ -155,8 +155,8 @@
 	//But first, check to see if we've already added it
 	sqlite3_stmt *checkClassStmt;
 	status = sqlite3_prepare_v2(self.db, "SELECT idNumber FROM @CLASS WHERE idNumber=@IDNUM LIMIT 1;", -1, &checkClassStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"CLASS" inStatement:checkClassStmt];
-	status = [PXSQLiteRecords bindInt:[object idNumber] forName:@"IDNUM" inStatement:checkClassStmt];
+	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkClassStmt];
+	status = [PXSQLiteRecords bindInt:[object idNumber] forName:@"@IDNUM" inStatement:checkClassStmt];
 	found = [self runStatementLookingForResults:checkClassStmt];
 	sqlite3_finalize(checkClassStmt);
 	//Ok, so now we get to make either an update or insert query
@@ -212,22 +212,23 @@
 	//And now we bind everything
 	for(NSString *property in [objectProperties allKeys]){
 		if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
-			[PXSQLiteRecords bindString:property forName:property inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindString:[objectProperties valueForKey:property] forName:[NSString stringWithFormat:@"%@VAL", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindString:[objectProperties valueForKey:property] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
 		}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
-			[PXSQLiteRecords bindString:property forName:property inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindDouble:[[objectProperties valueForKey:property] doubleValue] forName:[NSString stringWithFormat:@"%@VAL", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindDouble:[[objectProperties valueForKey:property] doubleValue] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
 		}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
-			[PXSQLiteRecords bindString:property forName:property inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindInt:[[objectProperties valueForKey:property] intValue] forName:[NSString stringWithFormat:@"%@VAL", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindInt:[[objectProperties valueForKey:property] intValue] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
 		}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-			[PXSQLiteRecords bindString:property forName:property inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindData:[NSKeyedArchiver archivedDataWithRootObject:[objectProperties valueForKey:property]] forName:[NSString stringWithFormat:@"%@VAL", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
+			[PXSQLiteRecords bindData:[NSKeyedArchiver archivedDataWithRootObject:[objectProperties valueForKey:property]] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
 		}
 	}
 	//And finally, we run it
 	[self runStatement:addOrInsertStmt];
 	sqlite3_finalize(addOrInsertStmt);
+	[objectProperties release];
 }
 
 -(PXSQLiteObject *)objectForKey:(NSString *)keyPath value:(NSString *)value{
