@@ -132,15 +132,19 @@
 }
 
 +(NSString *)typeForObjCProperty:(objc_property_t)prop{
+	SQLITE_TYPE type = [PXSQLiteObject sqlTypeForEncode:[PXSQLiteObject encodeForObjCProperty:prop]];
+	return [PXSQLiteObject typeForSQLiteType:type];
+}
+
++(char *)encodeForObjCProperty:(objc_property_t)prop{
 	//For now, we're just including the Obj-C type
 	NSString *propertyAttributes = [[NSString alloc] initWithUTF8String:property_getAttributes(prop)];
 	//The properties are a bit hairy, the format is described here:
 	//http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html%23//apple_ref/doc/uid/TP40008048-CH101
 	NSArray *components = [[propertyAttributes componentsSeparatedByString:@","] retain];
-	//At index one, we should have T, followed by the @encoded'd type
-	SQLITE_TYPE type = [PXSQLiteObject sqlTypeForEncode:(char *)[[[components objectAtIndex:0] substringFromIndex:1] UTF8String]];
+	char * toReturn = (char *)[[[components objectAtIndex:0] substringFromIndex:1] UTF8String];
 	[components release];
-	return [PXSQLiteObject typeForSQLiteType:type];
+	return toReturn;
 }
 
 @end
