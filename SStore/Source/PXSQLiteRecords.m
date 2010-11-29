@@ -176,7 +176,11 @@
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
 				[updateString appendFormat:@"%@=%d, ", property, [[object valueForKey:property] intValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-				[updateString appendFormat:@"%@=x'%@', ", property, [object valueForKey:property]];
+				NSString *hexString = [[NSKeyedArchiver archivedDataWithRootObject:[object valueForKey:property]] description];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@"<" withString:@""];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@">" withString:@""];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@" " withString:@""];
+				[updateString appendFormat:@"%@=x'%@', ", property, hexString];
 			}
 		}
 		//Tidy up the end of the string
