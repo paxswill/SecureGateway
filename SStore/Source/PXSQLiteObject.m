@@ -50,7 +50,7 @@
 				case 'c':
 				case 'C':
 				case '*':
-					//chars
+					//chars and strings
 					type = SQL_TEXT;
 					break;
 				case 'i':
@@ -74,6 +74,8 @@
 					break;
 				case '@':
 					//An object
+					//In most cases, store as a blob, but in other cases store more suited data
+					
 					type = SQL_BLOB;
 					break;
 				case 'v':
@@ -102,6 +104,16 @@
 
 +(NSString*)getName{
 	return [NSString stringWithUTF8String:class_getName([self class])];
+}
+
++(NSArray *)getParents{
+	NSMutableArray *parents = [[NSMutableArray alloc] init];
+	Class currentClass = [self class];
+	do{
+		[parents addObject:[NSString stringWithUTF8String:class_getName(currentClass)]];
+	}while(currentClass != [NSObject class]);
+	[parents addObject:@"NSObject"];
+	return [parents autorelease];
 }
 
 @end

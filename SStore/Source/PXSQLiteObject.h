@@ -25,6 +25,7 @@ typedef enum{
 }
 
 +(NSDictionary *)getProperties;
-+(NSString*)getName;
++(NSString *)getName;
++(NSArray *)getParents;
 
 @end
