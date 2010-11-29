@@ -9,12 +9,14 @@
 #import "PXSQLiteRecords.h"
 
 @interface PXSQLiteRecords()
-
+//Binding convenience methods
 +(int)bindString:(NSString *)var forName:(NSString *)varName inStatement:(sqlite3_stmt *)stmt;
 +(int)bindInt:(int)var forName:(NSString *)varName inStatement:(sqlite3_stmt *)stmt;
 +(int)bindDouble:(double)var forName:(NSString *)varName inStatement:(sqlite3_stmt *)stmt;
 +(int)bindData:(NSData *)var forName:(NSString *)varName inStatement:(sqlite3_stmt *)stmt;
-
+//Query convenience methods
+-(void)runStatement:(sqlite3_stmt *)stmt;
+-(BOOL)runStatementLookingForResults:(sqlite3_stmt *)stmt;
 @end
 
 
@@ -49,9 +51,7 @@
 			//Bind the password in
 			status = [PXSQLiteRecords bindString:pw forName:@"KEY" inStatement:cryptoStmt];
 			//Step until done
-			do{
-				status = sqlite3_step(cryptoStmt);
-			}while(status != SQLITE_DONE);
+			[self runStatement:cryptoStmt];
 			//close out the statement
 			sqlite3_finalize(cryptoStmt);
 		}
@@ -84,9 +84,7 @@
 			sqlite3_stmt *schemaStmt;
 			status = sqlite3_prepare_v2(db, "CREATE TABLE objects(class_name TEXT, super_class TEXT);", (sizeof(char) * 60), &schemaStmt, NULL);
 			//Step until done
-			do{
-				status = sqlite3_step(versionStmt);
-			}while(status != SQLITE_DONE);
+			[self runStatement:schemaStmt];
 			//close out the statement
 			sqlite3_finalize(schemaStmt);
 		}
@@ -115,19 +113,13 @@
 		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:checkStmt];
 		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:checkStmt];
 		//Run the query
-		BOOL found = NO;
-		do{
-			status = sqlite3_step(checkStmt);
-			found = (status == SQLITE_ROW) ? YES : NO;
-		}while(status != SQLITE_DONE && !found);
+		BOOL found = [self runStatementLookingForResults:checkStmt];
 		if(!found){
 			//We need to insert. Bind the var names in
 			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"CLASS" inStatement:addStmt];
 			status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:(i + 1)] forName:@"SUPER" inStatement:addStmt];
 			//Run the statement
-			do{
-				status = sqlite3_step(checkStmt);
-			}while(status != SQLITE_DONE);
+			[self runStatement:addStmt];
 			//Should be done now
 			sqlite3_reset(addStmt);
 		}
@@ -141,11 +133,7 @@
 	sqlite3_stmt *checkTableStmt;
 	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name='@CLASS' LIMIT 1;", -1, &checkTableStmt, NULL);
 	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"CLASS" inStatement:checkTableStmt];
-	BOOL found = NO;
-	do{
-		status = sqlite3_step(checkTableStmt);
-		found = (status == SQLITE_ROW) ? YES : NO;
-	}while(status != SQLITE_DONE && !found);
+	BOOL found = [self runStatementLookingForResults:checkTableStmt];
 	sqlite3_finalize(checkTableStmt);
 	if(!found){
 		//We need to add a table for this class
@@ -195,6 +183,23 @@
 	// and 5 is a special value saying that the string passed may change in the future
 	// (which it does, std::string.c_str() returns an internal representation that changes)
 	return sqlite3_bind_blob(stmt, parameterIndex, [var bytes], [var length], SQLITE_TRANSIENT);
+}
+
+-(void)runStatement:(sqlite3_stmt *)stmt{
+	int status;
+	do{
+		status = sqlite3_step(stmt);
+	}while(status != SQLITE_DONE);
+}
+
+-(BOOL)runStatementLookingForResults:(sqlite3_stmt *)stmt{
+	int status;
+	BOOL found = NO;
+	do{
+		status = sqlite3_step(stmt);
+		found = (status == SQLITE_ROW) ? YES : NO;
+	}while(status != SQLITE_DONE && !found);
+	return found;
 }
 
 @end
