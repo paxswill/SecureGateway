@@ -198,7 +198,11 @@
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
 				[insertValues appendFormat:@"%d, ", [[object valueForKey:property] intValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-				[insertValues appendFormat:@"x'%@', ", [object valueForKey:property]];
+				NSString *hexString = [[NSKeyedArchiver archivedDataWithRootObject:[object valueForKey:property]] description];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@"<" withString:@""];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@">" withString:@""];
+				hexString = [hexString stringByReplacingOccurrencesOfString:@" " withString:@""];
+				[insertValues appendFormat:@"x'%@', ", hexString];
 			}
 		}
 		//Clean the ends up
@@ -227,27 +231,23 @@
 		[select appendFormat:@"%@, ", prop]; 
 	}
 	[select setString:[select substringToIndex:([select length] - 2)]];
-	[select appendFormat:@" FROM %@ WHERE @KEYPATH=", [class getName]];
+	[select appendFormat:@" FROM %@ WHERE %@=", [class getName], keyPath];
 	if([sqlType isEqualToString:@"TEXT"]){
-		[select appendString:@"'@VALUE';"];
-	}else{
-		//something other than text
-		[select appendString:@"@VALUE;"];
+		[select appendFormat:@"'%@';", value];
+	}else if([sqlType isEqualToString:@"INTEGER"]){
+		[select appendFormat:@"%d;", [value intValue]];
+	}else if([sqlType isEqualToString:@"REAL"]){
+		[select appendFormat:@"%f;", [value doubleValue]];
+	}else if([sqlType isEqualToString:@"BLOB"]){
+		NSString *hexString = [[NSKeyedArchiver archivedDataWithRootObject:value] description];
+		hexString = [hexString stringByReplacingOccurrencesOfString:@"<" withString:@""];
+		hexString = [hexString stringByReplacingOccurrencesOfString:@">" withString:@""];
+		hexString = [hexString stringByReplacingOccurrencesOfString:@" " withString:@""];
+		[select appendFormat:@"x'%@';", hexString];
 	}
 	//Build the query
 	sqlite3_stmt *keyStmt;
 	int status = sqlite3_prepare_v2(self.db, [select UTF8String], -1, &keyStmt, NULL);
-	//Bind the vars
-	[PXSQLiteRecords bindString:keyPath forName:@"@KEYPATH" inStatement:keyStmt];
-	if([sqlType isEqualToString:@"TEXT"]){
-		[PXSQLiteRecords bindString:value forName:@"@VALUE" inStatement:keyStmt];
-	}else if([sqlType isEqualToString:@"REAL"]){
-		[PXSQLiteRecords bindDouble:[value doubleValue] forName:@"@VALUE" inStatement:keyStmt];
-	}else if([sqlType isEqualToString:@"INTEGER"]){
-		[PXSQLiteRecords bindInt:[value intValue] forName:@"@VALUE" inStatement:keyStmt];
-	}else if([sqlType isEqualToString:@"BLOB"]){
-		[PXSQLiteRecords bindData:[NSKeyedArchiver archivedDataWithRootObject:value] forName:@"@VALUE" inStatement:keyStmt];
-	}
 	//Run the query
 	do{
 		status = sqlite3_step(keyStmt);

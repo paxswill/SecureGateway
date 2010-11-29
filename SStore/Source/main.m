@@ -33,7 +33,18 @@ int main (int argc, const char * argv[]) {
 	PXSQLiteObject *obj = [[PXSQLiteObject alloc] init];
 	obj.idNumber = 42;
 	[storage save:obj];
+	PXPerson *testPerson = [[PXPerson alloc] init];
+	testPerson.name = @"Will Ross";
+	testPerson.pwHash = [NSData data];
+	testPerson.idNumber = 6968;
+	testPerson.admin = YES;
+	testPerson.email = @"wross@cs.odu.edu";
+	[storage save:testPerson];
 	
+	//And now the moment of truth
+	[testPerson release];
+	NSSet *persons = [storage objectsOfType:[PXPerson class] forKey:@"name" value:@"Will Ross"];
+	NSLog(@"%@", persons);
 	//testServer;
 	
 }
