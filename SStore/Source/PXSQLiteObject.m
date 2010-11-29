@@ -41,61 +41,7 @@
 		//Iterate through the properties
 		for(int i = 0; i < propertyCount; ++i){
 			NSString *propertyName = [[NSString alloc] initWithUTF8String:property_getName(properties[i])];
-			//The properties are a bit hairy, the format is described here:
-			//http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html%23//apple_ref/doc/uid/TP40008048-CH101
-			//For now, we're just including the Obj-C type
-			NSString *propertyAttributes = [[NSString alloc] initWithUTF8String:property_getAttributes(properties[i])];
-			NSArray *components = [[propertyAttributes componentsSeparatedByString:@","] retain];
-			//At index one, we should have T, followed by the @encoded'd type
-			SQLITE_TYPE type;
-			switch([[components objectAtIndex:0] characterAtIndex:1]){
-				case 'c':
-				case 'C':
-				case '*':
-					//chars and strings
-					type = SQL_TEXT;
-					break;
-				case 'i':
-				case 's':
-				case 'l':
-				case 'q':
-				case 'I':
-				case 'S':
-				case 'L':
-				case 'Q':
-					//Various integers
-					type = SQL_INTEGER;
-					break;
-				case 'f':
-				case 'd':
-					//floating point numbers
-					type = SQL_REAL;
-					break;
-				case 'B':
-					//Booleans are stored as ints
-					break;
-				case '@':
-					//An object
-					//In most cases, store as a blob, but in other cases store more suited data
-					
-					type = SQL_BLOB;
-					break;
-				case 'v':
-				case '#':
-				case ':':
-				case '[':
-				case '{':
-				case '(':
-				case 'b':
-				case '^':
-				case '?':
-				default:
-					//Unknown/We don't care
-					type = SQL_NULL;
-					break;
-			}
-			[components release];
-			[propertyList setValue:[PXSQLiteObject typeForSQLiteType:type] forKey:propertyName];
+			[propertyList setValue:[PXSQLiteObject typeForObjCProperty:properties[i]] forKey:propertyName];
 			[propertyName release];
 		}
 		//Go up a class
@@ -133,6 +79,68 @@
 		case SQL_NULL:
 			return @"NULL";
 	}
+}
+
++(SQLITE_TYPE)sqlTypeForEncode:(char *)encode{
+	SQLITE_TYPE type;
+	switch(encode[0]){
+		case 'c':
+		case 'C':
+		case '*':
+			//chars and strings
+			type = SQL_TEXT;
+			break;
+		case 'i':
+		case 's':
+		case 'l':
+		case 'q':
+		case 'I':
+		case 'S':
+		case 'L':
+		case 'Q':
+		case 'B':
+			//Various integers and BOOL
+			type = SQL_INTEGER;
+			break;
+		case 'f':
+		case 'd':
+			//floating point numbers
+			type = SQL_REAL;
+			break;
+
+		case '@':
+			//An object
+			//In most cases, store as a blob, but in other cases store more suited data
+			
+			type = SQL_BLOB;
+			break;
+		case 'v':
+		case '#':
+		case ':':
+		case '[':
+		case '{':
+		case '(':
+		case 'b':
+		case '^':
+		case '?':
+		default:
+			//Unknown/We don't care
+			type = SQL_NULL;
+			break;
+	}
+	return type;
+}
+
++(NSString *)typeForObjCProperty:(objc_property_t)prop{
+	//For now, we're just including the Obj-C type
+	NSString *propertyAttributes = [[NSString alloc] initWithUTF8String:property_getAttributes(prop)];
+	//The properties are a bit hairy, the format is described here:
+	//http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html%23//apple_ref/doc/uid/TP40008048-CH101
+	NSArray *components = [[propertyAttributes componentsSeparatedByString:@","] retain];
+	//At index one, we should have T, followed by the @encoded'd type
+	SQLITE_TYPE type = [PXSQLiteObject sqlTypeForEncode:(char *)[[[components objectAtIndex:0] substringFromIndex:1] UTF8String]];
+	[components release];
+	return [PXSQLiteObject typeForSQLiteType:type];
 }
 
 @end
