@@ -93,7 +93,7 @@
 					break;
 			}
 			[components release];
-			[propertyList setValue:[NSNumber numberWithInt:(int)type] forKey:propertyName];
+			[propertyList setValue:[PXSQLiteObject typeForSQLiteType:type] forKey:propertyName];
 			[propertyName release];
 		}
 		//Go up a class
@@ -111,9 +111,26 @@
 	Class currentClass = [self class];
 	do{
 		[parents addObject:[NSString stringWithUTF8String:class_getName(currentClass)]];
+		currentClass = class_getSuperclass(currentClass);
 	}while(currentClass != [NSObject class]);
 	[parents addObject:@"NSObject"];
 	return [parents autorelease];
+}
+
++(NSString *)typeForSQLiteType:(SQLITE_TYPE)t{
+	switch(t){
+		case SQL_INTEGER:
+			return @"INTEGER";
+		case SQL_REAL:
+			return @"REAL";
+		case SQL_TEXT:
+			return @"TEXT";
+		case SQL_BLOB:
+			return @"BLOB";
+		default:
+		case SQL_NULL:
+			return @"NULL";
+	}
 }
 
 @end

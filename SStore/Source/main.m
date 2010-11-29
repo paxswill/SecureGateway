@@ -23,6 +23,7 @@ int main (int argc, const char * argv[]) {
 	NSLog(@"%@ variables:%@", [PXFaculty getName], [PXFaculty getProperties]);
 	NSLog(@"%@ variables:%@", [PXPerson getName], [PXPerson getProperties]);
 	NSLog(@"%@ variables:%@", [PXSQLiteObject getName], [PXSQLiteObject getProperties]);
+	NSLog(@"%@", [PXFaculty getParents]);
 	
 	//testServer;
 	
