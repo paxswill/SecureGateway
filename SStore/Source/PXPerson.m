@@ -13,7 +13,6 @@
 
 @synthesize name;
 @synthesize email;
-@synthesize idNumber;
 @synthesize admin;
 @synthesize pwHash;
 

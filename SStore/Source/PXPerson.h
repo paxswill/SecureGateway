@@ -11,7 +11,6 @@
 
 @interface PXPerson : PXSQLiteObject {
 @protected
-    int idNumber;
 	NSString *name;
 	BOOL admin;
 	NSString *email;
@@ -19,7 +18,6 @@
 }
 @property (readwrite, nonatomic, retain) NSString *name;
 @property (readwrite, nonatomic, retain) NSString *email;
-@property (readwrite, nonatomic) int idNumber;
 @property (readwrite, nonatomic) BOOL admin;
 @property (readwrite, nonatomic, retain) NSData *pwHash;
 

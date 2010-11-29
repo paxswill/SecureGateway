@@ -20,9 +20,10 @@ typedef enum{
 } SQLITE_TYPE;
 
 @interface PXSQLiteObject : NSObject {
-@private
-    
+@protected
+	int idNumber;
 }
+@property (readwrite, nonatomic) int idNumber;
 
 +(NSDictionary *)getProperties;
 +(NSString *)getName;

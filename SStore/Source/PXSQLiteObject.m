@@ -11,6 +11,8 @@
 
 @implementation PXSQLiteObject
 
+@synthesize idNumber;
+
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.
