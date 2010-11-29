@@ -11,7 +11,14 @@
 
 @interface PXSQLiteRecords : NSObject {
 @private
-    
+    sqlite3 *db;
+	NSString *password;
+	BOOL newDB;
 }
+@property (readwrite, nonatomic) sqlite3 *db;
+@property (readwrite, nonatomic, retain) NSString *password;
+
+-(id)initDatabaseAtLocation:(NSString *)dbLocation;
+-(id)initDatabaseAtLocation:(NSString *)dbLocation withPassword:(NSString *)pw;
 
 @end
