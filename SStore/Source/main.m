@@ -45,6 +45,7 @@ int main (int argc, const char * argv[]) {
 	[testPerson release];
 	NSSet *persons = [storage objectsOfType:[PXPerson class] forKey:@"name" value:@"Will Ross"];
 	NSLog(@"%@", persons);
+	PXPerson *p = [persons anyObject];
 	//testServer;
 	
 }
