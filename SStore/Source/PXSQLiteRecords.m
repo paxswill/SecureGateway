@@ -103,9 +103,10 @@
 -(void)save:(PXSQLiteObject *)object{
 	//First, is this object type in the store already?
 	NSArray *familyTree = [[object class] getParents];
-	//Make the eusable statements
+	//Make the reusable statements
 	sqlite3_stmt *checkStmt;
 	sqlite3_stmt *addStmt;
+	//This si a place where prepared statements make sense
 	int status = sqlite3_prepare_v2(self.db, "SELECT class_name FROM objects WHERE class_name=@CLASS AND super_class=@SUPER LIMIT 1;", -1, &checkStmt, NULL);
 	status = sqlite3_prepare_v2(self.db, "INSERT INTO objects(class_name, super_class) VALUES (@CLASS, @SUPER);", -1, &addStmt, NULL);
 	for(int i = 0; i < ([familyTree count] - 1); ++i){
@@ -131,8 +132,8 @@
 	//OK, now that it is ensured that the class structure is in the DB, we can read the object in
 	//Is there a table for the Class?
 	sqlite3_stmt *checkTableStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name=@CLASS LIMIT 1;", -1, &checkTableStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkTableStmt];
+	NSString *checkTableStmtString = [NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@' LIMIT 1;", [[object class] getName]];
+	status = sqlite3_prepare_v2(self.db, [checkTableStmtString UTF8String], -1, &checkTableStmt, NULL);
 	BOOL found = [self runStatementLookingForResults:checkTableStmt];
 	sqlite3_finalize(checkTableStmt);
 	if(!found){
@@ -154,9 +155,8 @@
 	//And now to actually insert the data
 	//But first, check to see if we've already added it
 	sqlite3_stmt *checkClassStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT idNumber FROM :CLASS WHERE idNumber=@IDNUM LIMIT 1;", -1, &checkClassStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@":CLASS" inStatement:checkClassStmt];
-	status = [PXSQLiteRecords bindInt:[object idNumber] forName:@"@IDNUM" inStatement:checkClassStmt];
+	NSString *checkClassString = [NSString stringWithFormat:@"SELECT idNumber FROM %@ WHERE idNumber=%d LIMIT 1;", [[object class] getName], [object idNumber]];
+	status = sqlite3_prepare_v2(self.db, [checkClassString UTF8String], -1, &checkClassStmt, NULL);
 	found = [self runStatementLookingForResults:checkClassStmt];
 	sqlite3_finalize(checkClassStmt);
 	//Ok, so now we get to make either an update or insert query
@@ -164,43 +164,41 @@
 	NSDictionary *objectProperties = [[[object class] getProperties] retain];
 	if(found){
 		//Update
-		NSMutableString *update = [NSMutableString stringWithFormat:@"UPDATE @CLASS SET "];
+		NSMutableString *updateString = [NSMutableString string];
+		[updateString appendFormat:@"UPDATE %@ SET ", [[object class] getName]];
 		//Build the update string
 		for(NSString *property in [objectProperties allKeys]){
 			//Update
 			if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
-				[update appendFormat:@"@%@=@%@VAL, ", property, property];
+				[updateString appendFormat:@"%@='%@', ", property, [object valueForKey:property]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
-				[update appendFormat:@"@%@=@%@VAL, ", property, property];
+				[updateString appendFormat:@"%@=%f, ", property, [[object valueForKey:property] doubleValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
-				[update appendFormat:@"@%@=@%@VAL, ", property, property];
+				[updateString appendFormat:@"%@=%d, ", property, [[object valueForKey:property] intValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-				[update appendFormat:@"@%@=@%@VAL, ", property, property];
+				[updateString appendFormat:@"%@=x'%@', ", property, [object valueForKey:property]];
 			}
 		}
 		//Tidy up the end of the string
-		[update setString:[update substringToIndex:([update length] - 2)]];;
-		[update appendFormat:@" WHERE idNumber=@idNumberVAL;"];
-		status = sqlite3_prepare_v2(self.db, [update UTF8String], -1, &addOrInsertStmt, NULL);
+		[updateString setString:[updateString substringToIndex:([updateString length] - 2)]];;
+		[updateString appendFormat:@" WHERE idNumber=%d;", object.idNumber];
+		status = sqlite3_prepare_v2(self.db, [updateString UTF8String], -1, &addOrInsertStmt, NULL);
 	}else{
 		//Insert
-		NSMutableString *insertHeader = [NSMutableString stringWithFormat:@"INSERT INTO @CLASS ("];
+		NSMutableString *insertHeader = [NSMutableString stringWithFormat:@"INSERT INTO %@ (", [[object class] getName]];
 		NSMutableString *insertValues = [NSMutableString stringWithFormat:@") VALUES ("];
 		//Build the update string
 		for(NSString *property in [objectProperties allKeys]){
 			//Update
+			[insertHeader appendFormat:@"%@, ", property];
 			if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
-				[insertHeader appendFormat:@"@%@, ", property];
-				[insertValues appendFormat:@"@%@VAL, ", property];
+				[insertValues appendFormat:@"'%@', ", [object valueForKey:property]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
-				[insertHeader appendFormat:@"@%@, ", property];
-				[insertValues appendFormat:@"@%@VAL, ", property];
+				[insertValues appendFormat:@"%f, ", [[object valueForKey:property] doubleValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
-				[insertHeader appendFormat:@"@%@, ", property];
-				[insertValues appendFormat:@"@%@VAL, ", property];
+				[insertValues appendFormat:@"%d, ", [[object valueForKey:property] intValue]];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-				[insertHeader appendFormat:@"@%@, ", property];
-				[insertValues appendFormat:@"@%@VAL, ", property];
+				[insertValues appendFormat:@"x'%@', ", [object valueForKey:property]];
 			}
 		}
 		//Clean the ends up
@@ -208,22 +206,6 @@
 		[insertValues setString:[insertValues substringToIndex:([insertValues length] - 2)]];
 		[insertHeader appendFormat:@"%@);", insertValues];
 		status = sqlite3_prepare_v2(self.db, [insertHeader UTF8String], -1, &addOrInsertStmt, NULL);
-	}
-	//And now we bind everything
-	for(NSString *property in [objectProperties allKeys]){
-		if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
-			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindString:[objectProperties valueForKey:property] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
-		}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
-			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindDouble:[[objectProperties valueForKey:property] doubleValue] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
-		}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
-			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindInt:[[objectProperties valueForKey:property] intValue] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
-		}else if([[objectProperties valueForKey:property] isEqualToString:@"BLOB"]){
-			[PXSQLiteRecords bindString:property forName:[NSString stringWithFormat:@"@%@", property] inStatement:addOrInsertStmt];
-			[PXSQLiteRecords bindData:[NSKeyedArchiver archivedDataWithRootObject:[objectProperties valueForKey:property]] forName:[NSString stringWithFormat:@"@%@VAL", property] inStatement:addOrInsertStmt];
-		}
 	}
 	//And finally, we run it
 	[self runStatement:addOrInsertStmt];
