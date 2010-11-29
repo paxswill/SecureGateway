@@ -12,6 +12,7 @@
 
 #import "PXServer.h"
 #import "PXFaculty.h"
+#import "PXSQLiteRecords.h"
 
 void testServer(int argc, const char **argv);
 
@@ -24,6 +25,9 @@ int main (int argc, const char * argv[]) {
 	NSLog(@"%@ variables:%@", [PXPerson getName], [PXPerson getProperties]);
 	NSLog(@"%@ variables:%@", [PXSQLiteObject getName], [PXSQLiteObject getProperties]);
 	NSLog(@"%@", [PXFaculty getParents]);
+	
+	//Now to test the SQLite storeage
+	PXSQLiteRecords *storage = [[PXSQLiteRecords alloc] initDatabaseAtLocation:@"./testing.db" withPassword:nil];
 	
 	//testServer;
 	
