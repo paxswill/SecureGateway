@@ -261,6 +261,13 @@
 				
 				//Now to branch based on what the types of this property is
 				if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"TEXT"]){
+					//Special case! BOOL is typedef'd to a char *, but needs to be treated as a BOOL
+					//To determine if we have a bool, try to get the return type of the generated method
+					size_t typeLength = 20;
+					char *methodType = malloc(typeLength);
+					method_getReturnType(class_getInstanceMethod(class, @selector(admin)), methodType, typeLength);
+					
+					//if(
 					[someClassInstance setValue:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(keyStmt, i)] forKeyPath:key];
 				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"REAL"]){
 					[someClassInstance setValue:[NSNumber numberWithDouble:sqlite3_column_double(keyStmt, i)] forKeyPath:key];
