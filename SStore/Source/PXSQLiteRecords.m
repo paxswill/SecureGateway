@@ -106,8 +106,8 @@
 	//Make the eusable statements
 	sqlite3_stmt *checkStmt;
 	sqlite3_stmt *addStmt;
-	int status = sqlite3_prepare_v2(self.db, "SELECT class_name FROM objects WHERE class_name='@CLASS' AND super_class='@SUPER' LIMIT 1;", -1, &checkStmt, NULL);
-	status = sqlite3_prepare_v2(self.db, "INSERT INTO objects(class_name, super_class) VALUES ('@CLASS', '@SUPER');", -1, &addStmt, NULL);
+	int status = sqlite3_prepare_v2(self.db, "SELECT class_name FROM objects WHERE class_name=@CLASS AND super_class=@SUPER LIMIT 1;", -1, &checkStmt, NULL);
+	status = sqlite3_prepare_v2(self.db, "INSERT INTO objects(class_name, super_class) VALUES (@CLASS, @SUPER);", -1, &addStmt, NULL);
 	for(int i = 0; i < ([familyTree count] - 1); ++i){
 		//Check to see if the current class exists in the DB
 		status = [PXSQLiteRecords bindString:[familyTree objectAtIndex:i] forName:@"@CLASS" inStatement:checkStmt];
@@ -131,7 +131,7 @@
 	//OK, now that it is ensured that the class structure is in the DB, we can read the object in
 	//Is there a table for the Class?
 	sqlite3_stmt *checkTableStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name='@CLASS' LIMIT 1;", -1, &checkTableStmt, NULL);
+	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name=@CLASS LIMIT 1;", -1, &checkTableStmt, NULL);
 	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkTableStmt];
 	BOOL found = [self runStatementLookingForResults:checkTableStmt];
 	sqlite3_finalize(checkTableStmt);
@@ -143,7 +143,7 @@
 			[tableCreate appendFormat:@"%@ %@, ", colName, [objectVars valueForKey:colName]];
 		}
 		//Trim the last ', ' out
-		[tableCreate deleteCharactersInRange:NSMakeRange([tableCreate length] - 2, [tableCreate length])];
+		[tableCreate setString:[tableCreate substringToIndex:([tableCreate length] - 2)]];
 		[tableCreate appendFormat:@");"];
 		//Quickly run this
 		status = sqlite3_exec(self.db, [tableCreate UTF8String], NULL, NULL, NULL);
@@ -154,8 +154,8 @@
 	//And now to actually insert the data
 	//But first, check to see if we've already added it
 	sqlite3_stmt *checkClassStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT idNumber FROM @CLASS WHERE idNumber=@IDNUM LIMIT 1;", -1, &checkClassStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkClassStmt];
+	status = sqlite3_prepare_v2(self.db, "SELECT idNumber FROM :CLASS WHERE idNumber=@IDNUM LIMIT 1;", -1, &checkClassStmt, NULL);
+	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@":CLASS" inStatement:checkClassStmt];
 	status = [PXSQLiteRecords bindInt:[object idNumber] forName:@"@IDNUM" inStatement:checkClassStmt];
 	found = [self runStatementLookingForResults:checkClassStmt];
 	sqlite3_finalize(checkClassStmt);
@@ -169,7 +169,7 @@
 		for(NSString *property in [objectProperties allKeys]){
 			//Update
 			if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
-				[update appendFormat:@"@%@='@%@VAL', ", property, property];
+				[update appendFormat:@"@%@=@%@VAL, ", property, property];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
 				[update appendFormat:@"@%@=@%@VAL, ", property, property];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"INTEGER"]){
@@ -179,7 +179,7 @@
 			}
 		}
 		//Tidy up the end of the string
-		[update deleteCharactersInRange:NSMakeRange([update length] - 2, [update length])];
+		[update setString:[update substringToIndex:([update length] - 2)]];;
 		[update appendFormat:@" WHERE idNumber=@idNumberVAL;"];
 		status = sqlite3_prepare_v2(self.db, [update UTF8String], -1, &addOrInsertStmt, NULL);
 	}else{
@@ -191,7 +191,7 @@
 			//Update
 			if([[objectProperties valueForKey:property] isEqualToString:@"TEXT"]){
 				[insertHeader appendFormat:@"@%@, ", property];
-				[insertValues appendFormat:@"'@%@VAL', ", property];
+				[insertValues appendFormat:@"@%@VAL, ", property];
 			}else if([[objectProperties valueForKey:property] isEqualToString:@"REAL"]){
 				[insertHeader appendFormat:@"@%@, ", property];
 				[insertValues appendFormat:@"@%@VAL, ", property];
@@ -204,8 +204,8 @@
 			}
 		}
 		//Clean the ends up
-		[insertHeader deleteCharactersInRange:NSMakeRange([insertHeader length] - 2, [insertHeader length])];
-		[insertValues deleteCharactersInRange:NSMakeRange([insertValues length] - 2, [insertValues length])];
+		[insertHeader setString:[insertHeader substringToIndex:([insertHeader length] - 2)]];
+		[insertValues setString:[insertValues substringToIndex:([insertValues length] - 2)]];
 		[insertHeader appendFormat:@"%@);", insertValues];
 		status = sqlite3_prepare_v2(self.db, [insertHeader UTF8String], -1, &addOrInsertStmt, NULL);
 	}
@@ -244,7 +244,7 @@
 	for(NSString *prop in keys){
 		[select appendFormat:@"%@, ", prop]; 
 	}
-	[select deleteCharactersInRange:NSMakeRange([select length] - 2, [select length])];
+	[select setString:[select substringToIndex:([select length] - 2)]];
 	[select appendString:@" FROM @CLASS WHERE @KEYPATH="];
 	if([sqlType isEqualToString:@"TEXT"]){
 		[select appendString:@"'@VALUE';"];

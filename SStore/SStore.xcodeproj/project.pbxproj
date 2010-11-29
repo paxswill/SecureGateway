@@ -12,7 +12,6 @@
 		B10EB07712A31B9C00684368 /* PXSQLiteRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
 		B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E1A3F12A2D97600886783 /* libsqlcipher.a */; };
-		B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE1E128B6939006B5F57 /* CoreData.framework */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
 		B1A9DE24128B6939006B5F57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE23128B6939006B5F57 /* main.m */; };
 		B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */; };
@@ -74,7 +73,6 @@
 				B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */,
 				B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */,
 				B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */,
-				B1A9DE1F128B6939006B5F57 /* CoreData.framework in Frameworks */,
 				B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

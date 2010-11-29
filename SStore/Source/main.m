@@ -26,8 +26,13 @@ int main (int argc, const char * argv[]) {
 	NSLog(@"%@ variables:%@", [PXSQLiteObject getName], [PXSQLiteObject getProperties]);
 	NSLog(@"%@", [PXFaculty getParents]);
 	
+	NSLog(@"%s", sqlite3_libversion());
+	
 	//Now to test the SQLite storeage
 	PXSQLiteRecords *storage = [[PXSQLiteRecords alloc] initDatabaseAtLocation:@"./testing.db" withPassword:nil];
+	PXSQLiteObject *obj = [[PXSQLiteObject alloc] init];
+	obj.idNumber = 42;
+	[storage save:obj];
 	
 	//testServer;
 	
