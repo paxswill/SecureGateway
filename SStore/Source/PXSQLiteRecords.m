@@ -265,14 +265,17 @@
 				
 				//Now to branch based on what the types of this property is
 				if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"TEXT"]){
-					//Special case! BOOL is typedef'd to a char *, but needs to be treated as a BOOL
-					//To determine if we have a bool, try to get the return type of the generated method
-					size_t typeLength = 20;
-					char *methodType = malloc(typeLength);
-					method_getReturnType(class_getInstanceMethod(class, @selector(admin)), methodType, typeLength);
+					//Beware, BOOL's can hide in char *'s as well (BOOL is a typedef to signed char*)
+					@try {
+						//Try treating it as a char *
+						[someClassInstance setValue:[NSValue valueWithBytes:(const void *)sqlite3_column_text(keyStmt, i) objCType:@encode(char)] forKeyPath:key];
+					}
+					@catch (NSException *argException) {
+						//OK, let's try it as a BOOL
+						const unsigned char *ret = sqlite3_column_text(keyStmt, i);
+						[someClassInstance setValue:[NSNumber numberWithBool:(BOOL)ret[0]] forKeyPath:key];
+					}
 					
-					//if(
-					[someClassInstance setValue:[NSString stringWithUTF8String:(const char *)sqlite3_column_text(keyStmt, i)] forKeyPath:key];
 				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"REAL"]){
 					[someClassInstance setValue:[NSNumber numberWithDouble:sqlite3_column_double(keyStmt, i)] forKeyPath:key];
 				}else if([[PXSQLiteObject typeForObjCProperty:keyProp] isEqualToString:@"INTEGER"]){
