@@ -131,8 +131,8 @@
 	//OK, now that it is ensured that the class structure is in the DB, we can read the object in
 	//Is there a table for the Class?
 	sqlite3_stmt *checkTableStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT name FROM sqlite_master WHERE type='table' AND name=@CLASS LIMIT 1;", -1, &checkTableStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@"@CLASS" inStatement:checkTableStmt];
+	NSString *selectObject = [NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@' LIMIT 1;", [[object class] getName]];
+	status = sqlite3_prepare_v2(self.db, [selectObject UTF8String], -1, &checkTableStmt, NULL);
 	BOOL found = [self runStatementLookingForResults:checkTableStmt];
 	sqlite3_finalize(checkTableStmt);
 	if(!found){
@@ -154,8 +154,9 @@
 	//And now to actually insert the data
 	//But first, check to see if we've already added it
 	sqlite3_stmt *checkClassStmt;
-	status = sqlite3_prepare_v2(self.db, "SELECT idNumber FROM :CLASS WHERE idNumber=@IDNUM LIMIT 1;", -1, &checkClassStmt, NULL);
-	status = [PXSQLiteRecords bindString:[[object class] getName] forName:@":CLASS" inStatement:checkClassStmt];
+	NSString *select = [NSString stringWithFormat:@"SELECT idNumber FROM %@ WHERE @TYPE=@IDNUM LIMIT 1;", [[object class] getName]];
+	status = sqlite3_prepare_v2(self.db, [select UTF8String], -1, &checkClassStmt, NULL);
+	status = [PXSQLiteRecords bindString:@"idNumber" forName:@"@TYPE" inStatement:checkClassStmt];
 	status = [PXSQLiteRecords bindInt:[object idNumber] forName:@"@IDNUM" inStatement:checkClassStmt];
 	found = [self runStatementLookingForResults:checkClassStmt];
 	sqlite3_finalize(checkClassStmt);
@@ -164,7 +165,7 @@
 	NSDictionary *objectProperties = [[[object class] getProperties] retain];
 	if(found){
 		//Update
-		NSMutableString *update = [NSMutableString stringWithFormat:@"UPDATE @CLASS SET "];
+		NSMutableString *update = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", [[object class] getName]];
 		//Build the update string
 		for(NSString *property in [objectProperties allKeys]){
 			//Update
@@ -184,7 +185,7 @@
 		status = sqlite3_prepare_v2(self.db, [update UTF8String], -1, &addOrInsertStmt, NULL);
 	}else{
 		//Insert
-		NSMutableString *insertHeader = [NSMutableString stringWithFormat:@"INSERT INTO @CLASS ("];
+		NSMutableString *insertHeader = [NSMutableString stringWithFormat:@"INSERT INTO %@(", [[object class] getName]];
 		NSMutableString *insertValues = [NSMutableString stringWithFormat:@") VALUES ("];
 		//Build the update string
 		for(NSString *property in [objectProperties allKeys]){
@@ -245,7 +246,7 @@
 		[select appendFormat:@"%@, ", prop]; 
 	}
 	[select setString:[select substringToIndex:([select length] - 2)]];
-	[select appendString:@" FROM @CLASS WHERE @KEYPATH="];
+	[select appendFormat:@" FROM %@ WHERE @KEYPATH=", [class getName]];
 	if([sqlType isEqualToString:@"TEXT"]){
 		[select appendString:@"'@VALUE';"];
 	}else{
@@ -256,7 +257,6 @@
 	sqlite3_stmt *keyStmt;
 	int status = sqlite3_prepare_v2(self.db, [select UTF8String], -1, &keyStmt, NULL);
 	//Bind the vars
-	[PXSQLiteRecords bindString:[class getName] forName:@"@CLASS" inStatement:keyStmt];
 	[PXSQLiteRecords bindString:keyPath forName:@"@KEYPATH" inStatement:keyStmt];
 	if([sqlType isEqualToString:@"TEXT"]){
 		[PXSQLiteRecords bindString:value forName:@"@VALUE" inStatement:keyStmt];
