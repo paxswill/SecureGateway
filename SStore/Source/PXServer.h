@@ -13,6 +13,8 @@
 @private
 	//Extra listening socket
 	int listeningSocket;
+	NSThread *incomingListenThread;
+
 }
 @property (readwrite, nonatomic) int listeningSocket;
 
@@ -22,6 +24,9 @@
 -(void)openConnection;
 -(void)send:(NSData *)data;
 
+-(void)listenForConnections;
+
 //SSL fun
 -(BOOL)openSSLConnection;
+
 @end

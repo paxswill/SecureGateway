@@ -16,6 +16,8 @@
 @property (readwrite, nonatomic, getter=isConnected) BOOL connected;
 @property (readwrite, nonatomic, getter=isSecure) BOOL secure;
 
+-(void)privateListenForConnections;
+
 @end
 
 
@@ -29,7 +31,7 @@
 #pragma mark Memory Management/Housekeeping
 - (id)init {
     if ((self = [super init])) {
-        
+        incomingListenThread = [[NSThread alloc] initWithTarget:self selector:@selector(privateListenForConnections) object:nil];
     }
     return self;
 }
@@ -95,6 +97,8 @@
 }
 
 -(void)closeSocket{
+	//Stop listening
+	[listenThread cancel];
 	//Close the sockets out
 	shutdown(self.mainSocket, SHUT_RDWR);
 	close(self.mainSocket);
@@ -151,6 +155,20 @@
 			NSLog(@"Error sending data : %d", SSL_get_error(self.sslConnection, status));
 		}
 	}
+}
+
+-(void)listenForConnections{
+	[incomingListenThread start];
+}
+
+-(void)privateListenForConnections{
+	struct timespec sleepTime;
+	sleepTime.tv_sec = 0;
+	sleepTime.tv_nsec = 250000000;
+	while(![self checkConnection]){
+		nanosleep(&sleepTime, NULL);
+	}
+	[self openConnection];
 }
 
 #pragma mark -
