@@ -37,7 +37,7 @@
 		B1BCE5C112A00CA80011556A /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
 		B1BCE5C212A00CA80011556A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1BCE5C512A00CA80011556A /* AppGate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppGate-Prefix.pch"; sourceTree = "<group>"; };
-		B1C64D7D12A4525D0020B802 /* PXAppGateController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PXAppGateController.h; sourceTree = "<group>"; };
+		B1C64D7D12A4525D0020B802 /* PXAppGateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAppGateController.h; sourceTree = "<group>"; };
 		B1C64D7E12A4525D0020B802 /* PXAppGateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAppGateController.m; sourceTree = "<group>"; };
 		B1C64D8012A452710020B802 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnectionDelegate.h; path = ../../SStore/Source/PXConnectionDelegate.h; sourceTree = "<group>"; };
 		B1C8320B12A00D0F00F319B2 /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		B1BCE5B012A00CA70011556A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "Naval Research Lab";
+				ORGANIZATIONNAME = "Will Ross";
 			};
 			buildConfigurationList = B1BCE5B312A00CA70011556A /* Build configuration list for PBXProject "AppGate" */;
 			compatibilityVersion = "Xcode 3.2";
