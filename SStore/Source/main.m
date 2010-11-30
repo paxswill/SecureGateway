@@ -36,7 +36,12 @@ int main (int argc, const char * argv[]) {
 	//Ok, now were connected and listening
 	while(!controller.server.listening){sleep(1);};
 	[controller jumpToSecure];
-	while(controller.server.listening){sleep(1);};
+	//Wait for security
+	while(!controller.server.secure){sleep(1);};
+	NSLog(@"Connection secure");
+	[controller.server sendString:@"Secure Test!"];
 	
+	
+	[pool drain];
 }
 
