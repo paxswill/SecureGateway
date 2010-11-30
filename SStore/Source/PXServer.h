@@ -22,7 +22,7 @@
 
 -(BOOL)openSocket;
 -(void)closeSocket;
--(BOOL)checkConnection;
+-(BOOL)checkConnection:(int)connection;
 -(void)openConnection;
 -(void)send:(NSData *)data;
 -(void)listen;

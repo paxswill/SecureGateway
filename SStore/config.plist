@@ -4,8 +4,8 @@
 <dict>
 	<key>portNumber</key>
 	<string>6968</string>
-	<key>CACertificate</key>
-	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem</string>
+	<key>certificateFile</key>
+	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/SStore/certChain.pem</string>
 	<key>keyFile</key>
 	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem</string>
 	<key>keyPassword</key>

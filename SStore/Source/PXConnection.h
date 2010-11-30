@@ -70,7 +70,7 @@
 
 //SSL Management
 -(void)loadKey:(NSURL*)privateKey withPassword:(NSString*)password;
--(void)loadCA:(NSURL*)certificate;
+-(void)loadCertChain:(NSURL*)certificate;
 -(void)prepareSSLConnection;
 -(BOOL)openSSLConnection; //Abstract
 

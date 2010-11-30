@@ -42,6 +42,8 @@
 		B10800BF1293913E005E9242 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXServer.m; sourceTree = "<group>"; };
 		B10EB07512A31B9C00684368 /* PXSQLiteRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSQLiteRecords.h; sourceTree = "<group>"; };
 		B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteRecords.m; sourceTree = "<group>"; };
+		B13F684412A52E6D00BCC00C /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
+		B13F684512A52E6D00BCC00C /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
@@ -59,8 +61,6 @@
 		B1C8BB4912A2E40D008ACEAB /* PXSQLiteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSQLiteObject.h; sourceTree = "<group>"; };
 		B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteObject.m; sourceTree = "<group>"; };
 		B1CF39C312A06C530083E308 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
-		B1F21C1212A1B1A900BF2181 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
-		B1F21C1312A1B1A900BF2181 /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
 		B1F21C1612A1C6CC00BF2181 /* PXConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PXConnection.m; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SStore/Source/PXConnection.m; sourceTree = "<absolute>"; };
 		B1F8349E12A2E180005F1DD4 /* PXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPerson.h; sourceTree = "<group>"; };
 		B1F8349F12A2E180005F1DD4 /* PXPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPerson.m; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		B1A9DE25128B6939006B5F57 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B1F21C1212A1B1A900BF2181 /* cert.pem */,
-				B1F21C1312A1B1A900BF2181 /* key.pem */,
+				B13F684412A52E6D00BCC00C /* cert.pem */,
+				B13F684512A52E6D00BCC00C /* key.pem */,
 				B1CF39C312A06C530083E308 /* cacert.pem */,
 				B1A9DE26128B6939006B5F57 /* SStore_Prefix.pch */,
 				B183147112A24D350071A678 /* config.plist */,

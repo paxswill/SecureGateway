@@ -76,7 +76,7 @@
 }
 
 -(void)sendString:(NSString *)string{
-	[self send:[NSData dataWithBytes:[string UTF8String] length:([string length] + 1)]];
+	[self send:[NSKeyedArchiver archivedDataWithRootObject:string]];
 }
 
 
@@ -122,7 +122,7 @@
 			if(numReadySockets > 0 && isSocketReady){
 				//There are bytes to read
 				if(self.delegate != nil){
-					size_t bufferSize = 50;
+					size_t bufferSize = 20*1024;
 					void *buffer = malloc(bufferSize);
 					ssize_t numBytesRead = read(self.mainSocket, buffer, bufferSize);
 					[delegate recievedData:[NSData dataWithBytes:buffer length:numBytesRead] fromConnection:self];
@@ -150,6 +150,7 @@ int getPemPassword(char *buffer, int size, int rwflag, void *userdata){
 		//This is because sourceBuffer will disappear when password does
 		char *destBuffer = malloc(sizeof(char) * (pwLength + 1));
 		memcpy((void *)sourceBuffer, (void *)destBuffer, (sizeof(char) * (pwLength + 1)));
+		buffer = destBuffer;
 		return pwLength;
 	}else{
 		return 0;
@@ -164,10 +165,17 @@ int getPemPassword(char *buffer, int size, int rwflag, void *userdata){
 	SSL_CTX_set_default_passwd_cb(self.sslContext, getPemPassword);
 	//Actually load the key file in
 	SSL_CTX_use_PrivateKey_file(self.sslContext, [[privateKey path] UTF8String], SSL_FILETYPE_PEM);
+	//Check it
+	int status = SSL_CTX_check_private_key(self.sslContext);
+	if(status != 1){
+		unsigned long errorNum = ERR_get_error();
+		NSLog(@"There's a certificate error in library '%s', function '%s', reason: %s", ERR_lib_error_string(errorNum),ERR_func_error_string(errorNum), ERR_reason_error_string(errorNum));
+	}
 }
 
--(void)loadCA:(NSURL*)certificate{
-	SSL_CTX_use_certificate_file(self.sslContext, [[certificate path] UTF8String], SSL_FILETYPE_PEM);
+
+-(void)loadCertChain:(NSURL*)certificateChain{
+	SSL_CTX_use_certificate_chain_file(self.sslContext, [[certificateChain path] UTF8String]);
 }
 
 
@@ -175,6 +183,8 @@ int getPemPassword(char *buffer, int size, int rwflag, void *userdata){
 -(void)prepareSSLConnection{
 	//Force client verification, using the default checking
 	SSL_CTX_set_verify(self.sslContext, SSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
+	//Enable ciphers
+	SSL_CTX_set_cipher_list(self.sslContext, "ALL");
 	//Make the SSL object
 	self.sslConnection = SSL_new(self.sslContext);
 	//Make and configure the BIO object

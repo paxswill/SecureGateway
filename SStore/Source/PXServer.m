@@ -63,7 +63,7 @@
 	int enabled = 1;
 	setsockopt(self.listeningSocket, SOL_SOCKET, SO_REUSEPORT, &enabled, sizeof(int));
 	//We do not block in this program, we poll
-	fcntl(self.listeningSocket, F_SETFL, O_NONBLOCK);
+	//fcntl(self.listeningSocket, F_SETFL, O_NONBLOCK);
 	
 	//Set up the address
 	struct sockaddr_in serverAddress;
@@ -110,15 +110,15 @@
 	self.listeningSocket = INT_MIN;
 }
 
--(BOOL)checkConnection{
+-(BOOL)checkConnection:(int)connection{
 	//Do we have an incoming connection?
 	fd_set incomingSocketSet;
-	FD_SET(self.listeningSocket, &incomingSocketSet);
+	FD_SET(connection, &incomingSocketSet);
 	struct timeval zeroTime;
 	zeroTime.tv_sec = 0;
 	zeroTime.tv_usec = 0;
-	int numReadySockets = select(self.listeningSocket + 1, &incomingSocketSet, NULL, NULL, &zeroTime);
-	BOOL isSocketReady = FD_ISSET(self.listeningSocket, &incomingSocketSet) != 0? YES : NO;
+	int numReadySockets = select(connection + 1, &incomingSocketSet, NULL, NULL, &zeroTime);
+	BOOL isSocketReady = FD_ISSET(connection, &incomingSocketSet) != 0? YES : NO;
 	return isSocketReady && numReadySockets > 0;
 }
 
@@ -176,7 +176,7 @@
 	struct timespec sleepTime;
 	sleepTime.tv_sec = 0;
 	sleepTime.tv_nsec = 250000000;
-	while(![self checkConnection]){
+	while(![self checkConnection:self.listeningSocket]){
 		nanosleep(&sleepTime, NULL);
 	}
 	[self openConnection];
@@ -190,23 +190,16 @@
 #pragma mark SSL Methods
 
 -(BOOL)openSSLConnection{
-	//Now open the SSL connection
-	struct timespec sleepTime;
-	sleepTime.tv_sec = 0;
-	sleepTime.tv_nsec = 250000000;
-	while(!self.secure){
-		//Wait for incoming data
-		while(![self checkConnection]){
-			nanosleep(&sleepTime, NULL);
-		}
-		//try to open the SSL connection
-		int err = SSL_accept(self.sslConnection);
-		if(err == 1){
-			//connection ready
-			self.secure = YES;
-		}
+	int err = SSL_accept(self.sslConnection);
+	if(err == 1){
+		//connection ready
+		self.secure = YES;
+	}else{
+		//There's an error
+		unsigned long errorNum = ERR_get_error();
+		NSLog(@"There's an SSL error in library '%s', function '%s', reason: %s", ERR_lib_error_string(errorNum), ERR_func_error_string(errorNum), ERR_reason_error_string(errorNum));
 	}
-	return YES;
+	return self.secure;
 }
 
 

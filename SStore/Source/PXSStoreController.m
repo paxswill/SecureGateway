@@ -25,7 +25,7 @@
 	if((self = [self init])){
 		//Get the config parameters
 		int port = [[config objectForKey:@"portNumber"] intValue];
-		certURL = [NSURL URLWithString:[config objectForKey:@"CACertificate"]];
+		certURL = [NSURL URLWithString:[config objectForKey:@"certificateFile"]];
 		keyURL = [NSURL URLWithString:[config objectForKey:@"keyFile"]];
 		keyPassword = [config objectForKey:@"keyPassword"];
 		NSString *dbFile = [config objectForKey:@"dbFile"];
@@ -63,7 +63,7 @@
 		//This si the signal that The server is now listening
 		
 	}
-	NSString *recievedString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+	NSString *recievedString = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	NSLog(@"Recieved:\n%@", recievedString);
 	[self processAppGateCommand:recievedString];
 	[recievedString release];
@@ -75,7 +75,7 @@
 	if([keyWord isEqualToString:@"goSecure"]){
 		//Acknowledge
 		//Set up SSL
-		[server loadCA:certURL];
+		[server loadCertChain:certURL];
 		[server loadKey:keyURL withPassword:keyPassword];
 		[server prepareSSLConnection];
 		//Switch up to SSL

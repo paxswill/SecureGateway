@@ -18,8 +18,8 @@
 
 @implementation PXClient
 
-@synthesize connected;
-@synthesize secure;
+@dynamic connected;
+@dynamic secure;
 
 
 - (id)init {
@@ -83,7 +83,15 @@
 
 -(BOOL)openSSLConnection{
 	//Now connect
-	return (SSL_connect(self.sslConnection) == 1 ? YES : NO);
+	int status = SSL_connect(self.sslConnection);
+	if(status == 1){
+		self.secure = YES;
+	}else{
+		//There's an error
+		unsigned long errorNum = ERR_get_error();
+		NSLog(@"There's an SSL error in library '%s', function '%s', reason: %s", ERR_lib_error_string(errorNum), ERR_func_error_string(errorNum), ERR_reason_error_string(errorNum));
+	}
+	return self.secure;
 }
 
 -(void)send:(NSData *)data{

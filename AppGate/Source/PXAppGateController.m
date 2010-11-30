@@ -28,7 +28,7 @@
 		//Load the config options
 		NSString *host = [configDict objectForKey:@"storeHost"];
 		int port = [[configDict objectForKey:@"portNumber"] intValue];
-		NSURL *certURL = [NSURL URLWithString:[configDict objectForKey:@"CACertificate"]];
+		NSURL *certURL = [NSURL URLWithString:[configDict objectForKey:@"certificateFile"]];
 		NSURL *keyURL = [NSURL URLWithString:[configDict objectForKey:@"keyFile"]];
 		NSString *keyPassword = [configDict objectForKey:@"keyPassword"];
 		
@@ -45,7 +45,7 @@
 		[client listen];
 		
 		[client prepareSSLConnection];
-		[client loadCA:certURL];
+		[client loadCertChain:certURL];
 		[client loadKey:keyURL withPassword:keyPassword];
 	}
 	return self;
@@ -58,7 +58,7 @@
 }
 
 -(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection{
-	NSString *recievedString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+	NSString *recievedString = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	NSLog(@"Recieved:\n%@", recievedString);
 	[self processSStoreCommand:recievedString];
 	[recievedString release];
@@ -71,9 +71,7 @@
 		//Acknowledge
 		[client sendString:@"goSecure"];
 		//Switch up to SSL
-		while(![self.client openSSLConnection]){
-			sleep(1);
-		}
+		[self.client openSSLConnection];
 	}else if([keyWord isEqualToString:@"authenticated"]){
 		//A user has been authenticated
 		//Key is the username
