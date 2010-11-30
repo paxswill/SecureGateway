@@ -141,7 +141,7 @@
 	//We may have one of our special child objects. For them, 
 	//the type is SQL_TEXT, as we store id numbers
 	//The structure should be in the form of {"ClassName"=fields}
-	NSString *encodeString = [NSString stringWithUTF8String:encode];
+	NSString *encodeString = [NSString stringWithUTF8String:[PXSQLiteObject encodeForObjCProperty:prop]];
 	//Trim the ends off
 	encodeString = [encodeString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{}"]];
 	//Cut everythin after the eqlas sign off
