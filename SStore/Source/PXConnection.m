@@ -75,6 +75,11 @@
 	[self doesNotRecognizeSelector:_cmd];
 }
 
+-(void)sendString:(NSString *)string{
+	[self send:[NSData dataWithBytes:[string UTF8String] length:([string length] + 1)]];
+}
+
+
 -(void)setRecieve{
 	[self doesNotRecognizeSelector:_cmd];
 }

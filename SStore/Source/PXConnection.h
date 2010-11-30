@@ -25,6 +25,8 @@
 #include "openssl/ssl.h"
 #include "openssl/err.h"
 
+@protocol PXConnectionDelegate;
+
 @interface PXConnection : NSObject{
 @protected
 	//Socket members
@@ -62,6 +64,7 @@
 
 //Data Management
 -(void)send:(NSData *)data; //Abstract
+-(void)sendString:(NSString *)string;
 -(void)setRecieve; //Abstract
 -(void)listen;
 
