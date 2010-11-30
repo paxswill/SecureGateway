@@ -11,6 +11,8 @@
 
 @implementation PXSStoreController
 
+@synthesize server;
+
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.
@@ -23,16 +25,17 @@
 	if((self = [self init])){
 		//Get the config parameters
 		int port = [[config objectForKey:@"portNumber"] intValue];
-		NSURL *certURL = [NSURL URLWithString:[config objectForKey:@"CACertificate"]];
-		NSURL *keyURL = [NSURL URLWithString:[config objectForKey:@"keyFile"]];
-		NSString *keyPassword = [config objectForKey:@"keyPassword"];
+		certURL = [NSURL URLWithString:[config objectForKey:@"CACertificate"]];
+		keyURL = [NSURL URLWithString:[config objectForKey:@"keyFile"]];
+		keyPassword = [config objectForKey:@"keyPassword"];
 		NSString *dbFile = [config objectForKey:@"dbFile"];
 		NSString *dbPassword = [config objectForKey:@"dbPassword"];
 		
 		//Make the server
 		//Create the server
-		PXServer *server = [[PXServer alloc] init];
+		server = [[PXServer alloc] init];
 		server.port = port;
+		server.delegate = self;
 		if(![server openSocket]){
 			NSLog(@"Fatal error in opening socket. Try re-running the program");
 			return nil;
@@ -49,6 +52,35 @@
     // Clean-up code here.
     
     [super dealloc];
+}
+
+-(void)jumpToSecure{
+	[self.server sendString:@"goSecure"];
+}
+
+-(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection{
+	if(data == nil && connection == nil){
+		//This si the signal that The server is now listening
+		
+	}
+	NSString *recievedString = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+	NSLog(@"Recieved:\n%@", recievedString);
+	[self processAppGateCommand:recievedString];
+	[recievedString release];
+}
+
+-(void)processAppGateCommand:(NSString *)cmd{
+	NSArray *cmdComponents = [cmd componentsSeparatedByString:@" "];
+	NSString *keyWord = [cmdComponents objectAtIndex:0];
+	if([keyWord isEqualToString:@"goSecure"]){
+		//Acknowledge
+		//Set up SSL
+		[server loadCA:certURL];
+		[server loadKey:keyURL withPassword:keyPassword];
+		[server prepareSSLConnection];
+		//Switch up to SSL
+		[server openSSLConnection];
+	}
 }
 
 @end
