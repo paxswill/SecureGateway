@@ -15,6 +15,7 @@
 //Private overrides of parent properties (for read/write
 @property (readwrite, nonatomic, getter=isConnected) BOOL connected;
 @property (readwrite, nonatomic, getter=isSecure) BOOL secure;
+@property (readwrite, nonatomic, getter=isListening) BOOL listening;
 
 -(void)privateListenForConnections;
 
@@ -26,7 +27,8 @@
 @synthesize connected;
 @synthesize secure;
 @synthesize listeningSocket;
-
+@synthesize listening;
+@synthesize lookingForConnection;
 
 #pragma mark Memory Management/Housekeeping
 - (id)init {
@@ -158,10 +160,19 @@
 }
 
 -(void)listenForConnections{
+	self.lookingForConnection = YES;
 	[incomingListenThread start];
 }
 
+-(void)listen{
+	self.listening = YES;
+	self.lookingForConnection = NO;
+	[listenThread start];
+}
+
 -(void)privateListenForConnections{
+	//Autorelease pool
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	struct timespec sleepTime;
 	sleepTime.tv_sec = 0;
 	sleepTime.tv_nsec = 250000000;
@@ -169,6 +180,10 @@
 		nanosleep(&sleepTime, NULL);
 	}
 	[self openConnection];
+	//Connection now open. Signal that we want to go secure now
+	[pool drain];
+	[self listen];
+	[NSThread exit];
 }
 
 #pragma mark -

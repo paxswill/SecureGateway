@@ -14,16 +14,18 @@
 	//Extra listening socket
 	int listeningSocket;
 	NSThread *incomingListenThread;
+	BOOL lookingForConnection;
 
 }
 @property (readwrite, nonatomic) int listeningSocket;
+@property (readwrite) BOOL lookingForConnection;
 
 -(BOOL)openSocket;
 -(void)closeSocket;
 -(BOOL)checkConnection;
 -(void)openConnection;
 -(void)send:(NSData *)data;
-
+-(void)listen;
 -(void)listenForConnections;
 
 //SSL fun
