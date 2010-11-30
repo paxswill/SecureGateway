@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1AF560B12A533BC00976474 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF560A12A533BC00976474 /* Cocoa.framework */; };
+		B1AF561012A533BC00976474 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1AF560E12A533BC00976474 /* InfoPlist.strings */; };
+		B1AF561212A533BC00976474 /* SecureSchool-main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AF561112A533BC00976474 /* SecureSchool-main.m */; };
+		B1AF561512A533BD00976474 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1AF561312A533BD00976474 /* MainMenu.xib */; };
+		B1AF561812A533BD00976474 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1AF561612A533BD00976474 /* Credits.rtf */; };
+		B1AF561B12A533BD00976474 /* SecureSchoolAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1AF561A12A533BD00976474 /* SecureSchoolAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B1AF560712A533BC00976474 /* SecureSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1AF560A12A533BC00976474 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B1AF560C12A533BC00976474 /* SecureSchool-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SecureSchool-Info.plist"; sourceTree = "<group>"; };
+		B1AF560D12A533BC00976474 /* SecureSchool-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecureSchool-Prefix.pch"; sourceTree = "<group>"; };
+		B1AF560F12A533BC00976474 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1AF561112A533BC00976474 /* SecureSchool-main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SecureSchool-main.m"; sourceTree = "<group>"; };
+		B1AF561412A533BD00976474 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B1AF561712A533BD00976474 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		B1AF561912A533BD00976474 /* SecureSchoolAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureSchoolAppDelegate.h; sourceTree = "<group>"; };
+		B1AF561A12A533BD00976474 /* SecureSchoolAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecureSchoolAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B1AF560412A533BC00976474 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AF560B12A533BC00976474 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B1AF55F812A533BC00976474 = {
+			isa = PBXGroup;
+			children = (
+				B1AF55FF12A533BC00976474 /* Classes */,
+				B1AF560012A533BC00976474 /* Other Sources */,
+				B1AF560112A533BC00976474 /* Resources */,
+				B1AF560212A533BC00976474 /* Frameworks */,
+				B1AF560812A533BC00976474 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B1AF55FF12A533BC00976474 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B1AF561912A533BD00976474 /* SecureSchoolAppDelegate.h */,
+				B1AF561A12A533BD00976474 /* SecureSchoolAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B1AF560012A533BC00976474 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B1AF560D12A533BC00976474 /* SecureSchool-Prefix.pch */,
+				B1AF561112A533BC00976474 /* SecureSchool-main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		B1AF560112A533BC00976474 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B1AF560C12A533BC00976474 /* SecureSchool-Info.plist */,
+				B1AF560E12A533BC00976474 /* InfoPlist.strings */,
+				B1AF561312A533BD00976474 /* MainMenu.xib */,
+				B1AF561612A533BD00976474 /* Credits.rtf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B1AF560212A533BC00976474 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1AF560A12A533BC00976474 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1AF560812A533BC00976474 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1AF560712A533BC00976474 /* SecureSchool.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1AF560612A533BC00976474 /* SecureSchool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1AF561E12A533BD00976474 /* Build configuration list for PBXNativeTarget "SecureSchool" */;
+			buildPhases = (
+				B1AF560312A533BC00976474 /* Sources */,
+				B1AF560412A533BC00976474 /* Frameworks */,
+				B1AF560512A533BC00976474 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SecureSchool;
+			productName = SecureSchool;
+			productReference = B1AF560712A533BC00976474 /* SecureSchool.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B1AF55FA12A533BC00976474 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Naval Research Lab";
+			};
+			buildConfigurationList = B1AF55FD12A533BC00976474 /* Build configuration list for PBXProject "SecureSchool" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B1AF55F812A533BC00976474;
+			productRefGroup = B1AF560812A533BC00976474 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1AF560612A533BC00976474 /* SecureSchool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B1AF560512A533BC00976474 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AF561012A533BC00976474 /* InfoPlist.strings in Resources */,
+				B1AF561512A533BD00976474 /* MainMenu.xib in Resources */,
+				B1AF561812A533BD00976474 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B1AF560312A533BC00976474 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AF561212A533BC00976474 /* SecureSchool-main.m in Sources */,
+				B1AF561B12A533BD00976474 /* SecureSchoolAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B1AF560E12A533BC00976474 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1AF560F12A533BC00976474 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B1AF561312A533BD00976474 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1AF561412A533BD00976474 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B1AF561612A533BD00976474 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1AF561712A533BD00976474 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B1AF561C12A533BD00976474 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B1AF561D12A533BD00976474 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B1AF561F12A533BD00976474 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SecureSchool-Prefix.pch";
+				INFOPLIST_FILE = "SecureSchool-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B1AF562012A533BD00976474 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SecureSchool-Prefix.pch";
+				INFOPLIST_FILE = "SecureSchool-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B1AF55FD12A533BC00976474 /* Build configuration list for PBXProject "SecureSchool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1AF561C12A533BD00976474 /* Debug */,
+				B1AF561D12A533BD00976474 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1AF561E12A533BD00976474 /* Build configuration list for PBXNativeTarget "SecureSchool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1AF561F12A533BD00976474 /* Debug */,
+				B1AF562012A533BD00976474 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B1AF55FA12A533BC00976474 /* Project object */;
+}
