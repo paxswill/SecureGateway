@@ -66,10 +66,14 @@
 
 -(void)processSStoreCommand:(NSString *)cmd{
 	NSArray *cmdComponents = [cmd componentsSeparatedByString:@" "];
-	NSString *keyWord = [cmdComponents objectAtIndex:0];
+	NSString *keyWord = [[cmdComponents objectAtIndex:0] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
 	if([keyWord isEqualToString:@"goSecure"]){
+		//Acknowledge
+		[client sendString:@"goSecure"];
 		//Switch up to SSL
-		[self.client openSSLConnection];
+		while(![self.client openSSLConnection]){
+			sleep(1);
+		}
 	}else if([keyWord isEqualToString:@"authenticated"]){
 		//A user has been authenticated
 		//Key is the username
