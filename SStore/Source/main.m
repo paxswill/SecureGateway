@@ -20,38 +20,7 @@ int main (int argc, const char * argv[]) {
 	//Start Garbage Collection
 	objc_startCollectorThread();
 	
-	//Test the SQLite objects
-	NSLog(@"%@ variables:%@", [PXFaculty getName], [PXFaculty getProperties]);
-	NSLog(@"%@ variables:%@", [PXPerson getName], [PXPerson getProperties]);
-	NSLog(@"%@ variables:%@", [PXSQLiteObject getName], [PXSQLiteObject getProperties]);
-	NSLog(@"%@", [PXFaculty getParents]);
-	
-	NSLog(@"%s", sqlite3_libversion());
-	
-	//Now to test the SQLite storeage
-	PXSQLiteRecords *storage = [[PXSQLiteRecords alloc] initDatabaseAtLocation:@"./testing.db" withPassword:nil];
-	PXSQLiteObject *obj = [[PXSQLiteObject alloc] init];
-	obj.idNumber = 42;
-	[storage save:obj];
-	PXPerson *testPerson = [[PXPerson alloc] init];
-	testPerson.name = @"Will Ross";
-	testPerson.pwHash = [NSData data];
-	testPerson.idNumber = 6968;
-	testPerson.admin = YES;
-	testPerson.email = @"wross@cs.odu.edu";
-	[storage save:testPerson];
-	
-	//And now the moment of truth
-	[testPerson release];
-	NSSet *persons = [storage objectsOfType:[PXPerson class] forKey:@"name" value:@"Will Ross"];
-	NSLog(@"%@", persons);
-	PXPerson *p = [persons anyObject];
-	//testServer;
-	
-}
-
-void testServer(int argc, const char **argv){
-	//If no path given, set the default one
+	//Load the config file in
 	NSString *configPath;
 	if(argc == 2){
 		configPath = [NSString stringWithUTF8String:argv[1]];
@@ -69,12 +38,13 @@ void testServer(int argc, const char **argv){
 	NSURL *certURL = [NSURL URLWithString:[configuration objectForKey:@"CACertificate"]];
 	NSURL *keyURL = [NSURL URLWithString:[configuration objectForKey:@"keyFile"]];
 	NSString *keyPassword = [configuration objectForKey:@"keyPassword"];
+	NSString *dbFile = [configuration objectForKey:@"dbFile"];
+	NSString *dbPassword = [configuration objectForKey:@"dbPassword"];
 	
-	//Testing:
-	//Start a server
-	PXServer *testServer = [[PXServer alloc] init];
-	testServer.port = port;
-	if(![testServer openSocket]){
+	//Create the server
+	PXServer *server = [[PXServer alloc] init];
+	server.port = port;
+	if(![server openSocket]){
 		NSLog(@"Fatal error in opening socket. Try re-running the program");
 		exit(1);
 	}
@@ -83,22 +53,44 @@ void testServer(int argc, const char **argv){
 	struct timespec sleepTime;
 	sleepTime.tv_sec = 0;
 	sleepTime.tv_nsec = 250000000;
-	while(![testServer checkConnection]){
+	while(![server checkConnection]){
 		nanosleep(&sleepTime, NULL);
 	}
 	NSLog(@"Connection ready");
-	[testServer openConnection];
+	[server openConnection];
 	
 	NSString *testString = @"Testing output\n";
-	[testServer send:[NSData dataWithBytes:[testString UTF8String] length:([testString length] + 1)]];
+	[server send:[NSData dataWithBytes:[testString UTF8String] length:([testString length] + 1)]];
 	
 	//Try setting up SSL
-	[testServer prepareSSLConnection];
-	[testServer loadCA:certURL];
-	[testServer loadKey:keyURL withPassword:keyPassword];
-	[testServer openSSLConnection];
+	[server prepareSSLConnection];
+	[server loadCA:certURL];
+	[server loadKey:keyURL withPassword:keyPassword];
+	[server openSSLConnection];
+	
+	PXSQLiteRecords *storage;
+	if(server.secure){
+		//Open the database
+		storage = [[PXSQLiteRecords alloc] initDatabaseAtLocation:dbFile withPassword:dbPassword];
+	}else{
+		[server closeSocket];
+		return 1;
+	}
+	
+	//TODO: Put a polling loop in here so we can read in the files
+	
+	
 	
 	//Close the connection
-	[testServer closeSocket];
+	[server closeSocket];
+}
+
+void testServer(int argc, const char **argv){
+	//If no path given, set the default one
+	
+	
+	//Testing:
+	//Start a server
+	
 }
 

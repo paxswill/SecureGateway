@@ -7,8 +7,12 @@
 	<key>CACertificate</key>
 	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem</string>
 	<key>keyFile</key>
-	<string>/Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem</string>
+	<string>file:///Users/paxswill/Developer/School/CS472/SecureGateway/SStore/key.pem</string>
 	<key>keyPassword</key>
 	<string>webbCenter</string>
+	<key>dbFile</key>
+	<string>/Users/paxswill/Developer/School/CS472/SecureGateway/store.db</string>
+	<key>dbPassword</key>
+	<string>spongHall</string>
 </dict>
 </plist>
