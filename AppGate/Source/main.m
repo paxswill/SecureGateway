@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXClient.h"
+#import "PXAppGateController.h"
 
 int main (int argc, const char * argv[]) {
 	//Make an autorelease pool
@@ -27,25 +27,11 @@ int main (int argc, const char * argv[]) {
 		NSLog(@"Invalid Cnfiguration file. Either place a proper plist named 'config.plist' in the current directory, or specify one following the command.");
 		exit(1);
 	}
-	NSString *host = [configuration objectForKey:@"storeHost"];
-	int port = [[configuration objectForKey:@"portNumber"] intValue];
-	NSURL *certURL = [NSURL URLWithString:[configuration objectForKey:@"CACertificate"]];
-	NSURL *keyURL = [NSURL URLWithString:[configuration objectForKey:@"keyFile"]];
-	NSString *keyPassword = [configuration objectForKey:@"keyPassword"];
 	
-	//This is just testing the client
-	PXClient *testClient = [[PXClient alloc] init];
-	if(![testClient connectToServer:host onPort:port]){
-		NSLog(@"Connection failed");
-	}else{
-		NSLog(@"Connection succeeded!");
-	}
-	[testClient prepareSSLConnection];
-	[testClient loadCA:certURL];
-	[testClient loadKey:keyURL withPassword:keyPassword];
-	[testClient openSSLConnection];
+	PXAppGateController *controller = [[PXAppGateController alloc] initWithConfiguration:configuration];
 	
-	[testClient closeConnection];
+	//Block while we do stuff in the controller
+	while(controller.client.listening){};
 
 	[pool drain];
     return 0;

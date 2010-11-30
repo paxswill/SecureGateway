@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "PXServer.h"
+#import "PXSQLiteRecords.h"
 
 @interface PXSStoreController : NSObject {
 @private
-    
+    PXServer *server;
+	PXSQLiteRecords *storage;
+	
+	//SSL Config data
+	NSURL *certURL;
+	NSURL *keyURL;
+	NSString *keyPassword;
 }
+-(id)initWithConfiguration:(NSDictionary *)config;
+
+
 
 @end

@@ -11,6 +11,7 @@
 		B18C022212A02929003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C022112A02929003C042B /* libcrypto.dylib */; };
 		B1BCE5C012A00CA80011556A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BCE5BF12A00CA80011556A /* Foundation.framework */; };
 		B1BCE5C312A00CA80011556A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BCE5C212A00CA80011556A /* main.m */; };
+		B1C64D7F12A4525D0020B802 /* PXAppGateController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C64D7E12A4525D0020B802 /* PXAppGateController.m */; };
 		B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8320C12A00D0F00F319B2 /* PXClient.m */; };
 		B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1412A1C6C400BF2181 /* PXConnection.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,9 @@
 		B1BCE5C112A00CA80011556A /* AppGate.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = AppGate.1; sourceTree = "<group>"; };
 		B1BCE5C212A00CA80011556A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1BCE5C512A00CA80011556A /* AppGate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppGate-Prefix.pch"; sourceTree = "<group>"; };
+		B1C64D7D12A4525D0020B802 /* PXAppGateController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PXAppGateController.h; sourceTree = "<group>"; };
+		B1C64D7E12A4525D0020B802 /* PXAppGateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAppGateController.m; sourceTree = "<group>"; };
+		B1C64D8012A452710020B802 /* PXConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnectionDelegate.h; path = ../../SStore/Source/PXConnectionDelegate.h; sourceTree = "<group>"; };
 		B1C8320B12A00D0F00F319B2 /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
 		B1C8320C12A00D0F00F319B2 /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
 		B1C8320F12A00D4800F319B2 /* PXConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnection.h; path = ../../SStore/Source/PXConnection.h; sourceTree = "<group>"; };
@@ -78,6 +82,9 @@
 				B1F21C1412A1C6C400BF2181 /* PXConnection.m */,
 				B1C8320B12A00D0F00F319B2 /* PXClient.h */,
 				B1C8320C12A00D0F00F319B2 /* PXClient.m */,
+				B1C64D8012A452710020B802 /* PXConnectionDelegate.h */,
+				B1C64D7D12A4525D0020B802 /* PXAppGateController.h */,
+				B1C64D7E12A4525D0020B802 /* PXAppGateController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -173,6 +180,7 @@
 				B1BCE5C312A00CA80011556A /* main.m in Sources */,
 				B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */,
 				B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */,
+				B1C64D7F12A4525D0020B802 /* PXAppGateController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
