@@ -27,7 +27,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B12218D312A0076900A07409"
+               BlueprintIdentifier = "B1BCE5BA12A00CA80011556A"
+               BuildableName = "AppGate"
+               BlueprintName = "AppGate"
                ReferencedContainer = "container:AppGate/AppGate.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,6 +49,15 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B1BCE5BA12A00CA80011556A"
+            BuildableName = "AppGate"
+            BlueprintName = "AppGate"
+            ReferencedContainer = "container:AppGate/AppGate.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
