@@ -104,8 +104,8 @@
 		int numReadySockets = select(self.mainSocket + 1, &listenSet, NULL, NULL, &zeroTime);
 		BOOL isSocketReady = FD_ISSET(self.mainSocket, &listenSet) != 0? YES : NO;
 		if(numReadySockets > 0 && isSocketReady && self.delegate != nil){
-			//Prepare the buffers
-			size_t bufferSize = 20*1024;
+			//Prepare the buffers (5MB buffer)
+			size_t bufferSize = 5*1024*1024;
 			void *buffer = malloc(bufferSize);
 			ssize_t numBytesRead;
 			//Use SSL_read for secure connections
