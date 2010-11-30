@@ -136,6 +136,21 @@
 	return [PXSQLiteObject typeForSQLiteType:type];
 }
 
++(BOOL)propertyTypeIsChild:(objc_property_t)prop{
+	//We may have one of our special child objects. For them, 
+	//the type is SQL_TEXT, as we store id numbers
+	//The structure should be in the form of {"ClassName"=fields}
+	NSString *encodeString = [NSString stringWithUTF8String:encode];
+	//Trim the ends off
+	encodeString = [encodeString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"{}"]];
+	//Cut everythin after the eqlas sign off
+	encodeString = [encodeString substringToIndex:[encodeString rangeOfString:@"="].location];
+	//So now we should have the class name. Let's create one
+	Class aClass = objc_getClass([encodeString UTF8String]);
+	id anInstance = class_createInstance(aClass, 0);
+	return [anInstance isKindOfClass:objc_getClass("PXSQLiteObject")];
+}
+
 +(char *)encodeForObjCProperty:(objc_property_t)prop{
 	//For now, we're just including the Obj-C type
 	NSString *propertyAttributes = [[NSString alloc] initWithUTF8String:property_getAttributes(prop)];

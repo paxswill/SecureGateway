@@ -31,5 +31,6 @@ typedef enum{
 +(NSString *)typeForSQLiteType:(SQLITE_TYPE)t;
 +(SQLITE_TYPE)sqlTypeForEncode:(char *)encode;
 +(NSString *)typeForObjCProperty:(objc_property_t)prop;
++(BOOL)propertyTypeIsChild:(objc_property_t)prop;
 +(char *)encodeForObjCProperty:(objc_property_t)prop;
 @end
