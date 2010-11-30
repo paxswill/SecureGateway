@@ -31,7 +31,7 @@ int main (int argc, const char * argv[]) {
 	PXAppGateController *controller = [[PXAppGateController alloc] initWithConfiguration:configuration];
 	
 	//Block while we do stuff in the controller
-	while(controller.client.listening){};
+	while(controller.client.listening){sleep(3);};
 
 	[pool drain];
     return 0;
