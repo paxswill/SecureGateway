@@ -1,18 +1,15 @@
 //
-//  PXFaculty.m
+//  PXDocument.m
 //  SStore
 //
-//  Created by Will Ross on 11/28/10.
+//  Created by Will Ross on 11/30/10.
 //  Copyright 2010 Will Ross. All rights reserved.
 //
 
-#import "PXFaculty.h"
+#import "PXDocument.h"
 
 
-@implementation PXFaculty
-
-@synthesize courses;
-@synthesize documents;
+@implementation PXDocument
 
 - (id)init {
     if ((self = [super init])) {

@@ -11,10 +11,10 @@
 
 @interface PXFaculty : PXPerson {
 @private
-    NSMutableSet *classes;
+    NSMutableSet *courses;
 	NSMutableSet *documents;
 }
-@property (readwrite, nonatomic, retain) NSMutableSet *classes;
+@property (readwrite, nonatomic, retain) NSMutableSet *courses;
 @property (readwrite, nonatomic, retain) NSMutableSet *documents;
 
 
