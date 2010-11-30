@@ -59,7 +59,7 @@
 
 -(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection{
 	NSString *recievedString = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-	NSLog(@"Recieved:\n%@", recievedString);
+	NSLog(@"Recieved%@:\n%@", (self.client.secure ? @" securely": @""), recievedString);
 	[self processSStoreCommand:recievedString];
 	[recievedString release];
 }

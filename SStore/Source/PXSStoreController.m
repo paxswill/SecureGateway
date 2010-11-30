@@ -64,7 +64,7 @@
 		
 	}
 	NSString *recievedString = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-	NSLog(@"Recieved:\n%@", recievedString);
+	NSLog(@"Recieved%@:\n%@", (self.server.secure ? @" securely": @""), recievedString);
 	[self processAppGateCommand:recievedString];
 	[recievedString release];
 }
