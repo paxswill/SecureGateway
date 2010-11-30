@@ -6,15 +6,14 @@
 //  Copyright (c) 2010 William Ross. All rights reserved.
 //
 
-#import <objc/objc-auto.h>
 #import <unistd.h>
 
 
 #import "PXSStoreController.h"
 
 int main (int argc, const char * argv[]) {
-	//Start Garbage Collection
-	objc_startCollectorThread();
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+
 	
 	//Load the config file in
 	NSString *configPath;
