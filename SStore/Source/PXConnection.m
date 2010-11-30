@@ -94,41 +94,35 @@
 	//Make an autorelease pool
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	while(![listenThread isCancelled]){
-		if(self.secure){
-			//Use the SSL funcs if we're secure
-			int numBytes = SSL_pending(self.sslConnection);
-			if(numBytes > 0){
-				if(self.delegate != nil){
-					void *buffer = malloc(numBytes);
-					SSL_read(self.sslConnection, buffer, numBytes);
-					[delegate recievedData:[NSData dataWithBytes:buffer length:numBytes] fromConnection:self];
-					free(buffer);
-				}
+	while(![listenThread isCancelled] && self.connected){
+		//Is there stuff to read?
+		fd_set listenSet;
+		FD_SET(self.mainSocket, &listenSet);
+		struct timeval zeroTime;
+		zeroTime.tv_sec = 0;
+		zeroTime.tv_usec = 50;
+		int numReadySockets = select(self.mainSocket + 1, &listenSet, NULL, NULL, &zeroTime);
+		BOOL isSocketReady = FD_ISSET(self.mainSocket, &listenSet) != 0? YES : NO;
+		if(numReadySockets > 0 && isSocketReady && self.delegate != nil){
+			//Prepare the buffers
+			size_t bufferSize = 20*1024;
+			void *buffer = malloc(bufferSize);
+			ssize_t numBytesRead;
+			//Use SSL_read for secure connections
+			if(self.secure){
+				numBytesRead = SSL_read(self.sslConnection, buffer, bufferSize);
+			}else{
+				numBytesRead = read(self.mainSocket, buffer, bufferSize);
 			}
-			//Sleep a little bit so we don't peg the processor
-			struct timespec sleepTime;
-			sleepTime.tv_sec = 0;
-			sleepTime.tv_nsec = 50000;
-			nanosleep(&sleepTime, NULL);
-		}else{
-			fd_set listenSet;
-			FD_SET(self.mainSocket, &listenSet);
-			struct timeval zeroTime;
-			zeroTime.tv_sec = 0;
-			zeroTime.tv_usec = 50;
-			int numReadySockets = select(self.mainSocket + 1, &listenSet, NULL, NULL, &zeroTime);
-			BOOL isSocketReady = FD_ISSET(self.mainSocket, &listenSet) != 0? YES : NO;
-			if(numReadySockets > 0 && isSocketReady){
-				//There are bytes to read
-				if(self.delegate != nil){
-					size_t bufferSize = 20*1024;
-					void *buffer = malloc(bufferSize);
-					ssize_t numBytesRead = read(self.mainSocket, buffer, bufferSize);
-					[delegate recievedData:[NSData dataWithBytes:buffer length:numBytesRead] fromConnection:self];
-					free(buffer);
-				}
+			//Is the connection broken?
+			if(numBytesRead == 0){
+				NSLog(@"Connection Broken");
+				self.connected = NO; 
+				[NSThread exit];
 			}
+			//Give the data to the delegate
+			[delegate recievedData:[NSData dataWithBytes:buffer length:numBytesRead] fromConnection:self];
+			free(buffer);
 		}
 	}
 	//Drain the pool
