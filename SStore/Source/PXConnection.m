@@ -11,7 +11,8 @@
 
 @property (readwrite, nonatomic, getter=isConnected) BOOL connected;
 @property (readwrite, nonatomic, getter=isSecure) BOOL secure;
-
+@property (readwrite, nonatomic, getter=isListening) BOOL listening;
+-(void)privateListen;
 @end
 
 
@@ -31,6 +32,7 @@
 @synthesize delegate;
 @synthesize connected;
 @synthesize secure;
+@synthesize listening;
 
 - (id)init {
     if ((self = [super init])) {
@@ -41,6 +43,7 @@
 		//Set default/sentinel values to the file handles
 		mainSocket = INT_MIN;
 		connected = NO;
+		delegate = nil;
 		
 		//Initialize OpenSSL
 		SSL_load_error_strings();
@@ -50,6 +53,10 @@
 		SSL_METHOD *method = TLSv1_method();
 		sslContext = SSL_CTX_new(method);
 		secure = NO;
+		
+		//Make the listening thread (but don't start it yet!)
+		listenThread = [[NSThread alloc] initWithTarget:self selector:@selector(privateListen) object:nil];
+		listening = NO;
     }
     return self;
 }
@@ -70,6 +77,57 @@
 
 -(void)setRecieve{
 	[self doesNotRecognizeSelector:_cmd];
+}
+
+-(void)listen{
+	self.listening = YES;
+	[listenThread start];
+}
+
+//This method is made to run in a seperate thread
+-(void)privateListen{
+	//Make an autorelease pool
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	while(![listenThread isCancelled]){
+		if(self.secure){
+			//Use the SSL funcs if we're secure
+			int numBytes = SSL_pending(self.sslConnection);
+			if(numBytes > 0){
+				if(self.delegate != nil){
+					void *buffer = malloc(numBytes);
+					SSL_read(self.sslConnection, buffer, numBytes);
+					[delegate recievedData:[NSData dataWithBytes:buffer length:numBytes] fromConnection:self];
+					free(buffer);
+				}
+			}
+			//Sleep a little bit so we don't peg the processor
+			struct timespec sleepTime;
+			sleepTime.tv_sec = 0;
+			sleepTime.tv_nsec = 50000;
+			nanosleep(&sleepTime, NULL);
+		}else{
+			fd_set listenSet;
+			FD_SET(self.mainSocket, &listenSet);
+			struct timeval zeroTime;
+			zeroTime.tv_sec = 0;
+			zeroTime.tv_usec = 50;
+			int numReadySockets = select(self.mainSocket + 1, &listenSet, NULL, NULL, &zeroTime);
+			BOOL isSocketReady = FD_ISSET(self.mainSocket, &listenSet) != 0? YES : NO;
+			if(numReadySockets > 0 && isSocketReady){
+				//There are bytes to read
+				if(self.delegate != nil){
+					size_t bufferSize = 50;
+					void *buffer = malloc(bufferSize);
+					ssize_t numBytesRead = read(self.mainSocket, buffer, bufferSize);
+					[delegate recievedData:[NSData dataWithBytes:buffer length:numBytesRead] fromConnection:self];
+					free(buffer);
+				}
+			}
+		}
+	}
+	//Drain the pool
+	[pool drain];
 }
 
 #pragma mark -

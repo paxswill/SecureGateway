@@ -9,8 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "PXConnection.h"
 
-@protocol PXConnection;
+@class PXConnection;
 
 @protocol PXConnectionDelegate <NSObject>
--(void)recievedData:(NSData *)data fromConnection:(id<PXConnection>)connection;
+-(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection;
 @end

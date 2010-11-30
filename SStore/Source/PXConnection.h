@@ -30,6 +30,7 @@
 	//Socket members
 	int mainSocket;
 	int port;
+	NSThread *listenThread;
 	
 	//SSL members
 	SSL_CTX *sslContext;
@@ -41,6 +42,7 @@
 	id<PXConnectionDelegate> delegate;
 	BOOL connected;
 	BOOL secure;
+	BOOL listening;
 }
 //Socket properties
 @property (readwrite, nonatomic) int mainSocket;
@@ -56,10 +58,12 @@
 @property (readwrite, nonatomic, assign) id<PXConnectionDelegate> delegate;
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
 @property (readonly, nonatomic, getter=isSecure) BOOL secure;
+@property (readonly, nonatomic, getter=isListening) BOOL listening;
 
 //Data Management
 -(void)send:(NSData *)data; //Abstract
 -(void)setRecieve; //Abstract
+-(void)listen;
 
 //SSL Management
 -(void)loadKey:(NSURL*)privateKey withPassword:(NSString*)password;
