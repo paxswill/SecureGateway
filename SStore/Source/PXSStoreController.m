@@ -178,6 +178,11 @@
 	return [person.pwHash isEqualToData:hash];
 }
 
+-(BOOL)authenticateAdmin:(NSString *)email withPasswordHash:(NSData *)hash{
+	PXPerson *person = [self personWithEmail:email];
+	return [person.pwHash isEqualToData:hash] && person.admin;
+}
+
 -(PXPerson *)personWithEmail:(NSString *)email{
 	NSMutableSet *allPersons = [[NSMutableSet alloc] init];
 	[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"email" value:email]];

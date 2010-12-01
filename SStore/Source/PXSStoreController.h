@@ -37,5 +37,6 @@
 -(void)processAppGateCommand:(NSString *)cmd;
 
 -(BOOL)authenticateUser:(NSString *)email withPasswordHash:(NSData *)hash;
+-(BOOL)authenticateAdmin:(NSString *)email withPasswordHash:(NSData *)hash;
 -(PXPerson *)personWithEmail:(NSString *)email;
 @end
