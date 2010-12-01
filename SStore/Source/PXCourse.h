@@ -13,8 +13,7 @@
 @interface PXCourse : PXSQLiteObject {
 @private
 	PXFaculty *instructor;
-	NSSet *students
-	
+	NSSet *students;
 }
 
 @end
