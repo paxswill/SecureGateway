@@ -15,7 +15,8 @@
 
 - (id)init {
     if ((self = [super init])) {
-        // Initialization code here.
+        //Give ourself a random ID!
+		idNumber = rand() % INT_MAX;
     }
     
     return self;
