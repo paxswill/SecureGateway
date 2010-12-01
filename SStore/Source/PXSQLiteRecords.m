@@ -243,11 +243,7 @@
 	}else if([sqlType isEqualToString:@"REAL"]){
 		[select appendFormat:@"%f;", [value doubleValue]];
 	}else if([sqlType isEqualToString:@"BLOB"]){
-		NSString *hexString = [[NSKeyedArchiver archivedDataWithRootObject:value] description];
-		hexString = [hexString stringByReplacingOccurrencesOfString:@"<" withString:@""];
-		hexString = [hexString stringByReplacingOccurrencesOfString:@">" withString:@""];
-		hexString = [hexString stringByReplacingOccurrencesOfString:@" " withString:@""];
-		[select appendFormat:@"x'%@';", hexString];
+		[select appendFormat:@"x'%@';", [[NSKeyedArchiver archivedDataWithRootObject:value] hexString]];
 	}
 	//Build the query
 	sqlite3_stmt *keyStmt;

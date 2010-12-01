@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "PXSQLiteObject.h"
+#import "NSData+HexString.h"
 
 @interface PXSQLiteRecords : NSObject {
 @private
