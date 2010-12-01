@@ -92,12 +92,12 @@
 		 *** Return Form ***
 		 object <RequestNumber> <HexData>
 		 */
-	}else if([keyWord isEqualToString:@"authorize"]){
+	}else if([keyWord isEqualToString:@"authenticate"]){
 		/*
 		 *** Request ***
-		 authorize <RequestNumber> <Email> <PWHash>
+		 authenticate <RequestNumber> <Email> <PWHash>
 		 *** Return ***
-		 authorized <RequestNumber> [YES|NO]
+		 authenticated <RequestNumber> [YES|NO]
 		 */
 		NSMutableSet *allPersons = [[NSMutableSet alloc] init];
 		[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
@@ -107,7 +107,7 @@
 		PXPerson *person = [[allPersons anyObject] retain];
 		[allPersons release];
 		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
-		NSString *response = [NSString stringWithFormat:@"authorized %@ %@",
+		NSString *response = [NSString stringWithFormat:@"authenticated %@ %@",
 							  [cmdComponents objectAtIndex:1],
 							  ([person.pwHash isEqualToData:recievedHash] ? @"YES" : @"NO")];
 		//Send the response back
