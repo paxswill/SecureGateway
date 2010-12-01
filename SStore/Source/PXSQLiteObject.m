@@ -133,7 +133,7 @@
 
 +(NSString *)typeForObjCProperty:(objc_property_t)prop{
 	char *encode = [PXSQLiteObject encodeForObjCProperty:prop];
-	SQLITE_TYPE type = [PXSQLiteObject propertyTypeIsChild:prop] ? SQL_TEXT : [PXSQLiteObject sqlTypeForEncode:encode];
+	SQLITE_TYPE type = [PXSQLiteObject sqlTypeForEncode:encode];
 	return [PXSQLiteObject typeForSQLiteType:type];
 }
 
