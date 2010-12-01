@@ -199,6 +199,17 @@
 		 getAll <RequestNumber> <Hex>
 		 <Hex> is an encoded NSArray of the items
 		 */
+	}else if([keyWord isEqualToString:@"save"]){
+		/*
+		 *** Request ***
+		 save <RequestNumber> <Hex>
+		 *** Response ***
+		 saved <RequestNumber>
+		 */
+		NSData *hexData = [NSData dataWithHexString:[cmdComponents objectAtIndex:2]];
+		PXSQLiteObject *obj = [NSKeyedUnarchiver unarchiveObjectWithData:hexData];
+		[storage save:obj];
+		[self.server sendString:[NSString stringWithFormat:@"addCourse %@", [cmdComponents objectAtIndex:1]]];
 	}
 }
 
