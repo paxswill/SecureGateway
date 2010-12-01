@@ -80,6 +80,83 @@
 		[server prepareSSLConnection];
 		//Switch up to SSL
 		[server openSSLConnection];
+	}else if([keyWord isEqualToString:@"retrieve"]){
+		//Object retrieval
+		/*
+		 *** Request Form ***
+		 retrieve <RequestNumber> <Type> <SearchProperty> <SearchValue>
+		 <RequestNumber> is of use to the AppGate only, it serves to keep track of transactions
+		 <Type> is the type of object to get: Person, Faculty, Student, Course, Document
+		 <SearchProperty> is the name of the title of the key to search
+		 <SearchValue> is the value to search for
+		 *** Return Form ***
+		 object <RequestNumber> <HexData>
+		 */
+	}else if([keyWord isEqualToString:@"authorize"]){
+		/*
+		 *** Request ***
+		 authorize <RequestNumber> <Email> <PWHash>
+		 *** Return ***
+		 authorized <RequestNumber> [YES|NO]
+		 */
+	}else if([keyWord isEqualToString:@"reset"]){
+		/*
+		 *** Request ***
+		 reset <RequestNumber> <Email1> <Email2> <PWHash>
+		 <Email1> is the account to reset
+		 <Email2> is an admin account
+		 <PWHash> is the hash of the admin
+		 *** Return ***
+		 reset <RequestNumber> <NewPW>
+		 <NewPW> is the plainText of the new password. It is randomly generated.
+		 */
+	}else if([keyWord isEqualToString:@"addUser"]){
+		/*
+		 *** Request ***
+		 addUser <RequestNumber> <Email> <PWHash> <Type> [AdminEmail] [AdminPWHash]
+		 <Email> is the email to add
+		 <Type> is either Faculty, Student, or Admin
+		 [AdminEmail] and [AdminPWHash] are optional, but if provided (and they match an admin) the new User is created as an admin
+		 *** Return ***
+		 addUser <RequestNumber> <idNumber>
+		 This is just confirming that it's done
+		 */
+	}else if([keyWord isEqualToString:@"addDocument"]){
+		/*
+		 *** Request ***
+		 addDocument <RequestNumber> <Owner> <DocName> <DocHex>
+		 *** Response ***
+		 addDocument <RequestNumber> <idNumber>
+		 */
+	}else if([keyWord isEqualToString:@"addDocumentAccess"]){
+		/*
+		 *** Request ***
+		 addDocumentAccess <RequestNumber> <DocNumber> [CourseNumber|IDNumber]
+		 *** Response ***
+		 addDocumentAccess <RequestNumber>
+		 */
+	}else if([keyWord isEqualToString:@"addCourse"]){
+		/*
+		 *** Request ***
+		 addCourse <RequestNumber> <TeacherID>
+		 *** Response ***
+		 addCourse <RequestNumber> <idNumber>
+		 */
+	}else if([keyWord isEqualToString:@"addCourseAccess"]){
+		/*
+		 *** Request ***
+		 addCourseAccess <RequestNumber> <CourseNumber> <StudentID>
+		 *** Response ***
+		 addCourseAccess <RequestNumber>
+		 */
+	}else if([keyWord isEqualToString:@"getAll"]){
+		/*
+		 *** Request getAll**
+		 addDocumentAccess <RequestNumber> <Type>
+		 *** Response ***
+		 getAll <RequestNumber> <Hex>
+		 <Hex> is an encoded NSArray of the items
+		 */
 	}
 }
 
