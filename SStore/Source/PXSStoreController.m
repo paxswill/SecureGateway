@@ -180,6 +180,10 @@
 		 *** Response ***
 		 addCourse <RequestNumber> <idNumber>
 		 */
+		PXCourse *newCourse = [[PXCourse alloc] init];
+		newCourse.instructor = [self facultyWithID:[[cmdComponents objectAtIndex:2] intValue]];
+		[storage save:newCourse];
+		[self.server sendString:[NSString stringWithFormat:@"addCourse %@ %d", [cmdComponents objectAtIndex:1], newCourse.idNumber]];
 	}else if([keyWord isEqualToString:@"addCourseAccess"]){
 		/*
 		 *** Request ***
