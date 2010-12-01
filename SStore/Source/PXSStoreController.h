@@ -10,6 +10,7 @@
 #import "PXConnectionDelegate.h"
 #import "PXServer.h"
 #import "PXSQLiteRecords.h"
+#import "NSData+HexString.h"
 //The model Objects
 #import "PXPerson.h"
 #import "PXStudent.h"

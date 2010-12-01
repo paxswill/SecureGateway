@@ -99,6 +99,19 @@
 		 *** Return ***
 		 authorized <RequestNumber> [YES|NO]
 		 */
+		NSMutableSet *allPersons = [[NSMutableSet alloc] init];
+		[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
+		[allPersons unionSet:[storage objectsOfType:[PXFaculty class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
+		[allPersons unionSet:[storage objectsOfType:[PXStudent class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
+		//Behaviour is undefined if more than one person shares an email
+		PXPerson *person = [[allPersons anyObject] retain];
+		[allPersons release];
+		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
+		NSString *response = [NSString stringWithFormat:@"authorized %@ %@",
+							  [cmdComponents objectAtIndex:1],
+							  ([person.pwHash isEqualToData:recievedHash] ? @"YES" : @"NO")];
+		//Send the response back
+		[self.server sendString:response];
 	}else if([keyWord isEqualToString:@"reset"]){
 		/*
 		 *** Request ***
