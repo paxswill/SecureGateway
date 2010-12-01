@@ -118,14 +118,17 @@
 		 */
 		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:5]];
 		BOOL adminAuth = [self authenticateAdmin:[cmdComponents objectAtIndex:5] withPasswordHash:recievedHash];
+		NSString *response;
 		if(adminAuth){
 			//Admin authenticated
 			PXPerson *forgetful = [self personWithEmail:[cmdComponents objectAtIndex:2]];
 			forgetful.pwHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
 			[storage save:forgetful];
+			response = [NSString stringWithFormat:@"reset %@ YES", [cmdComponents objectAtIndex:1]];
 		}else{
-			
+			response = [NSString stringWithFormat:@"reset %@ NO", [cmdComponents objectAtIndex:1]];
 		}
+		[self.server sendString:response];
 	}else if([keyWord isEqualToString:@"addUser"]){
 		/*
 		 *** Request ***
