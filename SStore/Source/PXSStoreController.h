@@ -10,6 +10,12 @@
 #import "PXConnectionDelegate.h"
 #import "PXServer.h"
 #import "PXSQLiteRecords.h"
+//The model Objects
+#import "PXPerson.h"
+#import "PXStudent.h"
+#import "PXFaculty.h"
+#import "PXCourse.h"
+#import "PXDocument.h"
 
 @interface PXSStoreController : NSObject<PXConnectionDelegate> {
 @private
