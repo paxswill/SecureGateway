@@ -200,4 +200,35 @@
 	return [person autorelease];
 }
 
+-(PXPerson *)personWithID:(int)idNum{
+	NSMutableSet *allPersons = [[NSMutableSet alloc] init];
+	[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]]];
+	[allPersons unionSet:[storage objectsOfType:[PXFaculty class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]]];
+	[allPersons unionSet:[storage objectsOfType:[PXStudent class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]]];
+	//Behaviour is undefined if more than one person shares an idNumber
+	PXPerson *person = [[allPersons anyObject] retain];
+	[allPersons release];
+	return [person autorelease];
+}
+
+-(PXStudent *)studentWithID:(int)idNum{
+	NSSet *students = [storage objectsOfType:[PXStudent class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]];
+	return [students anyObject];
+}
+
+-(PXFaculty *)facultyWithID:(int)idNum{
+	NSSet *faculty = [storage objectsOfType:[PXFaculty class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]];
+	return [faculty anyObject];
+}
+
+-(PXCourse *)courseWithID:(int)idNum{
+	NSSet *courses = [storage objectsOfType:[PXCourse class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]];
+	return [courses anyObject];
+}
+
+-(PXDocument *)documentWithID:(int)idNum{
+	NSSet *documents = [storage objectsOfType:[PXDocument class] forKey:@"idNumber" value:[NSNumber numberWithInt:idNum]];
+	return [documents anyObject];
+}
+
 @end

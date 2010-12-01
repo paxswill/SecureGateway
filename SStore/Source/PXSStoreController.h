@@ -38,5 +38,13 @@
 
 -(BOOL)authenticateUser:(NSString *)email withPasswordHash:(NSData *)hash;
 -(BOOL)authenticateAdmin:(NSString *)email withPasswordHash:(NSData *)hash;
+
+//Object retrieval
 -(PXPerson *)personWithEmail:(NSString *)email;
+-(PXPerson *)personWithID:(int)idNum;
+-(PXStudent *)studentWithID:(int)idNum;
+-(PXFaculty *)facultyWithID:(int)idNum;
+-(PXCourse *)courseWithID:(int)idNum;
+-(PXDocument *)documentWithID:(int)idNum;
+
 @end
