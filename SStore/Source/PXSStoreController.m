@@ -92,6 +92,25 @@
 		 *** Return Form ***
 		 object <RequestNumber> <HexData>
 		 */
+		//What kind of class are we getting?
+		Class typeClass;
+		NSString *typeString = [cmdComponents objectAtIndex:2];
+		if([typeString isEqualToString:@"Person"]){
+			typeClass = [PXPerson class];
+		}else if([typeString isEqualToString:@"Faculty"]){
+			typeClass = [PXFaculty class];
+		}else if([typeString isEqualToString:@"Student"]){
+			typeClass = [PXStudent class];
+		}else if([typeString isEqualToString:@"Course"]){
+			typeClass = [PXCourse class];
+		}else if([typeString isEqualToString:@"Document"]){
+			typeClass = [PXDocument class];
+		}
+		//Get it
+		id obj = [[storage objectsOfType:typeClass forKey:[cmdComponents objectAtIndex:3] value:[cmdComponents objectAtIndex:4]] anyObject];
+		//Send it back
+		NSData *objData = [NSKeyedArchiver archivedDataWithRootObject:obj];
+		[self.server sendString:[NSString stringWithFormat:@"object %@ %@", [cmdComponents objectAtIndex:1], [objData hexString]]];
 	}else if([keyWord isEqualToString:@"authenticate"]){
 		/*
 		 *** Request ***
