@@ -13,5 +13,4 @@
 @private
     
 }
--(NSSet *)getClasses;
 @end

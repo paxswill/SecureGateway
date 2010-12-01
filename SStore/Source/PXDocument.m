@@ -11,6 +11,11 @@
 
 @implementation PXDocument
 
+@synthesize owner;
+@synthesize allowedPersons;
+@synthesize allowedClasses;
+@synthesize fileData;
+
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.

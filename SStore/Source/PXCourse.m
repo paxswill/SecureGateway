@@ -11,6 +11,9 @@
 
 @implementation PXCourse
 
+@synthesize instructor;
+@synthesize  students;
+
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.

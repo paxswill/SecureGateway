@@ -13,7 +13,9 @@
 @interface PXCourse : PXSQLiteObject {
 @private
 	PXFaculty *instructor;
-	NSSet *students;
+	NSMutableSet *students;
 }
+@property (readwrite, nonatomic, retain) PXFaculty *instructor;
+@property (readwrite, nonatomic, retain) NSMutableSet *students;
 
 @end

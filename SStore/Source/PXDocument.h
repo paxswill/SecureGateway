@@ -17,5 +17,9 @@
 	NSMutableSet *allowedClasses;
 	NSData *fileData;
 }
+@property (readwrite, nonatomic, retain) PXFaculty *owner;
+@property (readwrite, nonatomic, retain) NSMutableSet *allowedPersons;
+@property (readwrite, nonatomic, retain) NSMutableSet *allowedClasses;
+@property (readwrite, nonatomic, retain) NSData *fileData;
 
 @end

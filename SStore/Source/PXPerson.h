@@ -21,7 +21,4 @@
 @property (readwrite, nonatomic) BOOL admin;
 @property (readwrite, nonatomic, retain) NSData *pwHash;
 
--(id)initPersonWithName:(NSString *)name andPasswordHash:(NSData *)hash;
--(NSSet *)getDocuments;
-
 @end
