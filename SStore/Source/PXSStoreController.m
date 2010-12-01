@@ -194,11 +194,28 @@
 	}else if([keyWord isEqualToString:@"getAll"]){
 		/*
 		 *** Request getAll**
-		 addDocumentAccess <RequestNumber> <Type>
+		 getAll <RequestNumber> <Type>
 		 *** Response ***
 		 getAll <RequestNumber> <Hex>
-		 <Hex> is an encoded NSArray of the items
+		 <Hex> is an encoded NSSet of the items
 		 */
+		Class typeClass;
+		NSString *typeString = [cmdComponents objectAtIndex:2];
+		if([typeString isEqualToString:@"Person"]){
+			typeClass = [PXPerson class];
+		}else if([typeString isEqualToString:@"Faculty"]){
+			typeClass = [PXFaculty class];
+		}else if([typeString isEqualToString:@"Student"]){
+			typeClass = [PXStudent class];
+		}else if([typeString isEqualToString:@"Course"]){
+			typeClass = [PXCourse class];
+		}else if([typeString isEqualToString:@"Document"]){
+			typeClass = [PXDocument class];
+		}
+		NSSet *objects = [storage objectsOfType:typeClass forKey:nil value:nil];
+		NSString *hexData = [[NSKeyedArchiver archivedDataWithRootObject:objects] hexString];
+		//Send it off
+		[self.server sendString:[NSString stringWithFormat:@"getAll %@ %@", [cmdComponents objectAtIndex:1], hexData]];
 	}else if([keyWord isEqualToString:@"save"]){
 		/*
 		 *** Request ***
