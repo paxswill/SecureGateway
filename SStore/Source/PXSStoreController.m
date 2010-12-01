@@ -99,30 +99,33 @@
 		 *** Return ***
 		 authenticated <RequestNumber> [YES|NO]
 		 */
-		NSMutableSet *allPersons = [[NSMutableSet alloc] init];
-		[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
-		[allPersons unionSet:[storage objectsOfType:[PXFaculty class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
-		[allPersons unionSet:[storage objectsOfType:[PXStudent class] forKey:@"email" value:[cmdComponents objectAtIndex:2]]];
-		//Behaviour is undefined if more than one person shares an email
-		PXPerson *person = [[allPersons anyObject] retain];
-		[allPersons release];
 		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
+		BOOL authenticated = [self authenticateUser:[cmdComponents objectAtIndex:2] withPasswordHash:recievedHash];
 		NSString *response = [NSString stringWithFormat:@"authenticated %@ %@",
 							  [cmdComponents objectAtIndex:1],
-							  ([person.pwHash isEqualToData:recievedHash] ? @"YES" : @"NO")];
+							  (authenticated ? @"YES" : @"NO")];
 		//Send the response back
 		[self.server sendString:response];
 	}else if([keyWord isEqualToString:@"reset"]){
 		/*
 		 *** Request ***
-		 reset <RequestNumber> <Email1> <Email2> <PWHash>
+		 reset <RequestNumber> <Email> <PWHash> <AdminEmail> <AdminPWHash>
 		 <Email1> is the account to reset
 		 <Email2> is an admin account
 		 <PWHash> is the hash of the admin
 		 *** Return ***
-		 reset <RequestNumber> <NewPW>
-		 <NewPW> is the plainText of the new password. It is randomly generated.
+		 reset <RequestNumber> [YES|NO]
 		 */
+		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:5]];
+		BOOL adminAuth = [self authenticateAdmin:[cmdComponents objectAtIndex:5] withPasswordHash:recievedHash];
+		if(adminAuth){
+			//Admin authenticated
+			PXPerson *forgetful = [self personWithEmail:[cmdComponents objectAtIndex:2]];
+			forgetful.pwHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
+			[storage save:forgetful];
+		}else{
+			
+		}
 	}else if([keyWord isEqualToString:@"addUser"]){
 		/*
 		 *** Request ***
