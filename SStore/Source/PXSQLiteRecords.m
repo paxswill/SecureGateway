@@ -235,15 +235,20 @@
 		[select appendFormat:@"%@, ", prop]; 
 	}
 	[select setString:[select substringToIndex:([select length] - 2)]];
-	[select appendFormat:@" FROM %@ WHERE %@=", [class getName], keyPath];
-	if([sqlType isEqualToString:@"TEXT"]){
-		[select appendFormat:@"'%@';", value];
-	}else if([sqlType isEqualToString:@"INTEGER"]){
-		[select appendFormat:@"%d;", [value intValue]];
-	}else if([sqlType isEqualToString:@"REAL"]){
-		[select appendFormat:@"%f;", [value doubleValue]];
-	}else if([sqlType isEqualToString:@"BLOB"]){
-		[select appendFormat:@"x'%@';", [[NSKeyedArchiver archivedDataWithRootObject:value] hexString]];
+	if(keyPath == nil){
+		//In this case we get _all_ of these objects. Basically, omit the WHERE clause
+		[select appendFormat:@" FROM %@;", [class getName]];
+	}else{
+		[select appendFormat:@" FROM %@ WHERE %@=", [class getName], keyPath];
+		if([sqlType isEqualToString:@"TEXT"]){
+			[select appendFormat:@"'%@';", value];
+		}else if([sqlType isEqualToString:@"INTEGER"]){
+			[select appendFormat:@"%d;", [value intValue]];
+		}else if([sqlType isEqualToString:@"REAL"]){
+			[select appendFormat:@"%f;", [value doubleValue]];
+		}else if([sqlType isEqualToString:@"BLOB"]){
+			[select appendFormat:@"x'%@';", [[NSKeyedArchiver archivedDataWithRootObject:value] hexString]];
+		}
 	}
 	//Build the query
 	sqlite3_stmt *keyStmt;
