@@ -36,4 +36,6 @@
 -(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection;
 -(void)processAppGateCommand:(NSString *)cmd;
 
+-(BOOL)authenticateUser:(NSString *)email withPasswordHash:(NSData *)hash;
+-(PXPerson *)personWithEmail:(NSString *)email;
 @end

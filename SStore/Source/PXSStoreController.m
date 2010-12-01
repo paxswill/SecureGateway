@@ -173,4 +173,20 @@
 	}
 }
 
+-(BOOL)authenticateUser:(NSString *)email withPasswordHash:(NSData *)hash{
+	PXPerson *person = [self personWithEmail:email];
+	return [person.pwHash isEqualToData:hash];
+}
+
+-(PXPerson *)personWithEmail:(NSString *)email{
+	NSMutableSet *allPersons = [[NSMutableSet alloc] init];
+	[allPersons unionSet:[storage objectsOfType:[PXPerson class] forKey:@"email" value:email]];
+	[allPersons unionSet:[storage objectsOfType:[PXFaculty class] forKey:@"email" value:email]];
+	[allPersons unionSet:[storage objectsOfType:[PXStudent class] forKey:@"email" value:email]];
+	//Behaviour is undefined if more than one person shares an email
+	PXPerson *person = [[allPersons anyObject] retain];
+	[allPersons release];
+	return [person autorelease];
+}
+
 @end
