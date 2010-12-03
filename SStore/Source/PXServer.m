@@ -122,11 +122,11 @@
 	return isSocketReady && numReadySockets > 0;
 }
 
--(void)openConnection{
+-(void)openConnection:(int)socketNum{
 	//At this time, the socket should have an incoming connection
 	struct sockaddr_in *clientAddress;
 	socklen_t clientAddressLength;
-	self.mainSocket = accept(self.listeningSocket, (struct sockaddr *)clientAddress, &clientAddressLength);
+	self.mainSocket = accept(socketNum, (struct sockaddr *)clientAddress, &clientAddressLength);
 	if(self.mainSocket < 0){
 		NSLog(@"Connection failed. Closing out. Error: %s", strerror(errno));
 		close(self.listeningSocket);
@@ -179,7 +179,7 @@
 	while(![self checkConnection:self.listeningSocket]){
 		nanosleep(&sleepTime, NULL);
 	}
-	[self openConnection];
+	[self openConnection:self.listeningSocket];
 	//Connection now open. Signal that we want to go secure now
 	[pool drain];
 	[self listen];

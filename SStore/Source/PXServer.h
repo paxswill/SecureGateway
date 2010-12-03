@@ -10,7 +10,7 @@
 #import "PXConnection.h"
 
 @interface PXServer : PXConnection {
-@private
+@protected
 	//Extra listening socket
 	int listeningSocket;
 	NSThread *incomingListenThread;
@@ -23,7 +23,7 @@
 -(BOOL)openSocket;
 -(void)closeSocket;
 -(BOOL)checkConnection:(int)connection;
--(void)openConnection;
+-(void)openConnection:(int)socketNum;
 -(void)send:(NSData *)data;
 -(void)listen;
 -(void)listenForConnections;
