@@ -34,7 +34,7 @@ int main (int argc, const char * argv[]) {
 	//Wait to connect
 	while(controller.server.lookingForConnection){sleep(1);};
 	//Ok, now were connected and listening
-	while(!controller.server.listening){sleep(1);};
+	while(!controller.server.listeningForData){sleep(1);};
 	[controller jumpToSecure];
 	//Wait for security
 	while(!controller.server.secure){sleep(1);};

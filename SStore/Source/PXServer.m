@@ -15,7 +15,7 @@
 //Private overrides of parent properties (for read/write
 @property (readwrite, nonatomic, getter=isConnected) BOOL connected;
 @property (readwrite, nonatomic, getter=isSecure) BOOL secure;
-@property (readwrite, nonatomic, getter=isListening) BOOL listening;
+@property (readwrite, nonatomic, getter=isListeningForData) BOOL listeningForData;
 
 -(void)privateListenForConnections;
 
@@ -27,7 +27,7 @@
 @synthesize connected;
 @synthesize secure;
 @synthesize listeningSocket;
-@synthesize listening;
+@synthesize listeningForData;
 @synthesize lookingForConnection;
 
 #pragma mark Memory Management/Housekeeping
@@ -165,7 +165,7 @@
 }
 
 -(void)listen{
-	self.listening = YES;
+	self.listeningForData = YES;
 	self.lookingForConnection = NO;
 	[listenThread start];
 }

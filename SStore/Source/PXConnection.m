@@ -11,7 +11,7 @@
 
 @property (readwrite, nonatomic, getter=isConnected) BOOL connected;
 @property (readwrite, nonatomic, getter=isSecure) BOOL secure;
-@property (readwrite, nonatomic, getter=isListening) BOOL listening;
+@property (readwrite, nonatomic, getter=isListeningForData) BOOL listeningForData;
 -(void)privateListen;
 @end
 
@@ -32,7 +32,7 @@
 @synthesize delegate;
 @synthesize connected;
 @synthesize secure;
-@synthesize listening;
+@synthesize listeningForData;
 
 - (id)init {
     if ((self = [super init])) {
@@ -56,7 +56,7 @@
 		
 		//Make the listening thread (but don't start it yet!)
 		listenThread = [[NSThread alloc] initWithTarget:self selector:@selector(privateListen) object:nil];
-		listening = NO;
+		listeningForData = NO;
     }
     return self;
 }
@@ -85,7 +85,7 @@
 }
 
 -(void)listen{
-	self.listening = YES;
+	self.listeningForData = YES;
 	[listenThread start];
 }
 

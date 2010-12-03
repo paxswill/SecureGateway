@@ -44,7 +44,7 @@
 	id<PXConnectionDelegate> delegate;
 	BOOL connected;
 	BOOL secure;
-	BOOL listening;
+	BOOL listeningForData;
 }
 //Socket properties
 @property (readwrite, nonatomic) int mainSocket;
@@ -60,7 +60,7 @@
 @property (readwrite, nonatomic, assign) id<PXConnectionDelegate> delegate;
 @property (readonly, nonatomic, getter=isConnected) BOOL connected;
 @property (readonly, nonatomic, getter=isSecure) BOOL secure;
-@property (readonly, nonatomic, getter=isListening) BOOL listening;
+@property (readonly, nonatomic, getter=isListeningForData) BOOL listeningForData;
 
 //Data Management
 -(void)send:(NSData *)data; //Abstract
