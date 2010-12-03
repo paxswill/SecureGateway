@@ -116,15 +116,25 @@
 		 *** Request ***
 		 authenticate <RequestNumber> <Email> <PWHash>
 		 *** Return ***
-		 authenticated <RequestNumber> [YES|NO]
+		 authenticated <RequestNumber> <email>
+		 or 
+		 authenticated <RequestNumber>
+		 The second form is for failure
 		 */
 		NSData *recievedHash = [NSData dataWithHexString:[cmdComponents objectAtIndex:3]];
 		BOOL authenticated = [self authenticateUser:[cmdComponents objectAtIndex:2] withPasswordHash:recievedHash];
-		NSString *response = [NSString stringWithFormat:@"authenticated %@ %@",
-							  [cmdComponents objectAtIndex:1],
-							  (authenticated ? @"YES" : @"NO")];
-		//Send the response back
-		[self.server sendString:response];
+		if(authenticated){
+			NSString *response = [NSString stringWithFormat:@"authenticated %@ %@",
+								  [cmdComponents objectAtIndex:1],
+								  [cmdComponents objectAtIndex:2]];
+			//Send the response back
+			[self.server sendString:response];
+		}else{
+			NSString *response = [NSString stringWithFormat:@"authenticated %@",
+								  [cmdComponents objectAtIndex:1]];
+			//Send the response back
+			[self.server sendString:response];
+		}
 	}else if([keyWord isEqualToString:@"reset"]){
 		/*
 		 *** Request ***

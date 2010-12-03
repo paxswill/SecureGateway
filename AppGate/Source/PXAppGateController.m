@@ -8,16 +8,23 @@
 
 #import "PXAppGateController.h"
 
+@interface PXAppGateController()
+@property (readwrite, nonatomic) unsigned int transactionCounter;
+@end
 
 @implementation PXAppGateController
 
 @synthesize client;
-@synthesize authenticatedUsers;
+@synthesize transactions;
+@synthesize transactionCounter;
+@synthesize users;
 
 - (id)init {
     if ((self = [super init])) {
         // Initialization code here.
-		authenticatedUsers = [[NSMutableDictionary alloc] init];
+		transactions = [[NSMutableDictionary alloc] init];
+		transactionCounter = 1;
+		users = [[NSMutableDictionary alloc] init];
     }
     
     return self;
