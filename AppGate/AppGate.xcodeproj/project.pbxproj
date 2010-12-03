@@ -13,6 +13,9 @@
 		B1BCE5C312A00CA80011556A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BCE5C212A00CA80011556A /* main.m */; };
 		B1C64D7F12A4525D0020B802 /* PXAppGateController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C64D7E12A4525D0020B802 /* PXAppGateController.m */; };
 		B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8320C12A00D0F00F319B2 /* PXClient.m */; };
+		B1DEE0C712A91397008519B4 /* PXMultiServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DEE0C612A91397008519B4 /* PXMultiServer.m */; };
+		B1DEE0CA12A91452008519B4 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DEE0C912A91452008519B4 /* PXServer.m */; };
+		B1DEE0CD12A93DDF008519B4 /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DEE0CC12A93DDF008519B4 /* NSData+HexString.m */; };
 		B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1412A1C6C400BF2181 /* PXConnection.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,12 @@
 		B1C8320B12A00D0F00F319B2 /* PXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXClient.h; sourceTree = "<group>"; };
 		B1C8320C12A00D0F00F319B2 /* PXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXClient.m; sourceTree = "<group>"; };
 		B1C8320F12A00D4800F319B2 /* PXConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXConnection.h; path = ../../SStore/Source/PXConnection.h; sourceTree = "<group>"; };
+		B1DEE0C512A91397008519B4 /* PXMultiServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXMultiServer.h; sourceTree = "<group>"; };
+		B1DEE0C612A91397008519B4 /* PXMultiServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXMultiServer.m; sourceTree = "<group>"; };
+		B1DEE0C812A91452008519B4 /* PXServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXServer.h; path = ../../SStore/Source/PXServer.h; sourceTree = "<group>"; };
+		B1DEE0C912A91452008519B4 /* PXServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PXServer.m; path = ../../SStore/Source/PXServer.m; sourceTree = "<group>"; };
+		B1DEE0CB12A93DDF008519B4 /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+HexString.h"; path = "../../SStore/Source/NSData+HexString.h"; sourceTree = "<group>"; };
+		B1DEE0CC12A93DDF008519B4 /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+HexString.m"; path = "../../SStore/Source/NSData+HexString.m"; sourceTree = "<group>"; };
 		B1F21C0F12A1B18E00BF2181 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
 		B1F21C1012A1B18E00BF2181 /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
 		B1F21C1112A1B19B00BF2181 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
@@ -83,8 +92,14 @@
 				B1C8320B12A00D0F00F319B2 /* PXClient.h */,
 				B1C8320C12A00D0F00F319B2 /* PXClient.m */,
 				B1C64D8012A452710020B802 /* PXConnectionDelegate.h */,
+				B1DEE0CB12A93DDF008519B4 /* NSData+HexString.h */,
+				B1DEE0CC12A93DDF008519B4 /* NSData+HexString.m */,
 				B1C64D7D12A4525D0020B802 /* PXAppGateController.h */,
 				B1C64D7E12A4525D0020B802 /* PXAppGateController.m */,
+				B1DEE0C812A91452008519B4 /* PXServer.h */,
+				B1DEE0C912A91452008519B4 /* PXServer.m */,
+				B1DEE0C512A91397008519B4 /* PXMultiServer.h */,
+				B1DEE0C612A91397008519B4 /* PXMultiServer.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -181,6 +196,9 @@
 				B1C8320D12A00D0F00F319B2 /* PXClient.m in Sources */,
 				B1F21C1512A1C6C400BF2181 /* PXConnection.m in Sources */,
 				B1C64D7F12A4525D0020B802 /* PXAppGateController.m in Sources */,
+				B1DEE0C712A91397008519B4 /* PXMultiServer.m in Sources */,
+				B1DEE0CA12A91452008519B4 /* PXServer.m in Sources */,
+				B1DEE0CD12A93DDF008519B4 /* NSData+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +215,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -212,6 +231,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
 				SDKROOT = macosx;

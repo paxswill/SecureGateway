@@ -40,8 +40,8 @@
 		NSString *keyPassword = [configDict objectForKey:@"keyPassword"];
 		
 		//Load the client up
-		client = [[PXClient alloc] init];
-		client.delegate = self;
+		self.client = [[PXClient alloc] init];
+		self.client.delegate = self;
 		if(![client connectToServer:host onPort:port]){
 			NSLog(@"Connection failed");
 			return nil;
@@ -49,11 +49,11 @@
 			NSLog(@"Connection succeeded!");
 		}
 		
-		[client listen];
+		[self.client listen];
 		
-		[client prepareSSLConnection];
-		[client loadCertChain:certURL];
-		[client loadKey:keyURL withPassword:keyPassword];
+		[self.client prepareSSLConnection];
+		[self.client loadCertChain:certURL];
+		[self.client loadKey:keyURL withPassword:keyPassword];
 	}
 	return self;
 }
@@ -62,6 +62,11 @@
     // Clean-up code here.
     [client closeConnection];
     [super dealloc];
+}
+
+-(unsigned int)incrementTransactions{
+	self.transactionCounter = (self.transactionCounter == UINT_MAX) ? 0 : self.transactionCounter + 1;
+	return self.transactionCounter;
 }
 
 -(void)recievedData:(NSData *)data fromConnection:(PXConnection *)connection{
@@ -76,19 +81,37 @@
 	NSString *keyWord = [[cmdComponents objectAtIndex:0] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
 	if([keyWord isEqualToString:@"goSecure"]){
 		//Acknowledge
-		[client sendString:@"goSecure"];
+		[self.client sendString:@"goSecure"];
 		//Switch up to SSL
 		[self.client openSSLConnection];
+	}else if([keyWord isEqualToString:@"login"]){
+		/*
+		 login <email> <PW>
+		 */
+		//Time to authenticate
+		//Make a transaction
+		[self.transactions setObject:[NSNumber numberWithInt:[self incrementTransactions]] 
+							  forKey:[NSNumber numberWithInt:self.client.mainSocket]];
+		//Hash the PW
+		NSData *hash = [NSData dataWithBytes:MD5((const unsigned char *)[[cmdComponents objectAtIndex:2] UTF8String], [[cmdComponents objectAtIndex:2] length] + 1, NULL) length:MD5_DIGEST_LENGTH];
+		//Send off the request
+		[self.client sendString:[NSString stringWithFormat:@"authenticate %d %@ %@", self.transactionCounter, [cmdComponents objectAtIndex:1], [hash hexString]]];
 	}else if([keyWord isEqualToString:@"authenticated"]){
-		//A user has been authenticated
-		//Key is the username
-		//Value is the IP address/cookie associated with the user
-		//TODO: Actually have a cookie to store 
-		[self.authenticatedUsers setObject:@"foo" forKey:[cmdComponents objectAtIndex:1]];
-	}else if([keyWord isEqualToString:@"object"]){
-		//Now the server is returning the object the client requested.
-		//the object at index 1 is the hex encoded object
-		//TODO: Reassemble the object
+		/*
+		 authenticated <IDNum> <email>
+		 */
+		if([cmdComponents count] == 2){
+			//Auth failure
+			NSLog(@"Login failed");
+		}else{
+			//login sucessful
+			NSLog(@"Login successful");
+			[self.users setValue:[NSNumber numberWithInt:self.client.mainSocket] forKey:[cmdComponents objectAtIndex:3]];
+		}
+	}else if([keyWord isEqualToString:@"add"]){
+		/*
+		 addUser <email> <password> 
+		 */
 	}
 }
 

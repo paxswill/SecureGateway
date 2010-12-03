@@ -10,6 +10,9 @@
 		B10800BB12938ECE005E9242 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B10800BA12938ECE005E9242 /* libssl.dylib */; };
 		B10800C01293913E005E9242 /* PXServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B10800BF1293913E005E9242 /* PXServer.m */; };
 		B10EB07712A31B9C00684368 /* PXSQLiteRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */; };
+		B17749F312A55F5400900646 /* PXStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = B17749F212A55F5400900646 /* PXStudent.m */; };
+		B17749F712A5601C00900646 /* PXCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = B17749F612A5601C00900646 /* PXCourse.m */; };
+		B17749FA12A560DF00900646 /* PXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B17749F912A560DF00900646 /* PXDocument.m */; };
 		B18C021C12A0204A003C042B /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C021B12A0204A003C042B /* libcrypto.dylib */; };
 		B18E1A4012A2D97600886783 /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E1A3F12A2D97600886783 /* libsqlcipher.a */; };
 		B1A9DE21128B6939006B5F57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A9DE20128B6939006B5F57 /* Foundation.framework */; };
@@ -17,6 +20,7 @@
 		B1A9DE29128B6939006B5F57 /* SStore.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B1A9DE28128B6939006B5F57 /* SStore.xcdatamodel */; };
 		B1C64D8312A4776E0020B802 /* PXSStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C64D8212A4776E0020B802 /* PXSStoreController.m */; };
 		B1C8BB4B12A2E40D008ACEAB /* PXSQLiteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */; };
+		B1DEE0C312A5F27D008519B4 /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = B1DEE0C212A5F27D008519B4 /* NSData+HexString.m */; };
 		B1F21C1712A1C6CC00BF2181 /* PXConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F21C1612A1C6CC00BF2181 /* PXConnection.m */; };
 		B1F834A012A2E180005F1DD4 /* PXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F8349F12A2E180005F1DD4 /* PXPerson.m */; };
 		B1F834A312A2E2FE005F1DD4 /* PXFaculty.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F834A212A2E2FE005F1DD4 /* PXFaculty.m */; };
@@ -44,6 +48,12 @@
 		B10EB07612A31B9C00684368 /* PXSQLiteRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteRecords.m; sourceTree = "<group>"; };
 		B13F684412A52E6D00BCC00C /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cert.pem; sourceTree = "<group>"; };
 		B13F684512A52E6D00BCC00C /* key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key.pem; sourceTree = "<group>"; };
+		B17749F112A55F5400900646 /* PXStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXStudent.h; sourceTree = "<group>"; };
+		B17749F212A55F5400900646 /* PXStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXStudent.m; sourceTree = "<group>"; };
+		B17749F512A5601C00900646 /* PXCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXCourse.h; sourceTree = "<group>"; };
+		B17749F612A5601C00900646 /* PXCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXCourse.m; sourceTree = "<group>"; };
+		B17749F812A560DF00900646 /* PXDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXDocument.h; sourceTree = "<group>"; };
+		B17749F912A560DF00900646 /* PXDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXDocument.m; sourceTree = "<group>"; };
 		B183147112A24D350071A678 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B183148612A285D40071A678 /* SSCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = SOURCE_ROOT; };
 		B18C021B12A0204A003C042B /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
@@ -61,6 +71,8 @@
 		B1C8BB4912A2E40D008ACEAB /* PXSQLiteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSQLiteObject.h; sourceTree = "<group>"; };
 		B1C8BB4A12A2E40D008ACEAB /* PXSQLiteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSQLiteObject.m; sourceTree = "<group>"; };
 		B1CF39C312A06C530083E308 /* cacert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cacert.pem; path = /Users/paxswill/Developer/School/CS472/SecureGateway/demoCA/cacert.pem; sourceTree = "<absolute>"; };
+		B1DEE0C112A5F27C008519B4 /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
+		B1DEE0C212A5F27D008519B4 /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
 		B1F21C1612A1C6CC00BF2181 /* PXConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PXConnection.m; path = /Users/paxswill/Developer/School/CS472/SecureGateway/SStore/Source/PXConnection.m; sourceTree = "<absolute>"; };
 		B1F8349E12A2E180005F1DD4 /* PXPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPerson.h; sourceTree = "<group>"; };
 		B1F8349F12A2E180005F1DD4 /* PXPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPerson.m; sourceTree = "<group>"; };
@@ -110,6 +122,8 @@
 				B1A9DE23128B6939006B5F57 /* main.m */,
 				B1C64D8112A4776E0020B802 /* PXSStoreController.h */,
 				B1C64D8212A4776E0020B802 /* PXSStoreController.m */,
+				B1DEE0C112A5F27C008519B4 /* NSData+HexString.h */,
+				B1DEE0C212A5F27D008519B4 /* NSData+HexString.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -172,6 +186,12 @@
 				B1F8349F12A2E180005F1DD4 /* PXPerson.m */,
 				B1F834A112A2E2FE005F1DD4 /* PXFaculty.h */,
 				B1F834A212A2E2FE005F1DD4 /* PXFaculty.m */,
+				B17749F112A55F5400900646 /* PXStudent.h */,
+				B17749F212A55F5400900646 /* PXStudent.m */,
+				B17749F512A5601C00900646 /* PXCourse.h */,
+				B17749F612A5601C00900646 /* PXCourse.m */,
+				B17749F812A560DF00900646 /* PXDocument.h */,
+				B17749F912A560DF00900646 /* PXDocument.m */,
 			);
 			name = "Model Objects";
 			sourceTree = "<group>";
@@ -235,6 +255,10 @@
 				B1C8BB4B12A2E40D008ACEAB /* PXSQLiteObject.m in Sources */,
 				B10EB07712A31B9C00684368 /* PXSQLiteRecords.m in Sources */,
 				B1C64D8312A4776E0020B802 /* PXSStoreController.m in Sources */,
+				B17749F312A55F5400900646 /* PXStudent.m in Sources */,
+				B17749F712A5601C00900646 /* PXCourse.m in Sources */,
+				B17749FA12A560DF00900646 /* PXDocument.m in Sources */,
+				B1DEE0C312A5F27D008519B4 /* NSData+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
